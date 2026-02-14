@@ -11,6 +11,7 @@ import { Loader2, Eye, EyeOff } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/auth-store";
@@ -18,6 +19,7 @@ import { useAuthStore } from "@/store/auth-store";
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
     password: z.string().min(6, "Password must be at least 6 characters"),
+    rememberMe: z.boolean().optional(),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -31,6 +33,7 @@ export default function LoginForm() {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
@@ -46,7 +49,7 @@ export default function LoginForm() {
             // Ideally we would fetch /users/me or decode the token
             const user = { email: data.email };
 
-            login(access_token, user);
+            login(access_token, user, data.rememberMe);
             toast.success("Successfully logged in!");
             router.push("/dashboard");
         } catch (error: any) { // using any for error for simplicity, usually strict typing is better
@@ -119,8 +122,15 @@ export default function LoginForm() {
                         )}
                     </div>
 
-                    {/* aqui vai ter uma checkbox para ver se ele quer que o user seja lembrado ou não */}
-                    {/* o botão de esqueci a senha vai ficar alinhado aqui cm o checkbox */}
+                    <div className="flex items-center space-x-2">
+                        <Checkbox id="remember" onCheckedChange={(checked) => setValue("rememberMe", checked as boolean)} />
+                        <label
+                            htmlFor="remember"
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                            Remember me
+                        </label>
+                    </div>
 
                     <Button disabled={isLoading}>
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
