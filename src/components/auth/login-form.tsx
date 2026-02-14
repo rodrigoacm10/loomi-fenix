@@ -64,8 +64,8 @@ export default function LoginForm() {
         <div className="h-full w-full grid gap-6 space-y-4">
             <div className="flex flex-col space-y-2">
                 <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
-                <p className="text-sm text-muted-foreground">
-                    Enter your email below to login to your account
+                <p className="">
+                    Entre com suas credenciais para acessar a sua conta.
                 </p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -137,7 +137,7 @@ export default function LoginForm() {
 
                     </div>
 
-                    <Button disabled={isLoading} className="mt-4 bg-[#1876D2] py-6">
+                    <Button disabled={isLoading} className="mt-4 bg-[#1876D2] py-6 rounded-[15px]">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         Entrar
                     </Button>

@@ -72,39 +72,38 @@ export default function RegisterForm() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="name">Name</Label>
                         <Input
                             id="name"
-                            placeholder="John Doe"
+                            placeholder="Nome"
                             type="text"
                             autoCapitalize="words"
                             autoComplete="name"
                             autoCorrect="off"
                             disabled={isLoading}
                             {...register("name")}
+                            className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                         />
                         {errors.name && (
                             <p className="text-sm text-red-500">{errors.name.message}</p>
                         )}
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Email</Label>
                         <Input
                             id="email"
-                            placeholder="name@example.com"
+                            placeholder="E-mail"
                             type="email"
                             autoCapitalize="none"
                             autoComplete="email"
                             autoCorrect="off"
                             disabled={isLoading}
                             {...register("email")}
+                            className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                         />
                         {errors.email && (
                             <p className="text-sm text-red-500">{errors.email.message}</p>
                         )}
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="password">Password</Label>
                         <div className="relative">
                             <Input
                                 id="password"
@@ -112,7 +111,9 @@ export default function RegisterForm() {
                                 autoCapitalize="none"
                                 autoComplete="new-password"
                                 disabled={isLoading}
+                                placeholder="Senha"
                                 {...register("password")}
+                                className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                             />
                             <button
                                 type="button"
@@ -131,7 +132,6 @@ export default function RegisterForm() {
                         )}
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="confirmPassword">Confirm Password</Label>
                         <div className="relative">
                             <Input
                                 id="confirmPassword"
@@ -139,14 +139,16 @@ export default function RegisterForm() {
                                 autoCapitalize="none"
                                 autoComplete="new-password"
                                 disabled={isLoading}
+                                placeholder="Confirmar Senha"
                                 {...register("confirmPassword")}
+                                className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                             />
                         </div>
                         {errors.confirmPassword && (
                             <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
                         )}
                     </div>
-                    <Button disabled={isLoading}>
+                    <Button disabled={isLoading} className="mt-4 bg-[#1876D2] py-6 rounded-[15px]">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         Create Account
                     </Button>
@@ -154,7 +156,7 @@ export default function RegisterForm() {
             </form>
             <div className="text-center text-sm">
                 Already have an account?{" "}
-                <Link href="/login" className="font-semibold text-primary hover:underline">
+                <Link href="/login" className="font-semibold text-[#1876D2] hover:underline">
                     Sign in
                 </Link>
             </div>
