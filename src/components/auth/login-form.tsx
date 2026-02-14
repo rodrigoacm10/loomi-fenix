@@ -71,39 +71,34 @@ export default function LoginForm() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Email</Label>
                         <Input
                             id="email"
-                            placeholder="name@example.com"
+                            placeholder="Usuário"
                             type="email"
                             autoCapitalize="none"
                             autoComplete="email"
                             autoCorrect="off"
                             disabled={isLoading}
                             {...register("email")}
+                            className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                         />
+                        <p className="text-sm text-[#ffffff]/40 ml-5">Insira o seu e-mail, CPF ou passaporte.</p>
                         {errors.email && (
                             <p className="text-sm text-red-500">{errors.email.message}</p>
                         )}
                     </div>
+
                     <div className="grid gap-2">
-                        <div className="flex items-center justify-between">
-                            <Label htmlFor="password">Password</Label>
-                            <Link
-                                href="/forgot-password"
-                                className="text-sm font-medium text-primary hover:underline"
-                            >
-                                Forgot password?
-                            </Link>
-                        </div>
                         <div className="relative">
                             <Input
                                 id="password"
                                 type={showPassword ? "text" : "password"}
+                                placeholder="Senha"
                                 autoCapitalize="none"
                                 autoComplete="current-password"
                                 disabled={isLoading}
                                 {...register("password")}
+                                className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                             />
                             <button
                                 type="button"
@@ -122,19 +117,29 @@ export default function LoginForm() {
                         )}
                     </div>
 
-                    <div className="flex items-center space-x-2">
-                        <Checkbox id="remember" onCheckedChange={(checked) => setValue("rememberMe", checked as boolean)} />
-                        <label
-                            htmlFor="remember"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                            <Checkbox id="remember" onCheckedChange={(checked) => setValue("rememberMe", checked as boolean)} className="border-[#ffffff] !border-[1px]" />
+                            <label
+                                htmlFor="remember"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Remember me
+                            </label>
+                        </div>
+
+                        <Link
+                            href="/forgot-password"
+                            className="text-sm font-medium text-[#1876D2] hover:underline"
                         >
-                            Remember me
-                        </label>
+                            Forgot password?
+                        </Link>
+
                     </div>
 
-                    <Button disabled={isLoading}>
+                    <Button disabled={isLoading} className="mt-4 bg-[#1876D2] py-6">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        Sign In with Email
+                        Entrar
                     </Button>
                 </div>
             </form>
@@ -143,14 +148,14 @@ export default function LoginForm() {
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
+                    <span className="bg-[#0b1125] px-2">
                         Or continue with
                     </span>
                 </div>
             </div>
             <div className="text-center text-sm"> {/* Added Register Link */}
                 Don&apos;t have an account?{" "}
-                <Link href="/register" className="font-semibold text-primary hover:underline">
+                <Link href="/register" className="font-semibold text-[#1876D2] hover:underline">
                     Sign up
                 </Link>
             </div>

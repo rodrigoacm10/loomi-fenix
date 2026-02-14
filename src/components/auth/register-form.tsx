@@ -62,8 +62,8 @@ export default function RegisterForm() {
     }
 
     return (
-        <div className="grid gap-6">
-            <div className="flex flex-col space-y-2 space-y-4">
+        <div className="h-full w-full grid gap-6 space-y-4">
+            <div className="flex flex-col space-y-2">
                 <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
                 <p className="text-sm text-muted-foreground">
                     Enter your email below to create your account
