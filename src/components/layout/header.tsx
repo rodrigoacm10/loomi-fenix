@@ -14,8 +14,8 @@ export function Header() {
     const currentTitle = Object.entries(pageTitles).find(([path]) => pathname.startsWith(path))?.[1] || "Dashboard";
 
     return (
-        <header className="bg-[#20273e] sticky top-0 z-30 flex h-18 w-full items-center border-b px-6">
-            <h1 className="text-xl font-semibold">{currentTitle}</h1>
+        <header className="bg-[#20273e] sticky top-0 z-30 flex h-18 w-full items-center px-6">
+            <h1 className="ml-[130px] text-xl font-semibold">{currentTitle}</h1>
         </header>
     );
 }

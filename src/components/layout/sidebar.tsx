@@ -24,8 +24,8 @@ export function Sidebar() {
     const pathname = usePathname();
 
     return (
-        <div className="bg-[#20273e] h-screen py-6 w-[130px]">
-            <div className="absolute top-0 flex bg-[#20273e] h-screen flex-col items-center py-6 w-[130px] rounded-r-[40px] shadow-[4px_0px_20px_0px_rgba(0,0,0,0.3)] flex z-40">
+        <div className="h-screen py-6 sticky top-0 z-40">
+            <div className="absolute top-0 flex bg-[#20273e] h-screen flex-col items-center py-6 w-[130px] rounded-r-[40px] shadow-[4px_0px_20px_0px_rgba(0,0,0,0.5)] flex z-50">
 
                 <div className="mb-8">
                     <Link href="/dashboard">
