@@ -46,8 +46,8 @@ export function Sidebar() {
                                         <Link
                                             href={item.href}
                                             className={cn(
-                                                "flex h-14 w-14 items-center justify-center rounded-lg transition-colors hover:bg-muted",
-                                                isActive ? "bg-[#1876D2] text-primary" : "text-muted-foreground bg-[#2b3248]"
+                                                "flex h-14 w-14 items-center justify-center rounded-lg transition-colors hover:bg-[#1876D2]",
+                                                isActive ? "bg-[#1876D2] text-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]" : "text-muted-foreground bg-[#2b3248]"
                                             )}
                                         >
                                             <div className="relative h-7 w-7">
@@ -61,7 +61,7 @@ export function Sidebar() {
                                             <span className="sr-only">{item.name}</span>
                                         </Link>
                                     </TooltipTrigger>
-                                    <TooltipContent side="right">{item.name}</TooltipContent>
+                                    <TooltipContent className="bg-[#1876D2] text-white border-0" side="right">{item.name}</TooltipContent>
                                 </Tooltip>
                             )
                         })}
@@ -72,12 +72,10 @@ export function Sidebar() {
                     <TooltipProvider>
                         <Tooltip delayDuration={0}>
                             <TooltipTrigger asChild>
-                                <div className="bg-primary/10 p-1 rounded-full cursor-pointer">
-                                    <Avatar className="h-10 w-10 border-2 border-white">
-                                        <AvatarImage src="" alt="User" />
-                                        <AvatarFallback className="bg-primary text-primary-foreground font-semibold">AC</AvatarFallback>
-                                    </Avatar>
-                                </div>
+                                <Avatar className="h-14 w-14 border-white">
+                                    <AvatarImage src="" alt="User" />
+                                    <AvatarFallback className="bg-[#1876D2] text-primary-foreground font-semibold">AC</AvatarFallback>
+                                </Avatar>
                             </TooltipTrigger>
                             <TooltipContent side="right">User Profile</TooltipContent>
                         </Tooltip>
