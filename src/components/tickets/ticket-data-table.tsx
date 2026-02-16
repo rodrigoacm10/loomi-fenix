@@ -31,7 +31,7 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command"
-import { Check, ChevronsUpDown, Search } from "lucide-react"
+import { Check, ChevronsUpDown, Search, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface DataTableProps<TData, TValue> {
@@ -90,7 +90,8 @@ export function TicketDataTable<TData, TValue>({
 
     const currentResponsibleFilter = (table.getColumn("responsible")?.getFilterValue() as string) ?? ""
 
-    console.log("ROWS -><>", table.getRowModel().rows)
+    const totalPages = table.getPageCount();
+    const currentPage = table.getState().pagination.pageIndex + 1;
 
     return (
         <div>
@@ -230,7 +231,7 @@ export function TicketDataTable<TData, TValue>({
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
+                            <TableRow className="border-[#ffffff]/10" key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead className="!px-0" key={header.id}>
@@ -252,6 +253,7 @@ export function TicketDataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
+                                    className="border-[#ffffff]/10"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell className="!px-0" key={cell.id}>
@@ -277,22 +279,55 @@ export function TicketDataTable<TData, TValue>({
                 </Table>
             </div>
 
+            {/* altere essa paginação para 
+btn para voltar para primiera página
+btn para voltar uma página
+
+<-   <  1 de 5  >    ->
+
+btn para ir uma página
+btn para ir para última página
+
+*/}
             <div className="flex items-center justify-end space-x-2 py-4">
                 <Button
                     variant="outline"
-                    size="sm"
-                    onClick={() => table.previousPage()}
+                    className="hidden h-8 w-8 p-0 lg:flex"
+                    onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
                 >
-                    Anterior
+                    <span className="sr-only">Ir para a primeira página</span>
+                    <ChevronsLeft className="h-4 w-4" />
                 </Button>
                 <Button
                     variant="outline"
-                    size="sm"
+                    className="h-8 w-8 p-0"
+                    onClick={() => table.previousPage()}
+                    disabled={!table.getCanPreviousPage()}
+                >
+                    <span className="sr-only">Página anterior</span>
+                    <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+                    {currentPage} de {totalPages}
+                </div>
+                <Button
+                    variant="outline"
+                    className="h-8 w-8 p-0"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
                 >
-                    Próximo
+                    <span className="sr-only">Próxima página</span>
+                    <ChevronRight className="h-4 w-4" />
+                </Button>
+                <Button
+                    variant="outline"
+                    className="hidden h-8 w-8 p-0 lg:flex"
+                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                    disabled={!table.getCanNextPage()}
+                >
+                    <span className="sr-only">Ir para a última página</span>
+                    <ChevronsRight className="h-4 w-4" />
                 </Button>
             </div>
         </div >

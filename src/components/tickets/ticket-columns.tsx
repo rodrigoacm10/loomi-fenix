@@ -2,7 +2,6 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { Ticket } from "@/types/ticket"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -14,75 +13,74 @@ import {
 import { MoreHorizontal, Edit, Trash } from "lucide-react"
 import { format } from "date-fns"
 import { useTicketStore } from '@/store/ticket-store'
+import { TicketBadge } from "./ticket-badge"
 
 export const columns: ColumnDef<Ticket>[] = [
     {
         accessorKey: "ticketId",
         header: "ID",
+        cell: ({ row }) => {
+            const ticketId = row.getValue('ticketId') as string
+
+            return <div className="font-bold">{ticketId}</div>
+        }
     },
     {
         accessorKey: "priority",
         header: "Prioridade",
         cell: ({ row }) => {
-            const priority = row.getValue("priority") as string
-            let variant: "default" | "destructive" | "warning" | "success" | "secondary" = "default"
+            const priority = row.getValue("priority") as "Urgente" | "Média" | "Baixa"
 
-            switch (priority) {
-                case "Urgente":
-                    variant = "destructive"
-                    break
-                case "Média":
-                    variant = "warning"
-                    break
-                case "Baixa":
-                    variant = "success"
-                    break
-                default:
-                    variant = "secondary"
-            }
 
-            return <Badge variant={variant}>{priority}</Badge>
+            return <TicketBadge variant={priority} />
         },
     },
     {
         accessorKey: "client",
         header: "Cliente",
+        cell: ({ row }) => {
+            const client = row.getValue("client") as string
+            const email = row.original.email
+
+            return <div className="flex flex-col">
+                <p className="font-bold">{client.charAt(0).toUpperCase() + client.slice(1)}</p>
+                <p>{email}</p>
+            </div>
+        }
     },
     {
         accessorKey: "subject",
         header: "Assunto",
+        cell: ({ row }) => {
+            const subject = row.getValue('subject') as string
+
+            return <div className="font-bold">{subject}</div>
+        }
     },
     {
         accessorKey: "status",
         header: "Status",
         cell: ({ row }) => {
-            const status = row.getValue("status") as string
-            let variant: "default" | "destructive" | "warning" | "success" | "secondary" | "outline" = "outline"
+            const status = row.getValue("status") as "Aberto" | "Em andamento" | "Fechado"
 
-            switch (status) {
-                case "Aberto":
-                    variant = "default" // or blue
-                    break
-                case "Em andamento":
-                    variant = "secondary"
-                    break
-                case "Fechado":
-                    variant = "outline"
-                    break
-            }
-            return <Badge variant={variant}>{status}</Badge>
+            return <TicketBadge variant={status} />
         },
-    },
-    {
-        accessorKey: "responsible",
-        header: "Responsável",
     },
     {
         accessorKey: "createdAt",
         header: "Criado em",
         cell: ({ row }) => {
             const date = new Date(row.getValue("createdAt"));
-            return format(date, "dd/MM/yyyy");
+            return <div className="font-bold">{format(date, "dd/MM/yyyy")}</div>;
+        }
+    },
+    {
+        accessorKey: "responsible",
+        header: "Responsável",
+        cell: ({ row }) => {
+            const responsible = row.getValue('responsible') as string
+
+            return <div className="font-bold">{responsible}</div>
         }
     },
     {

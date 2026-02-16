@@ -27,6 +27,7 @@ export default function TicketsPage() {
     }).length;
     const averageTime = "2h 30m";
 
+    console.log('[TICKETS] -><>:', tickets)
     return (
         <div className="grid gap-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
