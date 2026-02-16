@@ -9,6 +9,7 @@ import { TicketDialog } from "@/components/tickets/ticket-dialog";
 import { DeleteTicketDialog } from "@/components/tickets/delete-ticket-dialog";
 import { Ticket as TicketIcon, Clock, CheckCircle2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TicketCardInfo } from "@/components/tickets/ticket-card-info";
 
 export default function TicketsPage() {
     const { tickets, loading, fetchTickets } = useTicketStore();
@@ -31,57 +32,16 @@ export default function TicketsPage() {
 
     return (
         <div className="grid gap-4">
-            {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Tickets Abertos</CardTitle>
-                        <TicketIcon className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{openTickets}</div>
-                        <p className="text-xs text-muted-foreground">Total de tickets aguardando</p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Em Andamento</CardTitle>
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{inProgressTickets}</div>
-                        <p className="text-xs text-muted-foreground">Sendo resolvidos agora</p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Resolvidos Hoje</CardTitle>
-                        <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{closedToday}</div>
-                        <p className="text-xs text-muted-foreground">Tickets fechados nas últimas 24h</p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Tempo Médio</CardTitle>
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{averageTime}</div>
-                        <p className="text-xs text-muted-foreground">Para resolução de tickets</p>
-                    </CardContent>
-                </Card>
+                <TicketCardInfo title="TIckets Abertos" data={openTickets} icon="/icons/ticket/Icon1.svg" />
+                <TicketCardInfo title="Em AndameSnto" data={inProgressTickets} icon="/icons/ticket/Icon4.svg" />
+                <TicketCardInfo title="Resolvidos hoje" data={closedToday} icon="/icons/ticket/Icon3.svg" />
+                <TicketCardInfo title="Tempo Médio" data={averageTime} icon="/icons/ticket/Icon2.svg" />
             </div>
 
             <Container className="space-y-4">
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-semibold">Lista de Tickets</h2>
-                    {/* Botão de Novo Ticket movido para o Header */}
                 </div>
 
                 {loading ? (
