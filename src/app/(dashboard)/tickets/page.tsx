@@ -7,8 +7,6 @@ import { TicketDataTable } from "@/components/tickets/ticket-data-table";
 import { columns } from "@/components/tickets/ticket-columns";
 import { TicketDialog } from "@/components/tickets/ticket-dialog";
 import { DeleteTicketDialog } from "@/components/tickets/delete-ticket-dialog";
-import { Ticket as TicketIcon, Clock, CheckCircle2 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TicketCardInfo } from "@/components/tickets/ticket-card-info";
 
 export default function TicketsPage() {
@@ -27,7 +25,6 @@ export default function TicketsPage() {
         const updated = new Date(t.updatedAt).toDateString();
         return today === updated;
     }).length;
-    // Mock for average time as we don't have enough data logic yet
     const averageTime = "2h 30m";
 
     return (
@@ -39,7 +36,7 @@ export default function TicketsPage() {
                 <TicketCardInfo title="Tempo Médio" data={averageTime} icon="/icons/ticket/Icon2.svg" />
             </div>
 
-            <Container className="space-y-4">
+            <Container>
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-semibold">Lista de Tickets</h2>
                 </div>

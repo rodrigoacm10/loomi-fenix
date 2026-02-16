@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { useState, useMemo } from "react"
 import {
     ColumnDef,
     flexRender,
@@ -31,7 +31,7 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command"
-import { Check, ChevronsUpDown } from "lucide-react"
+import { Check, ChevronsUpDown, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface DataTableProps<TData, TValue> {
@@ -43,22 +43,22 @@ export function TicketDataTable<TData, TValue>({
     columns,
     data,
 }: DataTableProps<TData, TValue>) {
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
         []
     )
 
     // Simple pagination state
-    const [pagination, setPagination] = React.useState({
+    const [pagination, setPagination] = useState({
         pageIndex: 0,
-        pageSize: 10,
+        pageSize: 5,
     })
 
     // Global Filter State (for searching by ID, Client, Subject)
-    const [globalFilter, setGlobalFilter] = React.useState("")
+    const [globalFilter, setGlobalFilter] = useState("")
 
     // Responsible Combobox State
-    const [isResponsibleOpen, setIsResponsibleOpen] = React.useState(false)
-    const [responsibleSearch, setResponsibleSearch] = React.useState("")
+    const [isResponsibleOpen, setIsResponsibleOpen] = useState(false)
+    const [responsibleSearch, setResponsibleSearch] = useState("")
 
     const table = useReactTable({
         data,
@@ -84,69 +84,74 @@ export function TicketDataTable<TData, TValue>({
     })
 
     // Get unique responsibles
-    const uniqueResponsibles = React.useMemo(() => {
+    const uniqueResponsibles = useMemo(() => {
         return Array.from(new Set(data.map(item => (item as any).responsible as string)))
     }, [data])
 
     const currentResponsibleFilter = (table.getColumn("responsible")?.getFilterValue() as string) ?? ""
 
+    console.log("ROWS -><>", table.getRowModel().rows)
+
     return (
         <div>
-            <div className="flex items-center py-4 gap-4">
+            <div className="flex items-center pt-2 pb-4 gap-2">
                 {/* Search Input */}
-                <Input
-                    placeholder="Buscar por ID, cliente ou assunto..."
-                    value={globalFilter ?? ""}
-                    onChange={(event) =>
-                        setGlobalFilter(event.target.value)
-                    }
-                    className="max-w-sm"
-                />
+                <div className="relative w-full">
+                    <Input
+                        placeholder="Buscar por ID, cliente ou assunto..."
+                        value={globalFilter ?? ""}
+                        onChange={(event) =>
+                            setGlobalFilter(event.target.value)
+                        }
+                        className="w-full pl-10 rounded-full border-0 bg-[#0b1125] text-white placeholder:text-white"
+                    />
+                    <div className="absolute left-3 top-0 h-full flex items-center pr-3">
+                        <Search className="h-5 w-5 text-white" />
+                    </div>
+                </div>
 
-                {/* Status Filter */}
+
                 <Select
                     value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
                     onValueChange={(value) =>
                         table.getColumn("status")?.setFilterValue(value === "all" ? undefined : value)
                     }
                 >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-[250px] px-5 bg-[#0b1125] border-0 rounded-full">
                         <SelectValue placeholder="Status" />
                     </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">Todos os Status</SelectItem>
-                        <SelectItem value="Aberto">Aberto</SelectItem>
-                        <SelectItem value="Em andamento">Em andamento</SelectItem>
-                        <SelectItem value="Fechado">Fechado</SelectItem>
+                    <SelectContent className="bg-[#0b1125] text-white border-0">
+                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">Todos os Status</SelectItem>
+                        <SelectItem value="Aberto" className="focus:bg-[#1876D2] focus:text-white">Aberto</SelectItem>
+                        <SelectItem value="Em andamento" className="focus:bg-[#1876D2] focus:text-white">Em andamento</SelectItem>
+                        <SelectItem value="Fechado" className="focus:bg-[#1876D2] focus:text-white">Fechado</SelectItem>
                     </SelectContent>
                 </Select>
 
-                {/* Priority Filter */}
                 <Select
                     value={(table.getColumn("priority")?.getFilterValue() as string) ?? "all"}
                     onValueChange={(value) =>
                         table.getColumn("priority")?.setFilterValue(value === "all" ? undefined : value)
                     }
                 >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-[320px] px-5 bg-[#0b1125] border-0 rounded-full">
                         <SelectValue placeholder="Prioridade" />
                     </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">Todas as Prioridades</SelectItem>
-                        <SelectItem value="Urgente">Urgente</SelectItem>
-                        <SelectItem value="Média">Média</SelectItem>
-                        <SelectItem value="Baixa">Baixa</SelectItem>
+                    <SelectContent className="bg-[#0b1125] text-white border-0">
+                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">Todas as Prioridades</SelectItem>
+                        <SelectItem value="Urgente" className="focus:bg-[#1876D2] focus:text-white">Urgente</SelectItem>
+                        <SelectItem value="Média" className="focus:bg-[#1876D2] focus:text-white">Média</SelectItem>
+                        <SelectItem value="Baixa" className="focus:bg-[#1876D2] focus:text-white">Baixa</SelectItem>
                     </SelectContent>
                 </Select>
 
-                {/* Responsible Combobox */}
                 <Popover open={isResponsibleOpen} onOpenChange={setIsResponsibleOpen}>
                     <PopoverTrigger asChild>
                         <Button
                             variant="outline"
                             role="combobox"
                             aria-expanded={isResponsibleOpen}
-                            className="w-[200px] justify-between"
+                            className="w-[320px] px-5 bg-[#0b1125] hover:bg-[#0b1125] hover:text-white border-0 rounded-full justify-between"
                         >
                             {currentResponsibleFilter
                                 ? uniqueResponsibles.find((responsible) => responsible === currentResponsibleFilter)
@@ -154,47 +159,48 @@ export function TicketDataTable<TData, TValue>({
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-[200px] p-0">
-                        <Command shouldFilter={false}>
+                    <PopoverContent className="w-[200px] p-0 border-0 bg-[#0b1125]">
+                        <Command shouldFilter={false} className="bg-[#0b1125] border-0 text-white">
                             <CommandInput
                                 placeholder="Buscar responsável..."
+                                className="text-white placeholder:text-gray-400"
                                 value={responsibleSearch}
                                 onValueChange={setResponsibleSearch}
                             />
-                            <CommandList>
+                            <CommandList className="border-0">
+                                <div
+                                    onClick={() => {
+                                        table.getColumn("responsible")?.setFilterValue(undefined)
+                                        setIsResponsibleOpen(false)
+                                        setResponsibleSearch("")
+                                    }}
+                                    className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-[#1876D2] hover:text-white"
+                                >
+                                    <Check
+                                        className={cn(
+                                            "mr-2 h-4 w-4",
+                                            !currentResponsibleFilter ? "opacity-100" : "opacity-0"
+                                        )}
+                                    />
+                                    Todos os Responsáveis
+                                </div>
                                 {responsibleSearch.length > 0 && (
                                     <>
-                                        <CommandEmpty>Nenhum responsável encontrado.</CommandEmpty>
                                         <CommandGroup>
-                                            <CommandItem
-                                                value="all"
-                                                onSelect={() => {
-                                                    table.getColumn("responsible")?.setFilterValue(undefined)
-                                                    setIsResponsibleOpen(false)
-                                                    setResponsibleSearch("")
-                                                }}
-                                            >
-                                                <Check
-                                                    className={cn(
-                                                        "mr-2 h-4 w-4",
-                                                        !currentResponsibleFilter ? "opacity-100" : "opacity-0"
-                                                    )}
-                                                />
-                                                Todos os Responsáveis
-                                            </CommandItem>
+
                                             {uniqueResponsibles
                                                 .filter(responsible => responsible.toLowerCase().includes(responsibleSearch.toLowerCase()))
                                                 .map((responsible) => (
-                                                    <CommandItem
+                                                    <div
                                                         key={responsible}
-                                                        value={responsible}
-                                                        onSelect={(currentValue) => {
+                                                        onClick={() => {
                                                             table.getColumn("responsible")?.setFilterValue(
-                                                                currentValue === currentResponsibleFilter ? undefined : currentValue
+                                                                responsible === currentResponsibleFilter ? undefined : responsible
                                                             )
                                                             setIsResponsibleOpen(false)
-                                                            setResponsibleSearch("") // Clear search on select if desired, or keep it
+                                                            setResponsibleSearch("")
                                                         }}
+                                                        className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-[#1876D2] hover:text-white"
                                                     >
                                                         <Check
                                                             className={cn(
@@ -203,7 +209,7 @@ export function TicketDataTable<TData, TValue>({
                                                             )}
                                                         />
                                                         {responsible}
-                                                    </CommandItem>
+                                                    </div>
                                                 ))}
                                         </CommandGroup>
                                     </>
@@ -220,14 +226,14 @@ export function TicketDataTable<TData, TValue>({
                 </Popover>
             </div>
 
-            <div className="rounded-md border">
+            <div className="rounded-[20px] bg-[#23283a] p-6 pt-2">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead className="!px-0" key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -248,7 +254,7 @@ export function TicketDataTable<TData, TValue>({
                                     data-state={row.getIsSelected() && "selected"}
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id}>
+                                        <TableCell className="!px-0" key={cell.id}>
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext()
@@ -289,6 +295,6 @@ export function TicketDataTable<TData, TValue>({
                     Próximo
                 </Button>
             </div>
-        </div>
+        </div >
     )
 }
