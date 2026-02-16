@@ -90,30 +90,14 @@ export const columns: ColumnDef<Ticket>[] = [
             const { openTicketModal, openDeleteModal } = useTicketStore()
 
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => openTicketModal(ticket)}
-                        >
-                            <Edit className="mr-2 h-4 w-4" />
-                            Editar
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={() => openDeleteModal(ticket)}
-                            className="text-destructive focus:text-destructive"
-                        >
-                            <Trash className="mr-2 h-4 w-4" />
-                            Excluir
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <div className="flex items-center gap-2">
+                    <Button onClick={() => openTicketModal(ticket)} variant="ghost" className="px-1 font-normal hover:bg-white/10">
+                        Editar <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button onClick={() => openDeleteModal(ticket)} variant="ghost" className="font-normal">
+                        Excluir <Trash className="h-4 w-4" />
+                    </Button>
+                </div>
             )
         },
     },
