@@ -9,6 +9,8 @@ interface TicketState {
     selectedTicket: Ticket | null;
     isTicketModalOpen: boolean;
 
+    isViewMode: boolean; // Add view mode state
+
     // Delete Modal State
     ticketToDelete: Ticket | null;
     isDeleteModalOpen: boolean;
@@ -19,7 +21,7 @@ interface TicketState {
     deleteTicket: (id: string) => Promise<void>;
 
     setSelectedTicket: (ticket: Ticket | null) => void;
-    openTicketModal: (ticket?: Ticket) => void;
+    openTicketModal: (ticket?: Ticket, viewMode?: boolean) => void; // Update signature
     closeTicketModal: () => void;
 
     openDeleteModal: (ticket: Ticket) => void;
@@ -32,6 +34,7 @@ export const useTicketStore = create<TicketState>((set, get) => ({
     error: null,
     selectedTicket: null,
     isTicketModalOpen: false,
+    isViewMode: false, // Initialize view mode
     ticketToDelete: null,
     isDeleteModalOpen: false,
 
@@ -98,8 +101,8 @@ export const useTicketStore = create<TicketState>((set, get) => ({
     },
 
     setSelectedTicket: (ticket) => set({ selectedTicket: ticket }),
-    openTicketModal: (ticket) => set({ isTicketModalOpen: true, selectedTicket: ticket || null }),
-    closeTicketModal: () => set({ isTicketModalOpen: false, selectedTicket: null }),
+    openTicketModal: (ticket, viewMode = false) => set({ isTicketModalOpen: true, selectedTicket: ticket || null, isViewMode: viewMode }),
+    closeTicketModal: () => set({ isTicketModalOpen: false, selectedTicket: null, isViewMode: false }),
 
     openDeleteModal: (ticket) => set({ isDeleteModalOpen: true, ticketToDelete: ticket }),
     closeDeleteModal: () => set({ isDeleteModalOpen: false, ticketToDelete: null }),

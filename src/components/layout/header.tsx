@@ -26,9 +26,9 @@ export function Header() {
                 {pathname === "/tickets" && (
                     <Button
                         onClick={() => openTicketModal()}
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                        className="rounded-full bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)] hover:bg-[#156abd]"
                     >
-                        <Plus className="mr-2 h-4 w-4" /> Novo Ticket
+                        <Plus className="h-4 w-4" /> Novo Ticket
                     </Button>
                 )}
             </div>

@@ -10,7 +10,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { MoreHorizontal, Edit, Trash } from "lucide-react"
+import { MoreHorizontal, Edit, Trash, Eye } from "lucide-react"
 import { format } from "date-fns"
 import { useTicketStore } from '@/store/ticket-store'
 import { TicketBadge } from "./ticket-badge"
@@ -91,11 +91,11 @@ export const columns: ColumnDef<Ticket>[] = [
 
             return (
                 <div className="flex items-center gap-2">
-                    <Button onClick={() => openTicketModal(ticket)} variant="ghost" className="px-1 font-normal hover:bg-white/10">
+                    <Button onClick={() => openTicketModal(ticket, false)} variant="ghost" className="px-1 font-normal hover:bg-white/10">
                         Editar <Edit className="h-4 w-4" />
                     </Button>
-                    <Button onClick={() => openDeleteModal(ticket)} variant="ghost" className="font-normal">
-                        Excluir <Trash className="h-4 w-4" />
+                    <Button onClick={() => openTicketModal(ticket, true)} variant="ghost" className="font-normal hover:bg-white/10">
+                        Visualizar <Eye className="h-4 w-4" />
                     </Button>
                 </div>
             )

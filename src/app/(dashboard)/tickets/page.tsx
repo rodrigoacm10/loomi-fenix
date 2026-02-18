@@ -16,7 +16,6 @@ export default function TicketsPage() {
         fetchTickets();
     }, [fetchTickets]);
 
-    // Calculate KPI metrics locally for now
     const openTickets = tickets.filter(t => t.status === 'Aberto').length;
     const inProgressTickets = tickets.filter(t => t.status === 'Em andamento').length;
     const closedToday = tickets.filter(t => {
@@ -27,7 +26,6 @@ export default function TicketsPage() {
     }).length;
     const averageTime = "2h 30m";
 
-    console.log('[TICKETS] -><>:', tickets)
     return (
         <div className="grid gap-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

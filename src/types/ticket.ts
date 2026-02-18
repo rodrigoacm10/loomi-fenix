@@ -15,6 +15,7 @@ export interface Ticket {
 }
 
 export interface CreateTicketDTO {
+    ticketId: string;
     priority: TicketPriority;
     client: string;
     email: string;
