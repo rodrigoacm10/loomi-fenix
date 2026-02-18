@@ -24,6 +24,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useTicketStore } from '@/store/ticket-store'
 import { toast } from "sonner"
 import { getNextTicketId } from "@/utils/get-next-ticket-id"
+import { SuccessToast } from "@/components/ui/success-toast"
 
 const ticketSchema = z.object({
     subject: z.string().min(1, "Assunto é obrigatório"),
@@ -65,7 +66,13 @@ export function TicketForm() {
         try {
             if (selectedTicket) {
                 await updateTicket(selectedTicket.id, data)
-                toast.success("Ticket atualizado com sucesso!")
+                toast.custom((t) => (
+                    <SuccessToast
+                        t={t}
+                        title="Ticket atualizado com sucesso!"
+                        description="O ticket foi atualizado e já está na sua lista."
+                    />
+                ))
             } else {
                 const newTicketData = {
                     ...data,
@@ -73,7 +80,13 @@ export function TicketForm() {
                 }
 
                 await createTicket(newTicketData)
-                toast.success("Ticket criado com sucesso!")
+                toast.custom((t) => (
+                    <SuccessToast
+                        t={t}
+                        title="Ticket criado com sucesso!"
+                        description="O ticket foi criado e já está na sua lista."
+                    />
+                ))
             }
             closeTicketModal()
         } catch (error) {
