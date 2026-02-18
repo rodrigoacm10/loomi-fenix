@@ -47,16 +47,13 @@ export function TicketDataTable<TData, TValue>({
         []
     )
 
-    // Simple pagination state
     const [pagination, setPagination] = useState({
         pageIndex: 0,
         pageSize: 5,
     })
 
-    // Global Filter State (for searching by ID, Client, Subject)
     const [globalFilter, setGlobalFilter] = useState("")
 
-    // Responsible Combobox State
     const [isResponsibleOpen, setIsResponsibleOpen] = useState(false)
     const [responsibleSearch, setResponsibleSearch] = useState("")
 
@@ -83,7 +80,6 @@ export function TicketDataTable<TData, TValue>({
         onGlobalFilterChange: setGlobalFilter,
     })
 
-    // Get unique responsibles
     const uniqueResponsibles = useMemo(() => {
         return Array.from(new Set(data.map(item => (item as any).responsible as string)))
     }, [data])
@@ -96,7 +92,6 @@ export function TicketDataTable<TData, TValue>({
     return (
         <div>
             <div className="flex items-center pt-2 pb-4 gap-2">
-                {/* Search Input */}
                 <div className="relative w-full">
                     <Input
                         placeholder="Buscar por ID, cliente ou assunto..."
@@ -215,7 +210,6 @@ export function TicketDataTable<TData, TValue>({
                                         </CommandGroup>
                                     </>
                                 )}
-                                {/* Show "Search to find responsible" placeholder if empty */}
                                 {responsibleSearch.length === 0 && (
                                     <div className="py-6 text-center text-sm text-muted-foreground">
                                         Digite para buscar...
@@ -279,54 +273,40 @@ export function TicketDataTable<TData, TValue>({
                 </Table>
             </div>
 
-            {/* altere essa paginação para 
-btn para voltar para primiera página
-btn para voltar uma página
-
-<-   <  1 de 5  >    ->
-
-btn para ir uma página
-btn para ir para última página
-
-*/}
-            <div className="flex items-center justify-end space-x-2 py-4">
+            <div className="flex items-center justify-end py-4">
                 <Button
-                    variant="outline"
-                    className="hidden h-8 w-8 p-0 lg:flex"
+                    variant="ghost"
+                    className="hidden h-8 w-8 p-0 mr-8 lg:flex hover:text-white hover:bg-[#1876D2]"
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
                 >
-                    <span className="sr-only">Ir para a primeira página</span>
                     <ChevronsLeft className="h-4 w-4" />
                 </Button>
                 <Button
-                    variant="outline"
-                    className="h-8 w-8 p-0"
+                    variant="ghost"
+                    className="h-8 w-8 p-0 mr-4 hover:text-white hover:bg-[#1876D2]"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
                 >
-                    <span className="sr-only">Página anterior</span>
                     <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <div className="flex w-[100px] items-center justify-center text-sm font-medium">
                     {currentPage} de {totalPages}
                 </div>
                 <Button
-                    variant="outline"
-                    className="h-8 w-8 p-0"
+                    variant="ghost"
+                    className="h-8 w-8 p-0 ml-4 hover:text-white hover:bg-[#1876D2]"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
                 >
-                    <span className="sr-only">Próxima página</span>
                     <ChevronRight className="h-4 w-4" />
                 </Button>
                 <Button
-                    variant="outline"
-                    className="hidden h-8 w-8 p-0 lg:flex"
+                    variant="ghost"
+                    className="hidden h-8 w-8 p-0 ml-8 lg:flex hover:text-white hover:bg-[#1876D2]"
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
                 >
-                    <span className="sr-only">Ir para a última página</span>
                     <ChevronsRight className="h-4 w-4" />
                 </Button>
             </div>
