@@ -223,7 +223,7 @@ export function TicketDataTable<TData, TValue>({
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow className="border-[#ffffff]/10" key={headerGroup.id}>
+                            <TableRow className="border-[#ffffff]/10 hover:bg-transparent" key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead className="!px-0" key={header.id}>
@@ -245,7 +245,7 @@ export function TicketDataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
-                                    className="border-[#ffffff]/10"
+                                    className="border-[#ffffff]/10 hover:bg-[#181c29]"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell className="!px-0" key={cell.id}>

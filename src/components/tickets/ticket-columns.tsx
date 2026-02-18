@@ -91,11 +91,11 @@ export const columns: ColumnDef<Ticket>[] = [
 
             return (
                 <div className="flex items-center gap-2">
-                    <Button onClick={() => openTicketModal(ticket, false)} variant="ghost" className="px-1 font-normal hover:bg-white/10">
+                    <Button onClick={() => openTicketModal(ticket, false)} variant="ghost" className=" font-normal hover:bg-white/10 hover:text-white">
                         Editar <Edit className="h-4 w-4" />
                     </Button>
-                    <Button onClick={() => openTicketModal(ticket, true)} variant="ghost" className="font-normal hover:bg-white/10">
-                        Visualizar <Eye className="h-4 w-4" />
+                    <Button onClick={() => openTicketModal(ticket, true)} variant="ghost" className="font-normal hover:bg-white/10 hover:text-white">
+                        Ver <Eye className="h-4 w-4" />
                     </Button>
                 </div>
             )
