@@ -47,7 +47,7 @@ export function Sidebar() {
                                             href={item.href}
                                             className={cn(
                                                 "flex h-14 w-14 items-center justify-center rounded-lg transition-colors hover:bg-[#1876D2]",
-                                                isActive ? "bg-[#1876D2] text-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]" : "text-muted-foreground bg-[#2b3248]"
+                                                isActive ? "bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]" : "bg-[#2b3248]"
                                             )}
                                         >
                                             <div className="relative h-7 w-7">
