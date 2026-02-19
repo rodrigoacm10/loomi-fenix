@@ -9,7 +9,6 @@ import Container from "@/components/global/container";
 
 export default function ChatPage() {
     const { messages, loading, fetchChatData, sendMessage, iaSuggestion } = useChatStore();
-    const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         fetchChatData();
@@ -36,7 +35,7 @@ export default function ChatPage() {
                         ) : (
                             messages.map((msg) => <ChatBubble key={msg.id} message={msg} />)
                         )}
-                        <div ref={scrollRef} />
+                        <div />
                     </div>
                 </div>
             </Container>

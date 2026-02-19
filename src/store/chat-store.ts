@@ -26,7 +26,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
         set({ loading: true, error: null });
         try {
             const data = await chatService.getChatData();
-            const author = data.messages[0].author;
+            const author = data.messages.find(msg => msg.type === 'assistant_message')?.author;
             set({
                 messages: data.messages || [],
                 author,

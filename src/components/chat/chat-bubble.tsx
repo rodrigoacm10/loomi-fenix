@@ -14,7 +14,7 @@ export function ChatBubble({ message }: ChatBubbleProps) {
 
     return (
         <div className={cn(
-            "flex flex-col w-full mb-4",
+            "flex flex-col w-full mb-10",
             isAssistant || isSuggestion ? "items-end" : "items-start"
         )}>
             <div className={cn(
@@ -33,7 +33,7 @@ export function ChatBubble({ message }: ChatBubbleProps) {
 
                 <div className="mt-2 flex items-center justify-end gap-1 text-[10px] opacity-60">
                     <span>{message.timestamp}</span>
-                    {!isAssistant && <CheckCheck className="h-3 w-3" />}
+                    {!isAssistant && !isSuggestion && <CheckCheck className="h-3 w-3" />}
                 </div>
             </div>
 
