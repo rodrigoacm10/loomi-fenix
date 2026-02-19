@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
     { name: "Dashboard", href: "/dashboard", icon: "icon1.svg" },
     { name: "Tickets", href: "/tickets", icon: "icon1.svg" },
-    { name: "Chat", href: "/chat", icon: "icon1.svg" },
+    { name: "Chat & Assistente Virtual", href: "/chat", icon: "icon1.svg" },
     { name: "Simulator", href: "/simulator", icon: "icon1.svg" },
 ];
 
