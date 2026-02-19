@@ -11,7 +11,7 @@ interface SuccessToastProps {
 
 export function SuccessToast({ t, title, description }: SuccessToastProps) {
     return (
-        <div className="flex items-start space-x-4 rounded-lg bg-[#1876D2] p-4 py-5 text-white shadow-lg pointer-events-auto w-[500px]">
+        <div className="flex items-start space-x-4 rounded-lg bg-[#1876D2] p-4 py-5 text-white shadow-lg pointer-events-auto w-[450px]">
             <div className="-mt-1 shrink-0 bg-white rounded-full p-1">
                 <Check color="#1876D2" className="h-4 w-4 text-white" strokeWidth={3} />
             </div>

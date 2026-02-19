@@ -156,14 +156,14 @@ export function TicketForm() {
                                 <Select onValueChange={field.onChange} value={field.value}>
                                     <FormControl>
                                         <SelectTrigger
-                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#1876D2]/20 focus:border-[#1876D2]">
+                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
                                             <SelectValue placeholder="Selecione o nível de urgência do atendimento" />
                                         </SelectTrigger>
                                     </FormControl>
-                                    <SelectContent>
-                                        <SelectItem value="Baixa">Baixa</SelectItem>
-                                        <SelectItem value="Média">Média</SelectItem>
-                                        <SelectItem value="Urgente">Urgente</SelectItem>
+                                    <SelectContent className="rounded-[20px] bg-[#171d30] border-0 text-white">
+                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Baixa">Baixa</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Média">Média</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Urgente">Urgente</SelectItem>
                                     </SelectContent>
                                 </Select>
                             )}
@@ -186,14 +186,14 @@ export function TicketForm() {
                                 <Select onValueChange={field.onChange} value={field.value}>
                                     <FormControl>
                                         <SelectTrigger
-                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#1876D2]/20 focus:border-[#1876D2]">
+                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
                                             <SelectValue placeholder="Selecione o status" />
                                         </SelectTrigger>
                                     </FormControl>
-                                    <SelectContent>
-                                        <SelectItem value="Aberto">Aberto</SelectItem>
-                                        <SelectItem value="Em andamento">Em andamento</SelectItem>
-                                        <SelectItem value="Fechado">Fechado</SelectItem>
+                                    <SelectContent className="rounded-[20px] bg-[#171d30] border-0 text-white">
+                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Aberto">Aberto</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Em andamento">Em andamento</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Fechado">Fechado</SelectItem>
                                     </SelectContent>
                                 </Select>
                             )}
