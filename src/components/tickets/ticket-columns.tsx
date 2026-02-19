@@ -85,16 +85,17 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         id: "actions",
+        header: "Ações",
         cell: ({ row }) => {
             const ticket = row.original
             const { openTicketModal, openDeleteModal } = useTicketStore()
 
             return (
-                <div className="flex items-center gap-2">
-                    <Button onClick={() => openTicketModal(ticket, false)} variant="ghost" className=" font-normal hover:bg-white/10 hover:text-white">
+                <div className="flex items-center gap-5">
+                    <Button onClick={() => openTicketModal(ticket, false)} variant="ghost" className="p-0 hover:cursor-pointer hover:bg-transparent font-normal hover:text-white">
                         Editar <Edit className="h-4 w-4" />
                     </Button>
-                    <Button onClick={() => openTicketModal(ticket, true)} variant="ghost" className="font-normal hover:bg-white/10 hover:text-white">
+                    <Button onClick={() => openTicketModal(ticket, true)} variant="ghost" className="p-0 hover:cursor-pointer hover:bg-transparent font-normal hover:text-white">
                         Ver <Eye className="h-4 w-4" />
                     </Button>
                 </div>
