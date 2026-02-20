@@ -6,7 +6,7 @@ const pageTitles: Record<string, string> = {
     "/dashboard": "Dashboard",
     "/tickets": "Tickets",
     "/chat": "Chat & Assistente Virtual",
-    "/simulator": "Simulator",
+    "/simulator": "Simulador de Planos",
 };
 
 import { Button } from "@/components/ui/button";
