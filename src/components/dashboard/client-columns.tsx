@@ -13,9 +13,9 @@ export const columns: ColumnDef<ActiveClient>[] = [
             const email = row.original.email
 
             return (
-                <div>
-                    <p className="font-bold">{name}</p>
-                    <p className="text-xs text-muted-foreground">{email}</p>
+                <div className="">
+                    <p className="font-bold">{name.charAt(0).toUpperCase() + name.slice(1)}</p>
+                    <p className="-mt-0.5">{email}</p>
                 </div>
             )
         }
@@ -25,7 +25,7 @@ export const columns: ColumnDef<ActiveClient>[] = [
         header: "Tipo de Seguro",
         cell: ({ row }) => {
             const type = row.getValue("secureType") as string
-            return <div className="font-medium text-gray-300">{type}</div>
+            return <div className="font-bold">{type}</div>
         }
     },
     {
@@ -67,7 +67,7 @@ export const columns: ColumnDef<ActiveClient>[] = [
         header: "Renovação",
         cell: ({ row }) => {
             const dateStr = row.getValue("renewalDate") as string
-            return <div className="font-medium text-gray-300">{dateStr}</div>
+            return <div className="font-bold">{dateStr}</div>
         }
     },
     {
@@ -75,7 +75,7 @@ export const columns: ColumnDef<ActiveClient>[] = [
         header: "Região",
         cell: ({ row }) => {
             const location = row.getValue("location") as string
-            return <div className="font-medium text-gray-300">{location}</div>
+            return <div className="font-bold">{location}</div>
         }
     },
 ]

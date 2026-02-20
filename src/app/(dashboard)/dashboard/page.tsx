@@ -48,9 +48,18 @@ export default function DashboardPage() {
                 <DashboardMap />
             </Container>
 
-            <div className="h-[400px] overflow-hidden">
-                <ClientDataTable columns={clientColumns} data={data.activeClients.data} filters={data.activeClients.filters} />
-            </div>
+
+            <Container className="pb-4">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-semibold">Clientes Ativos</h2>
+                </div>
+
+                {loading ? (
+                    <div className="flex justify-center p-8">Carregando clientes...</div>
+                ) : (
+                    <ClientDataTable columns={clientColumns} data={data.activeClients.data} filters={data.activeClients.filters} />
+                )}
+            </Container>
 
         </div>
     );
