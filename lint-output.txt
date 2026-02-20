@@ -1,0 +1,82 @@
+
+> loominortus@0.1.0 lint
+> eslint
+
+
+/home/rodrigo/projects/loominortus/src/app/(dashboard)/chat/page.tsx
+   3:21  warning  'useRef' is defined but never used                 @typescript-eslint/no-unused-vars
+  11:60  warning  'iaSuggestion' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/components/auth/login-form.tsx
+  15:10  warning  'Label' is defined but never used         @typescript-eslint/no-unused-vars
+  55:25  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/rodrigo/projects/loominortus/src/components/auth/register-form.tsx
+  14:10  warning  'Label' is defined but never used         @typescript-eslint/no-unused-vars
+  56:25  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/rodrigo/projects/loominortus/src/components/dashboard/client-table.tsx
+    3:20  warning  'useMemo' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   29:10  warning  'TicketBadge' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  122:19  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+/home/rodrigo/projects/loominortus/src/components/dashboard/client-table.tsx:122:19
+  120 |     const [globalFilter, setGlobalFilter] = useState("")
+  121 |
+> 122 |     const table = useReactTable({
+      |                   ^^^^^^^^^^^^^ TanStack Table's `useReactTable()` API returns functions that cannot be memoized safely
+  123 |         data: clients,
+  124 |         columns,
+  125 |         getCoreRowModel: getCoreRowModel(),  react-hooks/incompatible-library
+
+/home/rodrigo/projects/loominortus/src/components/simulator/simulator-summary.tsx
+  1:10  warning  'MOCK_ADDONS' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/components/tickets/delete-ticket-dialog.tsx
+  31:18  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/components/tickets/ticket-card-info.tsx
+  4:41  warning  'type' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/components/tickets/ticket-columns.tsx
+  84:38  warning  'openDeleteModal' is assigned a value but never used                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  84:58  error    React Hook "useTicketStore" is called in function "cell" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"  react-hooks/rules-of-hooks
+
+/home/rodrigo/projects/loominortus/src/components/tickets/ticket-data-table.tsx
+  58:19  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+/home/rodrigo/projects/loominortus/src/components/tickets/ticket-data-table.tsx:58:19
+  56 |     const [responsibleSearch, setResponsibleSearch] = useState("")
+  57 |
+> 58 |     const table = useReactTable({
+     |                   ^^^^^^^^^^^^^ TanStack Table's `useReactTable()` API returns functions that cannot be memoized safely
+  59 |         data,
+  60 |         columns,
+  61 |         getCoreRowModel: getCoreRowModel(),  react-hooks/incompatible-library
+  82:61  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+
+/home/rodrigo/projects/loominortus/src/components/ui/command.tsx
+  25:11  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+/home/rodrigo/projects/loominortus/src/components/ui/success-toast.tsx
+  3:17  warning  'CheckCircle2' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/store/chat-store.ts
+   2:23  warning  'ChatResponse' is defined but never used  @typescript-eslint/no-unused-vars
+  17:53  warning  'get' is defined but never used           @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/store/simulator-store.ts
+  2:25  warning  'SimulatorResponse' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/store/ticket-store.ts
+  31:57  warning  'get' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/rodrigo/projects/loominortus/src/types/ticket.ts
+  27:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+✖ 23 problems (6 errors, 17 warnings)
+

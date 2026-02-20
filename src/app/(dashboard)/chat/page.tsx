@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useChatStore } from "@/store/chat-store";
 import { ChatBubble } from "@/components/chat/chat-bubble";
 import { ChatInput } from "@/components/chat/chat-input";
@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 import Container from "@/components/global/container";
 
 export default function ChatPage() {
-    const { messages, loading, fetchChatData, sendMessage, iaSuggestion } = useChatStore();
+    const { messages, loading, fetchChatData, sendMessage } = useChatStore();
 
     useEffect(() => {
         fetchChatData();

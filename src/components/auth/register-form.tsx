@@ -11,7 +11,7 @@ import { Loader2, Eye, EyeOff } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import api from "@/lib/api";
 
 const registerSchema = z.object({
@@ -53,9 +53,10 @@ export default function RegisterForm() {
 
             toast.success("Account created successfully! Please login.");
             router.push("/login");
-        } catch (error: any) {
+        } catch (error) {
             console.error(error);
-            toast.error(error.response?.data?.message || "Failed to create account. Please try again.");
+            const err = error as { response?: { data?: { message?: string } } };
+            toast.error(err.response?.data?.message || "Failed to create account. Please try again.");
         } finally {
             setIsLoading(false);
         }
