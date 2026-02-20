@@ -17,7 +17,7 @@ const navItems = [
     { name: "Dashboard", href: "/dashboard", icon: "icon1.svg" },
     { name: "Tickets", href: "/tickets", icon: "icon1.svg" },
     { name: "Chat & Assistente Virtual", href: "/chat", icon: "icon1.svg" },
-    { name: "Simulator", href: "/simulator", icon: "icon1.svg" },
+    { name: "Simulador de Planos", href: "/simulator", icon: "icon1.svg" },
 ];
 
 export function Sidebar() {

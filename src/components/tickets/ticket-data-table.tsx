@@ -97,7 +97,7 @@ export function TicketDataTable<TData, TValue>({
                         onChange={(event) =>
                             setGlobalFilter(event.target.value)
                         }
-                        className="w-full pl-10 rounded-full border-0 bg-[#0b1125] text-white placeholder:text-white"
+                        className="w-full pl-10 rounded-full h-9 border-0 bg-[#0b1125] text-white placeholder:text-white"
                     />
                     <div className="absolute left-3 top-0 h-full flex items-center pr-3">
                         <Search className="h-5 w-5 text-white" />
@@ -111,7 +111,7 @@ export function TicketDataTable<TData, TValue>({
                         table.getColumn("status")?.setFilterValue(value === "all" ? undefined : value)
                     }
                 >
-                    <SelectTrigger className="w-[250px] px-5 bg-[#0b1125] border-0 rounded-full">
+                    <SelectTrigger className="w-[250px] px-5 bg-[#0b1125] border-0 rounded-full h-9">
                         <SelectValue placeholder="Status" />
                     </SelectTrigger>
                     <SelectContent className="bg-[#0b1125] text-white border-0">
@@ -128,7 +128,7 @@ export function TicketDataTable<TData, TValue>({
                         table.getColumn("priority")?.setFilterValue(value === "all" ? undefined : value)
                     }
                 >
-                    <SelectTrigger className="w-[320px] px-5 bg-[#0b1125] border-0 rounded-full">
+                    <SelectTrigger className="w-[320px] px-5 bg-[#0b1125] border-0 rounded-full h-9">
                         <SelectValue placeholder="Prioridade" />
                     </SelectTrigger>
                     <SelectContent className="bg-[#0b1125] text-white border-0">
@@ -145,7 +145,7 @@ export function TicketDataTable<TData, TValue>({
                             variant="outline"
                             role="combobox"
                             aria-expanded={isResponsibleOpen}
-                            className="w-[320px] px-5 bg-[#0b1125] hover:bg-[#0b1125] hover:text-white border-0 rounded-full justify-between"
+                            className="w-[320px] px-5 bg-[#0b1125] hover:bg-[#0b1125] hover:text-white border-0 rounded-full justify-between h-9"
                         >
                             {currentResponsibleFilter
                                 ? uniqueResponsibles.find((responsible) => responsible === currentResponsibleFilter)
@@ -219,11 +219,11 @@ export function TicketDataTable<TData, TValue>({
                 </Popover>
             </div>
 
-            <div className="rounded-[20px] bg-[#23283a] p-6 pt-2">
+            <div className="rounded-[20px] bg-[#23283a] px-6 pb-2">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow className="border-[#ffffff]/10 hover:bg-transparent" key={headerGroup.id}>
+                            <TableRow className="border-[#ffffff]/10 hover:bg-transparent text-xs" key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead className="!px-0" key={header.id}>
@@ -245,7 +245,7 @@ export function TicketDataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
-                                    className="border-[#ffffff]/10 hover:bg-[#181c29]"
+                                    className="border-[#ffffff]/10 hover:bg-[#181c29] text-xs"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell className="!px-0" key={cell.id}>
@@ -271,7 +271,7 @@ export function TicketDataTable<TData, TValue>({
                 </Table>
             </div>
 
-            <div className="flex items-center justify-end py-4">
+            <div className="flex items-center justify-end pt-3">
                 <Button
                     variant="ghost"
                     className="hidden h-8 w-8 p-0 mr-8 lg:flex hover:text-white hover:bg-[#1876D2]"
