@@ -3,14 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Ticket } from "@/types/ticket"
 import { Button } from "@/components/ui/button"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { MoreHorizontal, Edit, Trash, Eye } from "lucide-react"
+import { Edit, Eye } from "lucide-react"
 import { format } from "date-fns"
 import { useTicketStore } from '@/store/ticket-store'
 import { TicketBadge } from "./ticket-badge"
@@ -42,9 +35,9 @@ export const columns: ColumnDef<Ticket>[] = [
             const client = row.getValue("client") as string
             const email = row.original.email
 
-            return <div className="flex flex-col">
+            return <div className="">
                 <p className="font-bold">{client.charAt(0).toUpperCase() + client.slice(1)}</p>
-                <p>{email}</p>
+                <p className="-mt-0.5">{email}</p>
             </div>
         }
     },

@@ -27,15 +27,15 @@ export default function TicketsPage() {
     const averageTime = "2h 30m";
 
     return (
-        <div className="grid gap-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="space-y-[32px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
                 <TicketCardInfo title="TIckets Abertos" data={openTickets} icon="/icons/ticket/Icon1.svg" />
                 <TicketCardInfo title="Em AndameSnto" data={inProgressTickets} icon="/icons/ticket/Icon4.svg" />
                 <TicketCardInfo title="Resolvidos hoje" data={closedToday} icon="/icons/ticket/Icon3.svg" />
                 <TicketCardInfo title="Tempo Médio" data={averageTime} icon="/icons/ticket/Icon2.svg" />
             </div>
 
-            <Container>
+            <Container className="pb-4">
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-semibold">Lista de Tickets</h2>
                 </div>
