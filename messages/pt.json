@@ -1,0 +1,17 @@
+{
+    "LoginPage": {
+        "title": "Login",
+        "description": "Entre com suas credenciais para acessar a sua conta.",
+        "emailPlaceholder": "Usuário",
+        "emailLabel": "Insira o seu e-mail, CPF ou passaporte.",
+        "passwordPlaceholder": "Senha",
+        "rememberMe": "Lembrar-me",
+        "forgotPassword": "Esqueceu a senha?",
+        "submit": "Entrar",
+        "orContinueWith": "Ou continue com",
+        "dontHaveAccount": "Não tem uma conta?",
+        "signUp": "Cadastre-se",
+        "successMessage": "Login realizado com sucesso!",
+        "failMessage": "Falha no login. Tente novamente."
+    }
+}

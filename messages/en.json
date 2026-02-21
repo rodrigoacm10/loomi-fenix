@@ -1,0 +1,17 @@
+{
+    "LoginPage": {
+        "title": "Login",
+        "description": "Enter your credentials to access your account.",
+        "emailPlaceholder": "User",
+        "emailLabel": "Enter your email, CPF or passport.",
+        "passwordPlaceholder": "Password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "submit": "Log In",
+        "orContinueWith": "Or continue with",
+        "dontHaveAccount": "Don't have an account?",
+        "signUp": "Sign up",
+        "successMessage": "Successfully logged in!",
+        "failMessage": "Failed to login. Please try again."
+    }
+}
