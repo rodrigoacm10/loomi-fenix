@@ -8,7 +8,6 @@ interface DashboardStore {
     loading: boolean;
     error: string | null;
 
-    // Table Filters
     searchQuery: string;
     statusFilter: string;
     typeFilter: string;
@@ -16,13 +15,11 @@ interface DashboardStore {
 
     fetchDashboardData: () => Promise<void>;
 
-    // Actions
     setSearchQuery: (query: string) => void;
     setStatusFilter: (status: string) => void;
     setTypeFilter: (type: string) => void;
     setLocationFilter: (location: string) => void;
 
-    // Selectors
     getFilteredClients: () => ActiveClient[];
 }
 
@@ -51,7 +48,6 @@ export const useDashboardStore = create<DashboardStore>((set, get) => ({
                 data,
                 mapLocations: mapData.data.locations,
                 loading: false,
-                // Optionally reset filters to default "Todos" when fetching new data
                 statusFilter: 'Todos',
                 typeFilter: 'Todos',
                 locationFilter: 'Todos',
@@ -73,7 +69,6 @@ export const useDashboardStore = create<DashboardStore>((set, get) => ({
 
         let filtered = state.data.activeClients.data;
 
-        // Search
         if (state.searchQuery) {
             const query = state.searchQuery.toLowerCase();
             filtered = filtered.filter(client =>
@@ -82,17 +77,14 @@ export const useDashboardStore = create<DashboardStore>((set, get) => ({
             );
         }
 
-        // Status
         if (state.statusFilter !== 'Todos') {
             filtered = filtered.filter(client => client.status === state.statusFilter);
         }
 
-        // Type
         if (state.typeFilter !== 'Todos') {
             filtered = filtered.filter(client => client.secureType === state.typeFilter);
         }
 
-        // Location
         if (state.locationFilter !== 'Todos') {
             filtered = filtered.filter(client => client.location === state.locationFilter);
         }

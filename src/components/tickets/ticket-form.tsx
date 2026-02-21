@@ -248,7 +248,6 @@ export function TicketForm() {
 
                 <div className="flex items-center justify-center gap-2">
                     <Button
-                        type="button"
                         variant="ghost"
                         className="ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-[#070b19] hover:ring-[#ffffff] hover:text-white"
                         onClick={() => closeTicketModal()}

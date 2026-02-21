@@ -9,9 +9,8 @@ interface TicketState {
     selectedTicket: Ticket | null;
     isTicketModalOpen: boolean;
 
-    isViewMode: boolean; // Add view mode state
+    isViewMode: boolean;
 
-    // Delete Modal State
     ticketToDelete: Ticket | null;
     isDeleteModalOpen: boolean;
 
@@ -21,7 +20,7 @@ interface TicketState {
     deleteTicket: (id: string) => Promise<void>;
 
     setSelectedTicket: (ticket: Ticket | null) => void;
-    openTicketModal: (ticket?: Ticket, viewMode?: boolean) => void; // Update signature
+    openTicketModal: (ticket?: Ticket, viewMode?: boolean) => void;
     closeTicketModal: () => void;
 
     openDeleteModal: (ticket: Ticket) => void;
@@ -34,7 +33,7 @@ export const useTicketStore = create<TicketState>((set, get) => ({
     error: null,
     selectedTicket: null,
     isTicketModalOpen: false,
-    isViewMode: false, // Initialize view mode
+    isViewMode: false,
     ticketToDelete: null,
     isDeleteModalOpen: false,
 
@@ -42,7 +41,6 @@ export const useTicketStore = create<TicketState>((set, get) => ({
         set({ loading: true, error: null });
         try {
             const response = await ticketService.getTickets();
-            // The API returns { data, total, listed }
             set({ tickets: response.data || [], loading: false });
         } catch (error) {
             console.error('Failed to fetch tickets:', error);
