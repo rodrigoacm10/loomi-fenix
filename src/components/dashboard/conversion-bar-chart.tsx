@@ -60,8 +60,8 @@ export function ConversionBarChart() {
     return (
         <div className="flex flex-col h-full space-y-4">
             <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-white">Taxa de conversão</h3>
-                <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
+                <h3 className="text-xl font-semibold">Taxa de conversão</h3>
+                <ArrowRightIcon className="h-6 w-6" />
             </div>
             <div className="flex-1 min-h-[0px] -ml-4">
                 {(typeof window !== 'undefined') && (

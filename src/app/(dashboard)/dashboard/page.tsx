@@ -34,17 +34,17 @@ export default function DashboardPage() {
     return (
         <div className="space-y-[40px]">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px] h-[380px]">
-                <Container className="lg:col-span-2 bg-[#171d30] text-white">
+                <Container className="lg:col-span-2 bg-[linear-gradient(to_top_right,#2f384f_0%,#171d30_30%,#171d30_70%,#2f384f_100%)]">
                     <KpiTrendsChart />
                 </Container>
 
-                <Container className="bg-[#171d30] text-white ">
+                <Container>
                     <ConversionBarChart />
                 </Container>
 
             </div>
 
-            <Container className="bg-[#171d30] text-white overflow-hidden h-[450px]">
+            <Container className="bg-[linear-gradient(5deg,#2f384f_0%,#171d30_30%,#171d30_70%,#2f384f_100%)] h-[450px]">
                 <DashboardMap />
             </Container>
 

@@ -4,6 +4,7 @@ import { useDashboardStore } from "@/store/dashboard-store";
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -31,14 +32,14 @@ export function KpiTrendsChart() {
                 fontFamily: 'inherit',
                 animations: { enabled: false }
             },
-            colors: ['#3b82f6'],
+            colors: ['#4dd4ce'],
             fill: {
                 type: 'gradient',
                 gradient: {
-                    shadeIntensity: 1,
-                    opacityFrom: 0.7,
-                    opacityTo: 0.1,
-                    stops: [0, 90, 100]
+                    shadeIntensity: 0,
+                    opacityFrom: 1,
+                    opacityTo: 0,
+                    stops: [0, 100]
                 }
             },
             dataLabels: { enabled: false },
@@ -77,14 +78,17 @@ export function KpiTrendsChart() {
     return (
         <div className="flex flex-col h-full space-y-4">
             <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-white">Evolução dos KPI&apos;s</h3>
-                <div className="flex bg-[#20273e] rounded-md p-1">
+                <h3 className="text-xl font-semibold">Evolução dos KPI&apos;s</h3>
+                <div className="flex bg-[#23283b] rounded-full py-2 px-3 gap-3">
                     {['retention', 'conversion', 'churn', 'arpu'].map((metric) => (
                         <Button
                             key={metric}
-                            variant="ghost"
-                            size="sm"
-                            className={`h-7 px-3 text-xs capitalize ${activeMetric === metric ? 'bg-[#3b82f6] text-white hover:bg-[#3b82f6]' : 'text-muted-foreground hover:text-white'}`}
+                            className={cn(
+                                "px-3 text-sm rounded-full cursor-pointer",
+                                activeMetric === metric
+                                    ? "bg-[#38b5cc] hover:bg-[#32a3b8] !shadow-[0px_0px_15px_0px_rgba(56,181,204,0.5)]"
+                                    : "bg-[#383d4e] hover:bg-[#333847]"
+                            )}
                             onClick={() => setActiveMetric(metric as 'arpu' | 'conversion' | 'churn' | 'retention')}
                         >
                             {metric}
