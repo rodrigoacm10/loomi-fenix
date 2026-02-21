@@ -24,7 +24,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useTicketStore } from '@/store/ticket-store'
 import { toast } from "sonner"
 import { getNextTicketId } from "@/utils/get-next-ticket-id"
-import { SuccessToast } from "@/components/ui/success-toast"
+import { SuccessToast } from "@/components/global/success-toast"
 import { useTranslations } from "next-intl"
 
 const ticketSchema = z.object({

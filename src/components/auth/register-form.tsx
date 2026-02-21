@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import api from "@/lib/api";
-import { SuccessToast } from "../ui/success-toast";
+import { SuccessToast } from "../global/success-toast";
 
 const registerSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),

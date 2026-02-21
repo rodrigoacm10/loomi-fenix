@@ -19,7 +19,8 @@
         "dashboard": "Dashboard",
         "tickets": "Tickets",
         "chat": "Chat & Assistente Virtual",
-        "simulator": "Simulador de Planos"
+        "simulator": "Simulador de Planos",
+        "user": "Meu Perfil"
     },
     "Header": {
         "newTicket": "Novo Ticket"
@@ -140,5 +141,26 @@
         "submit": "Criar Conta",
         "alreadyHaveAccount": "Já tem uma conta?",
         "signIn": "Entrar"
+    },
+    "UserPage": {
+        "title": "Meu Perfil",
+        "nameLabel": "Nome",
+        "namePlaceholder": "Seu nome",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "Seu endereço de e-mail",
+        "save": "Salvar",
+        "logout": "Sair",
+        "deleteAccount": "Deletar Conta",
+        "deleteConfirmTitle": "Você tem certeza absoluta?",
+        "deleteConfirmDesc": "Esta ação não pode ser desfeita. Isso excluirá permanentemente sua conta e removerá seus dados de nossos servidores.",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar",
+        "successUpdateMessage": "Perfil atualizado com sucesso!",
+        "successUpdateDesc": "As informações do seu perfil foram atualizadas.",
+        "successDeleteMessage": "Conta deletada com sucesso!",
+        "successDeleteDesc": "Você foi desconectado.",
+        "fetchError": "Falha ao carregar dados do usuário.",
+        "updateError": "Falha ao atualizar perfil.",
+        "deleteError": "Falha ao deletar conta."
     }
 }

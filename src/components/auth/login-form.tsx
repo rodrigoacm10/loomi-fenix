@@ -13,10 +13,9 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/auth-store";
-import { SuccessToast } from "../ui/success-toast";
+import { SuccessToast } from "../global/success-toast";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),

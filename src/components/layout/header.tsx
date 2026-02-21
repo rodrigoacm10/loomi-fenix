@@ -13,12 +13,13 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useTicketStore } from "@/store/ticket-store";
 import { useTranslations } from "next-intl";
+import { getCurrentPathname } from "@/utils/get-current-pathname";
 
 export function Header() {
     const pathname = usePathname();
     const tNav = useTranslations("Navigation");
     const tHeader = useTranslations("Header");
-    const activePath = `/${pathname.split('/').slice(2).join('/')}`;
+    const activePath = getCurrentPathname(pathname);
     const currentKey = Object.entries(pageTitles).find(([path, value]) => path === activePath)?.[1] || "dashboard";
     const currentTitle = tNav(currentKey);
     const { openTicketModal } = useTicketStore();

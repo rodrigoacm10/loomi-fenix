@@ -12,12 +12,14 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { getCurrentPathname } from "@/utils/get-current-pathname";
 
 
 const navItems = [
     { key: "dashboard", href: "/dashboard", icon: "icon1.svg" },
     { key: "tickets", href: "/tickets", icon: "icon1.svg" },
     { key: "chat", href: "/chat", icon: "icon1.svg" },
+    { key: "user", href: "/user", icon: "icon1.svg" },
     { key: "simulator", href: "/simulator", icon: "icon1.svg" },
 ];
 
@@ -40,7 +42,7 @@ export function Sidebar() {
                 <nav className="flex flex-1 flex-col items-center justify-center gap-8">
                     <TooltipProvider>
                         {navItems.map((item) => {
-                            const isActive = `/${pathname.split('/').slice(2).join('/')}` === item.href;
+                            const isActive = getCurrentPathname(pathname) === item.href;
 
                             return (
                                 <Tooltip key={item.href} delayDuration={0}>
