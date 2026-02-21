@@ -8,6 +8,7 @@ import { columns } from "@/components/tickets/ticket-columns";
 import { TicketDialog } from "@/components/tickets/ticket-dialog";
 import { DeleteTicketDialog } from "@/components/tickets/delete-ticket-dialog";
 import { TicketCardInfo } from "@/components/tickets/ticket-card-info";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 
 export default function TicketsPage() {
@@ -30,24 +31,35 @@ export default function TicketsPage() {
 
     return (
         <div className="space-y-[32px]">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
-                <TicketCardInfo title={t("openTickets")} data={openTickets} icon="/icons/ticket/Icon1.svg" />
-                <TicketCardInfo title={t("inProgressTickets")} data={inProgressTickets} icon="/icons/ticket/Icon4.svg" />
-                <TicketCardInfo title={t("closedToday")} data={closedToday} icon="/icons/ticket/Icon3.svg" />
-                <TicketCardInfo title={t("averageTime")} data={averageTime} icon="/icons/ticket/Icon2.svg" />
-            </div>
-
-            <Container className="pb-4">
-                <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-semibold">{t("ticketListTitle")}</h2>
+            {loading ? (
+                <div className="space-y-[32px]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
+                        {Array.from({ length: 4 }).map((_, i) => (
+                            <Skeleton key={i} className="h-[120px] rounded-[24px]" />
+                        ))}
+                    </div>
+                    <Container className="pb-4 space-y-[24px]">
+                        <Skeleton className="h-[40px] w-[200px] rounded-md" />
+                        <Skeleton className="h-[400px] w-full rounded-[24px]" />
+                    </Container>
                 </div>
+            ) : (
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
+                        <TicketCardInfo title={t("openTickets")} data={openTickets} icon="/icons/ticket/Icon1.svg" />
+                        <TicketCardInfo title={t("inProgressTickets")} data={inProgressTickets} icon="/icons/ticket/Icon4.svg" />
+                        <TicketCardInfo title={t("closedToday")} data={closedToday} icon="/icons/ticket/Icon3.svg" />
+                        <TicketCardInfo title={t("averageTime")} data={averageTime} icon="/icons/ticket/Icon2.svg" />
+                    </div>
 
-                {loading ? (
-                    <div className="flex justify-center p-8">{t("loadingTickets")}</div>
-                ) : (
-                    <TicketDataTable columns={columns} data={tickets} />
-                )}
-            </Container>
+                    <Container className="pb-4">
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-xl font-semibold">{t("ticketListTitle")}</h2>
+                        </div>
+                        <TicketDataTable columns={columns} data={tickets} />
+                    </Container>
+                </>
+            )}
 
             <TicketDialog />
             <DeleteTicketDialog />

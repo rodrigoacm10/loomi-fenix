@@ -22,10 +22,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SuccessToast } from "@/components/global/success-toast";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ErrorToast } from "@/components/global/error-toast";
 import Container from "@/components/global/container";
 import { DeleteUserDialog } from "@/components/user/delete-user-dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const userSchema = z.object({
     name: z.string().min(1, "Nome é obrigatório"),
@@ -111,8 +111,34 @@ export default function UserPage() {
 
     if (isLoading) {
         return (
-            <div className="flex w-full h-full items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-[#1876D2]" />
+            <div className="flex w-full justify-center">
+                <Container className="max-w-[600px] w-full space-y-6">
+                    <Skeleton className="h-7 w-48 rounded" />
+
+                    <div className="flex flex-col items-center justify-center space-y-4 pt-4">
+                        <Skeleton className="h-32 w-32 rounded-full" />
+                    </div>
+
+                    <div className="space-y-6 pt-4">
+                        <div className="space-y-2">
+                            <Skeleton className="h-5 w-24 ml-5 rounded" />
+                            <Skeleton className="h-14 w-full rounded-[20px]" />
+                        </div>
+                        <div className="space-y-2">
+                            <Skeleton className="h-5 w-24 ml-5 rounded" />
+                            <Skeleton className="h-14 w-full rounded-[20px]" />
+                        </div>
+                    </div>
+
+                    <div className="pt-4 flex gap-4">
+                        <Skeleton className="h-[72px] flex-1 rounded-[15px]" />
+                        <Skeleton className="h-[72px] flex-1 rounded-[15px]" />
+                    </div>
+
+                    <div className="pt-8 mt-8 border-t border-[#ffffff]/10">
+                        <Skeleton className="h-14 w-full rounded-[15px]" />
+                    </div>
+                </Container>
             </div>
         );
     }
