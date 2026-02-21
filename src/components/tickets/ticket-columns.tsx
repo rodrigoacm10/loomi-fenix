@@ -7,11 +7,17 @@ import { Edit, Eye } from "lucide-react"
 import { format } from "date-fns"
 import { useTicketStore } from '@/store/ticket-store'
 import { TicketBadge } from "./ticket-badge"
+import { useTranslations } from "next-intl"
+
+const TranslatedHeader = ({ textKey }: { textKey: string }) => {
+    const t = useTranslations("TicketsPage")
+    return <>{t(textKey)}</>
+}
 
 export const columns: ColumnDef<Ticket>[] = [
     {
         accessorKey: "ticketId",
-        header: "ID",
+        header: () => <TranslatedHeader textKey="colId" />,
         cell: ({ row }) => {
             const ticketId = row.getValue('ticketId') as string
 
@@ -20,7 +26,7 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         accessorKey: "priority",
-        header: "Prioridade",
+        header: () => <TranslatedHeader textKey="colPriority" />,
         cell: ({ row }) => {
             const priority = row.getValue("priority") as "Urgente" | "Média" | "Baixa"
 
@@ -30,7 +36,7 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         accessorKey: "client",
-        header: "Cliente",
+        header: () => <TranslatedHeader textKey="colClient" />,
         cell: ({ row }) => {
             const client = row.getValue("client") as string
             const email = row.original.email
@@ -43,7 +49,7 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         accessorKey: "subject",
-        header: "Assunto",
+        header: () => <TranslatedHeader textKey="colSubject" />,
         cell: ({ row }) => {
             const subject = row.getValue('subject') as string
 
@@ -52,7 +58,7 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         accessorKey: "status",
-        header: "Status",
+        header: () => <TranslatedHeader textKey="colStatus" />,
         cell: ({ row }) => {
             const status = row.getValue("status") as "Aberto" | "Em andamento" | "Fechado"
 
@@ -61,7 +67,7 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         accessorKey: "createdAt",
-        header: "Criado em",
+        header: () => <TranslatedHeader textKey="colCreatedAt" />,
         cell: ({ row }) => {
             const date = new Date(row.getValue("createdAt"));
             return <div className="font-bold">{format(date, "dd/MM/yyyy")}</div>;
@@ -69,7 +75,7 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         accessorKey: "responsible",
-        header: "Responsável",
+        header: () => <TranslatedHeader textKey="colResponsible" />,
         cell: ({ row }) => {
             const responsible = row.getValue('responsible') as string
 
@@ -78,18 +84,19 @@ export const columns: ColumnDef<Ticket>[] = [
     },
     {
         id: "actions",
-        header: "Ações",
+        header: () => <TranslatedHeader textKey="colActions" />,
         cell: function CellComponent({ row }) {
             const ticket = row.original
             const { openTicketModal } = useTicketStore()
+            const t = useTranslations("TicketsPage")
 
             return (
                 <div className="flex items-center gap-5">
                     <Button onClick={() => openTicketModal(ticket, false)} variant="ghost" className="p-0 hover:cursor-pointer hover:bg-transparent font-normal hover:text-white">
-                        Editar <Edit className="h-4 w-4" />
+                        {t("edit")} <Edit className="h-4 w-4" />
                     </Button>
                     <Button onClick={() => openTicketModal(ticket, true)} variant="ghost" className="p-0 hover:cursor-pointer hover:bg-transparent font-normal hover:text-white">
-                        Ver <Eye className="h-4 w-4" />
+                        {t("view")} <Eye className="h-4 w-4" />
                     </Button>
                 </div>
             )

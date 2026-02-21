@@ -25,6 +25,7 @@ import { useTicketStore } from '@/store/ticket-store'
 import { toast } from "sonner"
 import { getNextTicketId } from "@/utils/get-next-ticket-id"
 import { SuccessToast } from "@/components/ui/success-toast"
+import { useTranslations } from "next-intl"
 
 const ticketSchema = z.object({
     subject: z.string().min(1, "Assunto é obrigatório"),
@@ -39,6 +40,7 @@ type TicketValues = z.infer<typeof ticketSchema>
 
 export function TicketForm() {
     const { selectedTicket, createTicket, updateTicket, closeTicketModal, tickets, isViewMode } = useTicketStore()
+    const t = useTranslations("TicketForm");
 
     const formattedDefaultValues: TicketValues = selectedTicket ? {
         subject: selectedTicket.subject || "",
@@ -103,7 +105,7 @@ export function TicketForm() {
                     name="client"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="pl-4 font-semibold">Nome do cliente</FormLabel>
+                            <FormLabel className="pl-4 font-semibold">{t("clientName")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
                                     <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
@@ -112,7 +114,7 @@ export function TicketForm() {
                                 ) : (
                                     <Input
                                         className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
-                                        placeholder="Nome da pessoa ou empresa que está solicitando o suporte" {...field} />
+                                        placeholder={t("clientPlaceholder")} {...field} />
                                 )}
                             </FormControl>
                             <FormMessage />
@@ -125,7 +127,7 @@ export function TicketForm() {
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="pl-4 font-semibold">Email</FormLabel>
+                            <FormLabel className="pl-4 font-semibold">{t("email")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
                                     <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
@@ -134,7 +136,7 @@ export function TicketForm() {
                                 ) : (
                                     <Input
                                         className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
-                                        placeholder="E-mail de contato para atualizações e resposta" {...field} />
+                                        placeholder={t("emailPlaceholder")} {...field} />
                                 )}
                             </FormControl>
                             <FormMessage />
@@ -147,7 +149,7 @@ export function TicketForm() {
                     name="priority"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="pl-4 font-semibold">Prioridade</FormLabel>
+                            <FormLabel className="pl-4 font-semibold">{t("priority")}</FormLabel>
                             {isViewMode ? (
                                 <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
                                     <p className="text-sm">{field.value}</p>
@@ -157,7 +159,7 @@ export function TicketForm() {
                                     <FormControl>
                                         <SelectTrigger
                                             className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
-                                            <SelectValue placeholder="Selecione o nível de urgência do atendimento" />
+                                            <SelectValue placeholder={t("priorityPlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent className="rounded-[20px] bg-[#171d30] border-0 text-white">
@@ -177,7 +179,7 @@ export function TicketForm() {
                     name="status"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="pl-4 font-semibold">Status</FormLabel>
+                            <FormLabel className="pl-4 font-semibold">{t("status")}</FormLabel>
                             {isViewMode ? (
                                 <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
                                     <p className="text-sm">{field.value}</p>
@@ -187,7 +189,7 @@ export function TicketForm() {
                                     <FormControl>
                                         <SelectTrigger
                                             className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
-                                            <SelectValue placeholder="Selecione o status" />
+                                            <SelectValue placeholder={t("statusPlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent className="rounded-[20px] bg-[#171d30] border-0 text-white">
@@ -207,7 +209,7 @@ export function TicketForm() {
                     name="responsible"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="pl-4 font-semibold">Responsável</FormLabel>
+                            <FormLabel className="pl-4 font-semibold">{t("responsible")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
                                     <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
@@ -216,7 +218,7 @@ export function TicketForm() {
                                 ) : (
                                     <Input
                                         className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
-                                        placeholder="Quem será o responsável por esse ticket" {...field} />
+                                        placeholder={t("responsiblePlaceholder")} {...field} />
                                 )}
                             </FormControl>
                             <FormMessage />
@@ -229,14 +231,14 @@ export function TicketForm() {
                     name="subject"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="pl-4 font-semibold">Assunto</FormLabel>
+                            <FormLabel className="pl-4 font-semibold">{t("subject")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
                                     <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
                                         <p className="text-sm">{field.value}</p>
                                     </div>
                                 ) : (
-                                    <Textarea className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 min-h-[120px]" placeholder="Resumo breve do problema ou solicitação" {...field} />
+                                    <Textarea className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 min-h-[120px]" placeholder={t("subjectPlaceholder")} {...field} />
                                 )}
                             </FormControl>
                             <FormMessage />
@@ -251,12 +253,12 @@ export function TicketForm() {
                         className="ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-[#070b19] hover:ring-[#ffffff] hover:text-white"
                         onClick={() => closeTicketModal()}
                     >
-                        {isViewMode ? "Fechar" : "Cancelar"}
+                        {isViewMode ? t("close") : t("cancel")}
                     </Button>
 
                     {!isViewMode && (
                         <Button className="bg-[#1876D2] hover:bg-[#156abd] w-[100px] p-6 rounded-[14px]" type="submit" onClick={() => console.log('ENVIAR ')}>
-                            Salvar
+                            {t("save")}
                         </Button>
                     )}
                 </div>

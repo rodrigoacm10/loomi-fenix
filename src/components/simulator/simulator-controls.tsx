@@ -5,8 +5,10 @@ import { useSimulatorStore } from "@/store/simulator-store";
 import { MOCK_ADDONS } from "@/services/simulator";
 import { PlanCard } from "./plan-card";
 import Container from "../global/container";
+import { useTranslations } from "next-intl";
 
 export function SimulatorControls() {
+    const t = useTranslations("Simulator");
     const {
         plans,
         selectedPlan,
@@ -27,7 +29,7 @@ export function SimulatorControls() {
     return (
         <Container className="space-y-10 py-7">
             <div>
-                <h3 className="mb-4 text-xl font-semibold">Planos personalizados</h3>
+                <h3 className="mb-4 text-xl font-semibold">{t("customPlans")}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {plans.map((plan) => (
                         <PlanCard
@@ -45,7 +47,7 @@ export function SimulatorControls() {
             <div className="space-y-6">
                 <div className="space-y-2">
                     <div className="flex">
-                        <p className="tex-sm font-semibold">Valor do veículo: {formatCurrency(vehicleValue)}</p>
+                        <p className="tex-sm font-semibold">{t("vehicleValue")} {formatCurrency(vehicleValue)}</p>
                     </div>
                     <Slider
                         value={[vehicleValue]}
@@ -64,7 +66,7 @@ export function SimulatorControls() {
 
                 <div className="space-y-2">
                     <div className="flex">
-                        <p className="tex-sm font-semibold">Idade do Cliente: {clientAge} anos</p>
+                        <p className="tex-sm font-semibold">{t("clientAge")} {clientAge} {t("years")}</p>
                     </div>
                     <Slider
                         value={[clientAge]}
@@ -76,14 +78,14 @@ export function SimulatorControls() {
                         onValueChange={(vals) => setClientAge(vals[0])}
                     />
                     <div className="flex justify-between text-sm text-white">
-                        <span>18 anos</span>
-                        <span>90 anos</span>
+                        <span>18 {t("years")}</span>
+                        <span>90 {t("years")}</span>
                     </div>
                 </div>
             </div>
 
             <div>
-                <h3 className="mb-3 tex-sm font-semibold">Coberturas Adicionais</h3>
+                <h3 className="mb-3 tex-sm font-semibold">{t("additionalCoverages")}</h3>
                 <div className="space-y-3">
                     {MOCK_ADDONS.map((addon) => (
                         <div key={addon.id} className="flex items-center space-x-2">

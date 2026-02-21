@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useChatStore } from "@/store/chat-store";
+import { useTranslations } from "next-intl";
 
 interface ChatInputProps {
     onSend: (message: { author: string, content: string }) => void;
@@ -13,6 +14,7 @@ interface ChatInputProps {
 export function ChatInput({ onSend }: ChatInputProps) {
     const { author } = useChatStore();
     const [message, setMessage] = useState("");
+    const t = useTranslations("Chat");
     const handleSend = () => {
         if (!message.trim()) return;
         onSend({ author: author || "", content: message });
@@ -32,7 +34,7 @@ export function ChatInput({ onSend }: ChatInputProps) {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Escreva aqui..."
+                placeholder={t("writeHere")}
                 className="bg-[#20273e] border border-[#ffffff]/30 text-white rounded-full py-8 px-6 placeholder:text-[#ffffff]"
             />
             <Button

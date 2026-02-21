@@ -32,6 +32,7 @@ import {
 import { Check, ChevronsUpDown, Search, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Ticket } from "@/types/ticket"
+import { useTranslations } from "next-intl"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -42,6 +43,7 @@ export function TicketDataTable<TData, TValue>({
     columns,
     data,
 }: DataTableProps<TData, TValue>) {
+    const t = useTranslations("TicketsPage");
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
         []
     )
@@ -93,7 +95,7 @@ export function TicketDataTable<TData, TValue>({
             <div className="flex items-center pt-2 pb-4 gap-2">
                 <div className="relative w-full">
                     <Input
-                        placeholder="Buscar por ID, cliente ou assunto..."
+                        placeholder={t("searchPlaceholder")}
                         value={globalFilter ?? ""}
                         onChange={(event) =>
                             setGlobalFilter(event.target.value)
@@ -113,13 +115,13 @@ export function TicketDataTable<TData, TValue>({
                     }
                 >
                     <SelectTrigger className="w-[250px] px-5 bg-[#0b1125] border-0 rounded-full h-9">
-                        <SelectValue placeholder="Status" />
+                        <SelectValue placeholder={t("statusPlaceholder")} />
                     </SelectTrigger>
                     <SelectContent className="bg-[#0b1125] text-white border-0">
-                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">Todos os Status</SelectItem>
-                        <SelectItem value="Aberto" className="focus:bg-[#1876D2] focus:text-white">Aberto</SelectItem>
-                        <SelectItem value="Em andamento" className="focus:bg-[#1876D2] focus:text-white">Em andamento</SelectItem>
-                        <SelectItem value="Fechado" className="focus:bg-[#1876D2] focus:text-white">Fechado</SelectItem>
+                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">{t("allStatus")}</SelectItem>
+                        <SelectItem value="Aberto" className="focus:bg-[#1876D2] focus:text-white">{t("open")}</SelectItem>
+                        <SelectItem value="Em andamento" className="focus:bg-[#1876D2] focus:text-white">{t("inProgress")}</SelectItem>
+                        <SelectItem value="Fechado" className="focus:bg-[#1876D2] focus:text-white">{t("closed")}</SelectItem>
                     </SelectContent>
                 </Select>
 
@@ -130,13 +132,13 @@ export function TicketDataTable<TData, TValue>({
                     }
                 >
                     <SelectTrigger className="w-[320px] px-5 bg-[#0b1125] border-0 rounded-full h-9">
-                        <SelectValue placeholder="Prioridade" />
+                        <SelectValue placeholder={t("priorityPlaceholder")} />
                     </SelectTrigger>
                     <SelectContent className="bg-[#0b1125] text-white border-0">
-                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">Todas as Prioridades</SelectItem>
-                        <SelectItem value="Urgente" className="focus:bg-[#1876D2] focus:text-white">Urgente</SelectItem>
-                        <SelectItem value="Média" className="focus:bg-[#1876D2] focus:text-white">Média</SelectItem>
-                        <SelectItem value="Baixa" className="focus:bg-[#1876D2] focus:text-white">Baixa</SelectItem>
+                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">{t("allPriorities")}</SelectItem>
+                        <SelectItem value="Urgente" className="focus:bg-[#1876D2] focus:text-white">{t("urgent")}</SelectItem>
+                        <SelectItem value="Média" className="focus:bg-[#1876D2] focus:text-white">{t("medium")}</SelectItem>
+                        <SelectItem value="Baixa" className="focus:bg-[#1876D2] focus:text-white">{t("low")}</SelectItem>
                     </SelectContent>
                 </Select>
 
@@ -150,14 +152,14 @@ export function TicketDataTable<TData, TValue>({
                         >
                             {currentResponsibleFilter
                                 ? uniqueResponsibles.find((responsible) => responsible === currentResponsibleFilter)
-                                : "Todos os Responsáveis"}
+                                : t("allResponsibles")}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-[200px] p-0 border-0 bg-[#0b1125]">
                         <Command shouldFilter={false} className="bg-[#0b1125] border-0 text-white">
                             <CommandInput
-                                placeholder="Buscar responsável..."
+                                placeholder={t("searchResponsible")}
                                 className="text-white placeholder:text-gray-400"
                                 value={responsibleSearch}
                                 onValueChange={setResponsibleSearch}
@@ -177,7 +179,7 @@ export function TicketDataTable<TData, TValue>({
                                             !currentResponsibleFilter ? "opacity-100" : "opacity-0"
                                         )}
                                     />
-                                    Todos os Responsáveis
+                                    {t("allResponsibles")}
                                 </div>
                                 {responsibleSearch.length > 0 && (
                                     <>
@@ -211,7 +213,7 @@ export function TicketDataTable<TData, TValue>({
                                 )}
                                 {responsibleSearch.length === 0 && (
                                     <div className="py-6 text-center text-sm text-muted-foreground">
-                                        Digite para buscar...
+                                        {t("typeToSearch")}
                                     </div>
                                 )}
                             </CommandList>
@@ -264,7 +266,7 @@ export function TicketDataTable<TData, TValue>({
                                     colSpan={columns.length}
                                     className="h-24 text-center"
                                 >
-                                    Nenhum resultado encontrado.
+                                    {t("noResults")}
                                 </TableCell>
                             </TableRow>
                         )}

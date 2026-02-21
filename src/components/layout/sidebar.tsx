@@ -11,17 +11,19 @@ import {
 } from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 
 const navItems = [
-    { name: "Dashboard", href: "/dashboard", icon: "icon1.svg" },
-    { name: "Tickets", href: "/tickets", icon: "icon1.svg" },
-    { name: "Chat & Assistente Virtual", href: "/chat", icon: "icon1.svg" },
-    { name: "Simulador de Planos", href: "/simulator", icon: "icon1.svg" },
+    { key: "dashboard", href: "/dashboard", icon: "icon1.svg" },
+    { key: "tickets", href: "/tickets", icon: "icon1.svg" },
+    { key: "chat", href: "/chat", icon: "icon1.svg" },
+    { key: "simulator", href: "/simulator", icon: "icon1.svg" },
 ];
 
 export function Sidebar() {
     const pathname = usePathname();
+    const t = useTranslations("Navigation");
 
     return (
         <div className="h-screen py-6 sticky top-0 z-40">
@@ -38,7 +40,7 @@ export function Sidebar() {
                 <nav className="flex flex-1 flex-col items-center justify-center gap-8">
                     <TooltipProvider>
                         {navItems.map((item) => {
-                            const isActive = pathname.startsWith(item.href);
+                            const isActive = `/${pathname.split('/').slice(2).join('/')}` === item.href;
 
                             return (
                                 <Tooltip key={item.href} delayDuration={0}>
@@ -53,15 +55,15 @@ export function Sidebar() {
                                             <div className="relative h-7 w-7">
                                                 <Image
                                                     src={`/icons/sidebar/${item.icon}`}
-                                                    alt={item.name}
+                                                    alt={t(item.key)}
                                                     fill
                                                     className={cn("object-contain", "grayscale")}
                                                 />
                                             </div>
-                                            <span className="sr-only">{item.name}</span>
+                                            <span className="sr-only">{t(item.key)}</span>
                                         </Link>
                                     </TooltipTrigger>
-                                    <TooltipContent className="bg-[#1876D2] text-white border-0" side="right">{item.name}</TooltipContent>
+                                    <TooltipContent className="bg-[#1876D2] text-white border-0" side="right">{t(item.key)}</TooltipContent>
                                 </Tooltip>
                             )
                         })}

@@ -13,5 +13,117 @@
         "signUp": "Cadastre-se",
         "successMessage": "Login realizado com sucesso!",
         "failMessage": "Falha no login. Tente novamente."
+    },
+    "Navigation": {
+        "dashboard": "Dashboard",
+        "tickets": "Tickets",
+        "chat": "Chat & Assistente Virtual",
+        "simulator": "Simulador de Planos"
+    },
+    "Header": {
+        "newTicket": "Novo Ticket"
+    },
+    "Dashboard": {
+        "loadingClients": "Carregando clientes...",
+        "activeClients": "Clientes Ativos"
+    },
+    "Map": {
+        "title": "Mapa de clientes por região",
+        "allLocations": "Todos os locais",
+        "allTypes": "Todos os tipos"
+    },
+    "KpiChart": {
+        "title": "Evolução dos KPI's",
+        "retention": "Retenção",
+        "conversion": "Conversão",
+        "churn": "Churn",
+        "arpu": "ARPU"
+    },
+    "DataTable": {
+        "searchPlaceholder": "Buscar por nome ou email...",
+        "statusPlaceholder": "Status",
+        "secureTypePlaceholder": "Tipo de Seguro",
+        "locationPlaceholder": "Local",
+        "emptyState": "Nenhum cliente encontrado.",
+        "all": "Todos",
+        "colName": "Nome",
+        "colType": "Tipo de Seguro",
+        "colValue": "Valor mensal",
+        "colStatus": "Status",
+        "colRenewal": "Renovação",
+        "colLocation": "Região"
+    },
+    "TicketsPage": {
+        "openTickets": "Tickets Abertos",
+        "inProgressTickets": "Em Andamento",
+        "closedToday": "Resolvidos Hoje",
+        "averageTime": "Tempo Médio",
+        "ticketListTitle": "Lista de Tickets",
+        "loadingTickets": "Carregando tickets...",
+        "searchPlaceholder": "Buscar por ID, cliente ou assunto...",
+        "statusPlaceholder": "Status",
+        "allStatus": "Todos os Status",
+        "open": "Aberto",
+        "inProgress": "Em andamento",
+        "closed": "Fechado",
+        "priorityPlaceholder": "Prioridade",
+        "allPriorities": "Todas as Prioridades",
+        "urgent": "Urgente",
+        "medium": "Média",
+        "low": "Baixa",
+        "allResponsibles": "Todos os Responsáveis",
+        "searchResponsible": "Buscar responsável...",
+        "typeToSearch": "Digite para buscar...",
+        "noResults": "Nenhum resultado encontrado.",
+        "colId": "ID",
+        "colPriority": "Prioridade",
+        "colClient": "Cliente",
+        "colSubject": "Assunto",
+        "colStatus": "Status",
+        "colCreatedAt": "Criado em",
+        "colResponsible": "Responsável",
+        "colActions": "Ações",
+        "edit": "Editar",
+        "view": "Ver"
+    },
+    "ConversionChart": {
+        "conversion": "Conversão",
+        "conversionRate": "Taxa de conversão"
+    },
+    "Simulator": {
+        "customPlans": "Planos personalizados",
+        "vehicleValue": "Valor do veículo:",
+        "clientAge": "Idade do Cliente:",
+        "years": "anos",
+        "additionalCoverages": "Coberturas Adicionais",
+        "includedBenefits": "Benefícios Inclusos",
+        "indicators": "Indicadores",
+        "conversion": "Conversão:",
+        "roi": "ROI:"
+    },
+    "Chat": {
+        "writeHere": "Escreva aqui...",
+        "today": "HOJE"
+    },
+    "TicketForm": {
+        "clientName": "Nome do cliente",
+        "clientPlaceholder": "Nome da pessoa ou empresa que está solicitando o suporte",
+        "email": "Email",
+        "emailPlaceholder": "E-mail de contato para atualizações e resposta",
+        "priority": "Prioridade",
+        "priorityPlaceholder": "Selecione o nível de urgência do atendimento",
+        "status": "Status",
+        "statusPlaceholder": "Selecione o status",
+        "responsible": "Responsável",
+        "responsiblePlaceholder": "Quem será o responsável por esse ticket",
+        "subject": "Assunto",
+        "subjectPlaceholder": "Resumo breve do problema ou solicitação",
+        "save": "Salvar",
+        "cancel": "Cancelar",
+        "close": "Fechar",
+        "dialogDescription": "Preencha os dados abaixo para registrar um novo ticket na plataforma.",
+        "viewTicket": "Visualizar Ticket",
+        "editTicket": "Editar Ticket",
+        "newTicket": "Novo Ticket"
     }
 }

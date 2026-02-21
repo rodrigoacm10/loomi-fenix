@@ -16,6 +16,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/auth-store";
+import { SuccessToast } from "../ui/success-toast";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -47,14 +48,18 @@ export default function LoginForm() {
             const response = await api.post("/auth/login", data);
             const { access_token } = response.data;
 
-            // Mock user data since API doesn't return it on login
-            // Ideally we would fetch /users/me or decode the token
             const user = { email: data.email };
 
             login(access_token, user, data.rememberMe);
-            toast.success(t("successMessage"));
+            toast.custom((t) => (
+                <SuccessToast
+                    t={t}
+                    title="Login realizado com sucesso!"
+                    description="Você foi redirecionado para o dashboard."
+                />
+            ))
             router.push("/dashboard");
-        } catch (error) { // using any for error for simplicity, usually strict typing is better
+        } catch (error) {
             console.error(error);
             const err = error as { response?: { data?: { message?: string } } };
             toast.error(err.response?.data?.message || t("failMessage"));

@@ -15,12 +15,13 @@ import { fromLonLat } from 'ol/proj';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { Style, Circle as CircleStyle, Fill, Stroke, Icon } from 'ol/style';
-
+import { useTranslations } from 'next-intl';
 
 export function DashboardMap() {
     const mapRef = useRef<HTMLDivElement>(null);
     const mapInstance = useRef<Map | null>(null);
     const { mapLocations } = useDashboardStore();
+    const t = useTranslations("Map");
 
     const [selectedLocal, setSelectedLocal] = useState('all');
     const [selectedType, setSelectedType] = useState('all');
@@ -130,14 +131,14 @@ export function DashboardMap() {
     return (
         <div className="flex flex-col h-full space-y-4">
             <div className="flex items-center justify-between">
-                <h3 className="text-[18px] font-semibold text-white">Mapa de clientes por região</h3>
+                <h3 className="text-[18px] font-semibold text-white">{t("title")}</h3>
                 <div className="flex space-x-3">
                     <Select value={selectedLocal} onValueChange={setSelectedLocal}>
                         <SelectTrigger className="w-[180px] bg-[#1a1c26] border-none text-gray-300 h-9 rounded-full px-4">
-                            <SelectValue placeholder="Todos os locais" />
+                            <SelectValue placeholder={t("allLocations")} />
                         </SelectTrigger>
                         <SelectContent className="bg-[#1a1c26] border-[#2e344d] text-gray-300">
-                            <SelectItem value="all">Todos os locais</SelectItem>
+                            <SelectItem value="all">{t("allLocations")}</SelectItem>
                             {locales.map(local => (
                                 <SelectItem key={local} value={local}>{local}</SelectItem>
                             ))}
@@ -145,10 +146,10 @@ export function DashboardMap() {
                     </Select>
                     <Select value={selectedType} onValueChange={setSelectedType}>
                         <SelectTrigger className="w-[180px] bg-[#1a1c26] border-none text-gray-300 h-9 rounded-full px-4">
-                            <SelectValue placeholder="Todos os tipos" />
+                            <SelectValue placeholder={t("allTypes")} />
                         </SelectTrigger>
                         <SelectContent className="bg-[#1a1c26] border-[#2e344d] text-gray-300">
-                            <SelectItem value="all">Todos os tipos</SelectItem>
+                            <SelectItem value="all">{t("allTypes")}</SelectItem>
                             {types.map(type => (
                                 <SelectItem key={type} value={type} className="capitalize">{type}</SelectItem>
                             ))}

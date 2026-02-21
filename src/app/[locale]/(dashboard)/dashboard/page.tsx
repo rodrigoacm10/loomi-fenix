@@ -9,9 +9,11 @@ import { columns as clientColumns } from "@/components/dashboard/client-columns"
 import { DashboardMap } from "@/components/dashboard/dashboard-map";
 import { KpiTrendsChart } from "@/components/dashboard/kpi-trends-chart";
 import { ConversionBarChart } from "@/components/dashboard/conversion-bar-chart";
+import { useTranslations } from "next-intl";
 
 export default function DashboardPage() {
     const { fetchDashboardData, data, loading, error } = useDashboardStore();
+    const t = useTranslations("Dashboard");
 
     useEffect(() => {
         fetchDashboardData();
@@ -51,11 +53,11 @@ export default function DashboardPage() {
 
             <Container className="pb-4">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-semibold">Clientes Ativos</h2>
+                    <h2 className="text-xl font-semibold">{t("activeClients")}</h2>
                 </div>
 
                 {loading ? (
-                    <div className="flex justify-center p-8">Carregando clientes...</div>
+                    <div className="flex justify-center p-8">{t("loadingClients")}</div>
                 ) : (
                     <ClientDataTable columns={clientColumns} data={data.activeClients.data} filters={data.activeClients.filters} />
                 )}
