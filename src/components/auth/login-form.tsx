@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Loader2, Eye, EyeOff } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/auth-store";
+import { SuccessToast } from "../ui/success-toast";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -29,6 +31,7 @@ export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
     const { login } = useAuthStore();
+    const t = useTranslations("LoginPage");
 
     const {
         register,
@@ -45,17 +48,21 @@ export default function LoginForm() {
             const response = await api.post("/auth/login", data);
             const { access_token } = response.data;
 
-            // Mock user data since API doesn't return it on login
-            // Ideally we would fetch /users/me or decode the token
             const user = { email: data.email };
 
             login(access_token, user, data.rememberMe);
-            toast.success("Successfully logged in!");
+            toast.custom((toastProps) => (
+                <SuccessToast
+                    t={toastProps}
+                    title={t("successMessage")}
+                    description={t("successDescription")}
+                />
+            ))
             router.push("/dashboard");
-        } catch (error) { // using any for error for simplicity, usually strict typing is better
+        } catch (error) {
             console.error(error);
             const err = error as { response?: { data?: { message?: string } } };
-            toast.error(err.response?.data?.message || "Failed to login. Please try again.");
+            toast.error(err.response?.data?.message || t("failMessage"));
         } finally {
             setIsLoading(false);
         }
@@ -64,9 +71,9 @@ export default function LoginForm() {
     return (
         <div className="h-full w-full grid gap-6 space-y-4">
             <div className="flex flex-col space-y-2">
-                <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
+                <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
                 <p className="">
-                    Entre com suas credenciais para acessar a sua conta.
+                    {t("description")}
                 </p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,7 +81,7 @@ export default function LoginForm() {
                     <div className="grid gap-2">
                         <Input
                             id="email"
-                            placeholder="Usuário"
+                            placeholder={t("emailPlaceholder")}
                             type="email"
                             autoCapitalize="none"
                             autoComplete="email"
@@ -83,7 +90,7 @@ export default function LoginForm() {
                             {...register("email")}
                             className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                         />
-                        <p className="text-sm text-[#ffffff]/40 ml-5">Insira o seu e-mail, CPF ou passaporte.</p>
+                        <p className="text-sm text-[#ffffff]/40 ml-5">{t("emailLabel")}</p>
                         {errors.email && (
                             <p className="text-sm text-red-500">{errors.email.message}</p>
                         )}
@@ -94,7 +101,7 @@ export default function LoginForm() {
                             <Input
                                 id="password"
                                 type={showPassword ? "text" : "password"}
-                                placeholder="Senha"
+                                placeholder={t("passwordPlaceholder")}
                                 autoCapitalize="none"
                                 autoComplete="current-password"
                                 disabled={isLoading}
@@ -125,7 +132,7 @@ export default function LoginForm() {
                                 htmlFor="remember"
                                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                                Remember me
+                                {t("rememberMe")}
                             </label>
                         </div>
 
@@ -133,14 +140,14 @@ export default function LoginForm() {
                             href="/forgot-password"
                             className="text-sm font-medium text-[#1876D2] hover:underline"
                         >
-                            Forgot password?
+                            {t("forgotPassword")}
                         </Link>
 
                     </div>
 
                     <Button disabled={isLoading} className="mt-4 bg-[#1876D2] py-6 rounded-[15px]">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        Entrar
+                        {t("submit")}
                     </Button>
                 </div>
             </form>
@@ -150,14 +157,14 @@ export default function LoginForm() {
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
                     <span className="bg-[#0b1125] px-2">
-                        Or continue with
+                        {t("orContinueWith")}
                     </span>
                 </div>
             </div>
             <div className="text-center text-sm"> {/* Added Register Link */}
-                Don&apos;t have an account?{" "}
+                {t("dontHaveAccount")}{" "}
                 <Link href="/register" className="font-semibold text-[#1876D2] hover:underline">
-                    Sign up
+                    {t("signUp")}
                 </Link>
             </div>
         </div>

@@ -1,0 +1,144 @@
+{
+    "LoginPage": {
+        "title": "Login",
+        "description": "Enter your credentials to access your account.",
+        "emailPlaceholder": "User",
+        "emailLabel": "Enter your email, CPF or passport.",
+        "passwordPlaceholder": "Password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "submit": "Log In",
+        "orContinueWith": "Or continue with",
+        "dontHaveAccount": "Don't have an account?",
+        "signUp": "Sign up",
+        "successMessage": "Successfully logged in!",
+        "successDescription": "You have been redirected to the dashboard.",
+        "failMessage": "Failed to login. Please try again."
+    },
+    "Navigation": {
+        "dashboard": "Dashboard",
+        "tickets": "Tickets",
+        "chat": "Chat & Virtual Assistant",
+        "simulator": "Plan Simulator"
+    },
+    "Header": {
+        "newTicket": "New Ticket"
+    },
+    "Dashboard": {
+        "loadingClients": "Loading clients...",
+        "activeClients": "Active Clients"
+    },
+    "Map": {
+        "title": "Client map by region",
+        "allLocations": "All locations",
+        "allTypes": "All types"
+    },
+    "KpiChart": {
+        "title": "KPI Trends",
+        "retention": "Retention",
+        "conversion": "Conversion",
+        "churn": "Churn",
+        "arpu": "ARPU"
+    },
+    "DataTable": {
+        "searchPlaceholder": "Search by name or email...",
+        "statusPlaceholder": "Status",
+        "secureTypePlaceholder": "Secure Type",
+        "locationPlaceholder": "Location",
+        "emptyState": "No clients found.",
+        "all": "All",
+        "colName": "Name",
+        "colType": "Insurance Type",
+        "colValue": "Monthly Value",
+        "colStatus": "Status",
+        "colRenewal": "Renewal",
+        "colLocation": "Region"
+    },
+    "TicketsPage": {
+        "openTickets": "Open Tickets",
+        "inProgressTickets": "In Progress",
+        "closedToday": "Closed Today",
+        "averageTime": "Average Time",
+        "ticketListTitle": "Ticket List",
+        "loadingTickets": "Loading tickets...",
+        "searchPlaceholder": "Search by ID, client or subject...",
+        "statusPlaceholder": "Status",
+        "allStatus": "All Statuses",
+        "open": "Open",
+        "inProgress": "In Progress",
+        "closed": "Closed",
+        "priorityPlaceholder": "Priority",
+        "allPriorities": "All Priorities",
+        "urgent": "Urgent",
+        "medium": "Medium",
+        "low": "Low",
+        "allResponsibles": "All Assignees",
+        "searchResponsible": "Search assignee...",
+        "typeToSearch": "Type to search...",
+        "noResults": "No results found.",
+        "colId": "ID",
+        "colPriority": "Priority",
+        "colClient": "Client",
+        "colSubject": "Subject",
+        "colStatus": "Status",
+        "colCreatedAt": "Created At",
+        "colResponsible": "Assignee",
+        "colActions": "Actions",
+        "edit": "Edit",
+        "view": "View"
+    },
+    "ConversionChart": {
+        "conversion": "Conversion",
+        "conversionRate": "Conversion rate"
+    },
+    "Simulator": {
+        "customPlans": "Custom plans",
+        "vehicleValue": "Vehicle value:",
+        "clientAge": "Client age:",
+        "years": "years",
+        "additionalCoverages": "Additional coverages",
+        "includedBenefits": "Included benefits",
+        "indicators": "Indicators",
+        "conversion": "Conversion:",
+        "roi": "ROI:"
+    },
+    "Chat": {
+        "writeHere": "Type here...",
+        "today": "TODAY"
+    },
+    "TicketForm": {
+        "clientName": "Client Name",
+        "clientPlaceholder": "Name of the person or company requesting support",
+        "email": "Email",
+        "emailPlaceholder": "Contact email for updates and reply",
+        "priority": "Priority",
+        "priorityPlaceholder": "Select the level of urgency",
+        "status": "Status",
+        "statusPlaceholder": "Select the status",
+        "responsible": "Assignee",
+        "responsiblePlaceholder": "Who will be responsible for this ticket",
+        "subject": "Subject",
+        "subjectPlaceholder": "Brief summary of the issue or request",
+        "save": "Save",
+        "cancel": "Cancel",
+        "close": "Close",
+        "dialogDescription": "Fill in the details below to register a new ticket on the platform.",
+        "viewTicket": "View Ticket",
+        "editTicket": "Edit Ticket",
+        "newTicket": "New Ticket"
+    },
+    "RegisterPage": {
+        "title": "Create an account",
+        "description": "Enter your details below to create your account",
+        "namePlaceholder": "Name",
+        "emailPlaceholder": "Email",
+        "passwordPlaceholder": "Password",
+        "confirmPasswordPlaceholder": "Confirm Password",
+        "successMessage": "Account created successfully!",
+        "successDescription": "You have been redirected to the login page.",
+        "failMessage": "Failed to create account. Please try again.",
+        "submit": "Create Account",
+        "alreadyHaveAccount": "Already have an account?",
+        "signIn": "Sign in"
+    }
+}

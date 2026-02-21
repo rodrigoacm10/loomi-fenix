@@ -8,11 +8,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Loader2, Eye, EyeOff } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import api from "@/lib/api";
+import { SuccessToast } from "../ui/success-toast";
 
 const registerSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
@@ -30,6 +32,7 @@ export default function RegisterForm() {
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
+    const t = useTranslations("RegisterPage");
 
     const {
         register,
@@ -42,21 +45,25 @@ export default function RegisterForm() {
     async function onSubmit(data: RegisterFormValues) {
         setIsLoading(true);
         try {
-            // POST /users
-            // Payload: { name, password, email, challengeLevel: 1 } (as per docs)
             await api.post("/users", {
                 name: data.name,
                 email: data.email,
                 password: data.password,
-                challengeLevel: 1, // Required by API? Docs said "challengeLevel": 1 in example
+                challengeLevel: 1,
             });
 
-            toast.success("Account created successfully! Please login.");
+            toast.custom((toastProps) => (
+                <SuccessToast
+                    t={toastProps}
+                    title={t("successMessage")}
+                    description={t("successDescription")}
+                />
+            ))
             router.push("/login");
         } catch (error) {
             console.error(error);
             const err = error as { response?: { data?: { message?: string } } };
-            toast.error(err.response?.data?.message || "Failed to create account. Please try again.");
+            toast.error(err.response?.data?.message || t("failMessage"));
         } finally {
             setIsLoading(false);
         }
@@ -65,9 +72,9 @@ export default function RegisterForm() {
     return (
         <div className="h-full w-full grid gap-6 space-y-4">
             <div className="flex flex-col space-y-2">
-                <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
+                <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
                 <p className="text-sm text-muted-foreground">
-                    Enter your email below to create your account
+                    {t("description")}
                 </p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +82,7 @@ export default function RegisterForm() {
                     <div className="grid gap-2">
                         <Input
                             id="name"
-                            placeholder="Nome"
+                            placeholder={t("namePlaceholder")}
                             type="text"
                             autoCapitalize="words"
                             autoComplete="name"
@@ -91,7 +98,7 @@ export default function RegisterForm() {
                     <div className="grid gap-2">
                         <Input
                             id="email"
-                            placeholder="E-mail"
+                            placeholder={t("emailPlaceholder")}
                             type="email"
                             autoCapitalize="none"
                             autoComplete="email"
@@ -112,7 +119,7 @@ export default function RegisterForm() {
                                 autoCapitalize="none"
                                 autoComplete="new-password"
                                 disabled={isLoading}
-                                placeholder="Senha"
+                                placeholder={t("passwordPlaceholder")}
                                 {...register("password")}
                                 className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                             />
@@ -140,7 +147,7 @@ export default function RegisterForm() {
                                 autoCapitalize="none"
                                 autoComplete="new-password"
                                 disabled={isLoading}
-                                placeholder="Confirmar Senha"
+                                placeholder={t("confirmPasswordPlaceholder")}
                                 {...register("confirmPassword")}
                                 className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
                             />
@@ -151,14 +158,14 @@ export default function RegisterForm() {
                     </div>
                     <Button disabled={isLoading} className="mt-4 bg-[#1876D2] py-6 rounded-[15px]">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        Create Account
+                        {t("submit")}
                     </Button>
                 </div>
             </form>
             <div className="text-center text-sm">
-                Already have an account?{" "}
+                {t("alreadyHaveAccount")}{" "}
                 <Link href="/login" className="font-semibold text-[#1876D2] hover:underline">
-                    Sign in
+                    {t("signIn")}
                 </Link>
             </div>
         </div>

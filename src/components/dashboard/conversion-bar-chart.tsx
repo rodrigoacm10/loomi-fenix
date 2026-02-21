@@ -4,20 +4,22 @@ import { useDashboardStore } from "@/store/dashboard-store";
 import { createCustomTooltip } from "@/lib/chart-tooltip";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export function ConversionBarChart() {
     const { data } = useDashboardStore();
+    const t = useTranslations("ConversionChart");
 
     const chartSeries = useMemo(() => {
         if (!data?.kpisTrend) return [];
         const { conversionTrend } = data.kpisTrend;
         return [{
-            name: 'Conversão',
+            name: t("conversion"),
             data: conversionTrend.data.slice(0, 6)
         }];
-    }, [data]);
+    }, [data, t]);
 
     const chartOptions: ApexCharts.ApexOptions = useMemo(() => {
         if (!data?.kpisTrend) return {} as ApexCharts.ApexOptions;
@@ -84,7 +86,7 @@ export function ConversionBarChart() {
     return (
         <div className="flex flex-col h-full space-y-4">
             <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold">Taxa de conversão</h3>
+                <h3 className="text-xl font-semibold">{t("conversionRate")}</h3>
                 <ArrowRightIcon className="h-6 w-6" />
             </div>
             <div className="flex-1 min-h-[0px] -ml-4">

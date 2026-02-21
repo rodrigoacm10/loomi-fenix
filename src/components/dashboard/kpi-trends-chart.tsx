@@ -6,11 +6,13 @@ import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { createCustomTooltip } from "@/lib/chart-tooltip";
+import { useTranslations } from "next-intl";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export function KpiTrendsChart() {
     const { data } = useDashboardStore();
+    const t = useTranslations("KpiChart");
     const [activeMetric, setActiveMetric] = useState<'arpu' | 'conversion' | 'churn' | 'retention'>('arpu');
 
     const chartSeries = useMemo(() => {
@@ -97,7 +99,7 @@ export function KpiTrendsChart() {
     return (
         <div className="flex flex-col h-full space-y-4">
             <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold">Evolução dos KPI&apos;s</h3>
+                <h3 className="text-xl font-semibold">{t("title")}</h3>
                 <div className="flex bg-[#23283b] rounded-full py-2 px-3 gap-3">
                     {['retention', 'conversion', 'churn', 'arpu'].map((metric) => (
                         <Button
@@ -110,7 +112,7 @@ export function KpiTrendsChart() {
                             )}
                             onClick={() => setActiveMetric(metric as 'arpu' | 'conversion' | 'churn' | 'retention')}
                         >
-                            {metric}
+                            {t(metric)}
                         </Button>
                     ))}
                 </div>

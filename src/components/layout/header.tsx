@@ -3,19 +3,24 @@
 import { usePathname } from "next/navigation";
 
 const pageTitles: Record<string, string> = {
-    "/dashboard": "Dashboard",
-    "/tickets": "Tickets",
-    "/chat": "Chat & Assistente Virtual",
-    "/simulator": "Simulador de Planos",
+    "/dashboard": "dashboard",
+    "/tickets": "tickets",
+    "/chat": "chat",
+    "/simulator": "simulator",
 };
 
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useTicketStore } from "@/store/ticket-store";
+import { useTranslations } from "next-intl";
 
 export function Header() {
     const pathname = usePathname();
-    const currentTitle = Object.entries(pageTitles).find(([path]) => pathname.startsWith(path))?.[1] || "Dashboard";
+    const tNav = useTranslations("Navigation");
+    const tHeader = useTranslations("Header");
+    const activePath = `/${pathname.split('/').slice(2).join('/')}`;
+    const currentKey = Object.entries(pageTitles).find(([path, value]) => path === activePath)?.[1] || "dashboard";
+    const currentTitle = tNav(currentKey);
     const { openTicketModal } = useTicketStore();
 
     return (
@@ -23,12 +28,12 @@ export function Header() {
             <div className="ml-[130px] flex items-center justify-between w-full">
                 <h1 className="text-xl font-semibold">{currentTitle}</h1>
 
-                {pathname === "/tickets" && (
+                {activePath === "/tickets" && (
                     <Button
                         onClick={() => openTicketModal()}
                         className="rounded-full bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)] hover:bg-[#156abd]"
                     >
-                        <Plus className="h-4 w-4" /> Novo Ticket
+                        <Plus className="h-4 w-4" /> {tHeader("newTicket")}
                     </Button>
                 )}
             </div>

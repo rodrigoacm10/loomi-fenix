@@ -21,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -39,6 +40,7 @@ export function ClientDataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [globalFilter, setGlobalFilter] = useState("")
+    const t = useTranslations("DataTable")
 
     const table = useReactTable({
         data,
@@ -64,7 +66,7 @@ export function ClientDataTable<TData, TValue>({
             <div className="flex items-center pt-2 pb-4 gap-2">
                 <div className="relative w-full">
                     <Input
-                        placeholder="Buscar por nome ou email..."
+                        placeholder={t("searchPlaceholder")}
                         value={globalFilter ?? ""}
                         onChange={(event) =>
                             setGlobalFilter(event.target.value)
@@ -83,10 +85,11 @@ export function ClientDataTable<TData, TValue>({
                     }
                 >
                     <SelectTrigger className="w-[250px] px-5 bg-[#0b1125] border-0 rounded-full h-9 text-white">
-                        <SelectValue placeholder="Status" />
+                        <SelectValue placeholder={t("statusPlaceholder")} />
                     </SelectTrigger>
                     <SelectContent className="bg-[#0b1125] text-white border-0">
-                        {filters.status.map(s => (
+                        <SelectItem value="Todos" className="focus:bg-[#1876D2] focus:text-white">{t("all")}</SelectItem>
+                        {filters.status.filter(s => s !== "Todos" && s !== "all").map(s => (
                             <SelectItem key={s} value={s} className="focus:bg-[#1876D2] focus:text-white">{s}</SelectItem>
                         ))}
                     </SelectContent>
@@ -99,10 +102,11 @@ export function ClientDataTable<TData, TValue>({
                     }
                 >
                     <SelectTrigger className="w-[320px] px-5 bg-[#0b1125] border-0 rounded-full h-9 text-white truncate">
-                        <SelectValue placeholder="Tipo de Seguro" />
+                        <SelectValue placeholder={t("secureTypePlaceholder")} />
                     </SelectTrigger>
                     <SelectContent className="bg-[#0b1125] text-white border-0">
-                        {filters.secureType.map(t => (
+                        <SelectItem value="Todos" className="focus:bg-[#1876D2] focus:text-white">{t("all")}</SelectItem>
+                        {filters.secureType.filter(t => t !== "Todos" && t !== "all").map(t => (
                             <SelectItem key={t} value={t} className="focus:bg-[#1876D2] focus:text-white">{t}</SelectItem>
                         ))}
                     </SelectContent>
@@ -115,10 +119,11 @@ export function ClientDataTable<TData, TValue>({
                     }
                 >
                     <SelectTrigger className="w-[250px] px-5 bg-[#0b1125] border-0 rounded-full h-9 text-white">
-                        <SelectValue placeholder="Local" />
+                        <SelectValue placeholder={t("locationPlaceholder")} />
                     </SelectTrigger>
                     <SelectContent className="bg-[#0b1125] text-white border-0">
-                        {filters.locations.map(l => (
+                        <SelectItem value="Todos" className="focus:bg-[#1876D2] focus:text-white">{t("all")}</SelectItem>
+                        {filters.locations.filter(l => l !== "Todos" && l !== "all").map(l => (
                             <SelectItem key={l} value={l} className="focus:bg-[#1876D2] focus:text-white">{l}</SelectItem>
                         ))}
                     </SelectContent>
@@ -163,7 +168,7 @@ export function ClientDataTable<TData, TValue>({
                         ) : (
                             <TableRow>
                                 <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center text-white">
-                                    Nenhum cliente encontrado.
+                                    {t("emptyState")}
                                 </TableCell>
                             </TableRow>
                         )}
