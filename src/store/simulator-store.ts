@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { PlanIndicator, SimulatorResponse } from '@/types/simulator';
+import { PlanIndicator } from '@/types/simulator';
 import { simulatorService, MOCK_ADDONS } from '@/services/simulator';
 
 interface SimulatorStore {

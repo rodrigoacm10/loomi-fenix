@@ -79,9 +79,9 @@ export const columns: ColumnDef<Ticket>[] = [
     {
         id: "actions",
         header: "Ações",
-        cell: ({ row }) => {
+        cell: function CellComponent({ row }) {
             const ticket = row.original
-            const { openTicketModal, openDeleteModal } = useTicketStore()
+            const { openTicketModal } = useTicketStore()
 
             return (
                 <div className="flex items-center gap-5">

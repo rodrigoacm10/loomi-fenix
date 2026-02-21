@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { ChatMessage, ChatResponse, ConversationAnalysis } from '@/types/chat';
+import { ChatMessage, ConversationAnalysis } from '@/types/chat';
 import { chatService } from '@/services/chat';
 
 interface ChatState {

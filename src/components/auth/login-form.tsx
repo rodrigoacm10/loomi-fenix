@@ -52,9 +52,10 @@ export default function LoginForm() {
             login(access_token, user, data.rememberMe);
             toast.success("Successfully logged in!");
             router.push("/dashboard");
-        } catch (error: any) { // using any for error for simplicity, usually strict typing is better
+        } catch (error) { // using any for error for simplicity, usually strict typing is better
             console.error(error);
-            toast.error(error.response?.data?.message || "Failed to login. Please try again.");
+            const err = error as { response?: { data?: { message?: string } } };
+            toast.error(err.response?.data?.message || "Failed to login. Please try again.");
         } finally {
             setIsLoading(false);
         }

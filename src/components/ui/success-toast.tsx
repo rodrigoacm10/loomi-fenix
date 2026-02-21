@@ -1,6 +1,6 @@
 "use client"
 
-import { Check, CheckCircle2, X } from "lucide-react"
+import { Check, X } from "lucide-react"
 import { toast } from "sonner"
 
 interface SuccessToastProps {

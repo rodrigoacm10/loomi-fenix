@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/command"
 import { Check, ChevronsUpDown, Search, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Ticket } from "@/types/ticket"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -79,7 +80,7 @@ export function TicketDataTable<TData, TValue>({
     })
 
     const uniqueResponsibles = useMemo(() => {
-        return Array.from(new Set(data.map(item => (item as any).responsible as string)))
+        return Array.from(new Set(data.map(item => (item as Ticket).responsible)))
     }, [data])
 
     const currentResponsibleFilter = (table.getColumn("responsible")?.getFilterValue() as string) ?? ""

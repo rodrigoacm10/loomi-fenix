@@ -24,7 +24,7 @@ export interface CreateTicketDTO {
     responsible: string;
 }
 
-export interface UpdateTicketDTO extends Partial<CreateTicketDTO> { }
+export type UpdateTicketDTO = Partial<CreateTicketDTO>;
 
 export interface TicketsResponse {
     data: Ticket[];
