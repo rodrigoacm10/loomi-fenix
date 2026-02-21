@@ -52,7 +52,7 @@ export default function TicketsPage() {
                         <TicketCardInfo title={t("averageTime")} data={averageTime} icon="/icons/ticket/Icon2.svg" />
                     </div>
 
-                    <Container className="pb-4">
+                    <Container className="pb-4 min-w-0">
                         <div className="flex items-center justify-between">
                             <h2 className="text-xl font-semibold">{t("ticketListTitle")}</h2>
                         </div>

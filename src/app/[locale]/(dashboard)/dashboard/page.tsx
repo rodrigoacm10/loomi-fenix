@@ -43,8 +43,8 @@ export default function DashboardPage() {
 
     return (
         <div className="space-y-[40px]">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px] h-[380px]">
-                <Container className="lg:col-span-2 bg-[linear-gradient(to_top_right,#2f384f_0%,#171d30_30%,#171d30_70%,#2f384f_100%)]">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-[40px]">
+                <Container className="xl:col-span-2 bg-[linear-gradient(to_top_right,#2f384f_0%,#171d30_30%,#171d30_70%,#2f384f_100%)]">
                     <KpiTrendsChart />
                 </Container>
 
@@ -59,7 +59,7 @@ export default function DashboardPage() {
             </Container>
 
 
-            <Container className="pb-4">
+            <Container className="pb-4 min-w-0">
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-semibold">{t("activeClients")}</h2>
                 </div>

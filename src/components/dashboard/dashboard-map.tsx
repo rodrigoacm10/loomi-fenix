@@ -130,11 +130,11 @@ export function DashboardMap() {
 
     return (
         <div className="flex flex-col h-full space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <h3 className="text-[18px] font-semibold text-white">{t("title")}</h3>
-                <div className="flex space-x-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                     <Select value={selectedLocal} onValueChange={setSelectedLocal}>
-                        <SelectTrigger className="w-[180px] bg-loomi-bg-card border-none text-gray-300 h-9 rounded-full px-4">
+                        <SelectTrigger className="w-full sm:w-[180px] bg-loomi-bg-card border-none text-gray-300 h-9 rounded-full px-4">
                             <SelectValue placeholder={t("allLocations")} />
                         </SelectTrigger>
                         <SelectContent className="bg-loomi-bg-card border-[#2e344d] text-gray-300">
@@ -145,7 +145,7 @@ export function DashboardMap() {
                         </SelectContent>
                     </Select>
                     <Select value={selectedType} onValueChange={setSelectedType}>
-                        <SelectTrigger className="w-[180px] bg-loomi-bg-card border-none text-gray-300 h-9 rounded-full px-4">
+                        <SelectTrigger className="w-full sm:w-[180px] bg-loomi-bg-card border-none text-gray-300 h-9 rounded-full px-4">
                             <SelectValue placeholder={t("allTypes")} />
                         </SelectTrigger>
                         <SelectContent className="bg-loomi-bg-card border-[#2e344d] text-gray-300">
