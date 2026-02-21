@@ -65,7 +65,7 @@ export function Sidebar() {
                                             <span className="sr-only">{t(item.key)}</span>
                                         </Link>
                                     </TooltipTrigger>
-                                    <TooltipContent className="bg-[#1876D2] text-white border-0" side="right">{t(item.key)}</TooltipContent>
+                                    <TooltipContent color="#1876D2" className="bg-[#1876D2] text-white border-0" side="right">{t(item.key)}</TooltipContent>
                                 </Tooltip>
                             )
                         })}
@@ -81,7 +81,7 @@ export function Sidebar() {
                                     <AvatarFallback className="bg-[#1876D2] text-primary-foreground font-semibold">AC</AvatarFallback>
                                 </Avatar>
                             </TooltipTrigger>
-                            <TooltipContent side="right">User Profile</TooltipContent>
+                            <TooltipContent className="bg-[#1876D2] text-white border-0" side="right">User Profile</TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
                 </div>

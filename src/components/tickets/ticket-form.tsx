@@ -158,7 +158,7 @@ export function TicketForm() {
                                 <Select onValueChange={field.onChange} value={field.value}>
                                     <FormControl>
                                         <SelectTrigger
-                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
+                                            className="w-full px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
                                             <SelectValue placeholder={t("priorityPlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>
@@ -188,7 +188,7 @@ export function TicketForm() {
                                 <Select onValueChange={field.onChange} value={field.value}>
                                     <FormControl>
                                         <SelectTrigger
-                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
+                                            className="w-full px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
                                             <SelectValue placeholder={t("statusPlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>

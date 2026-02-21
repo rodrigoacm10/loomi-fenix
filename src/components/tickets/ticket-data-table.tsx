@@ -222,14 +222,14 @@ export function TicketDataTable<TData, TValue>({
                 </Popover>
             </div>
 
-            <div className="rounded-[20px] bg-[#23283a] px-6 pb-2">
+            <div className="rounded-[20px] bg-[#23283a] px-6 pb-6">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow className="border-[#ffffff]/10 hover:bg-transparent text-xs" key={headerGroup.id}>
+                            <TableRow className="border-[#ffffff]/10 hover:bg-transparent text-sm !py-2" key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead className="!px-0" key={header.id}>
+                                        <TableHead className="px-0 py-4 text-[#C9C9C9]" key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -248,10 +248,10 @@ export function TicketDataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
-                                    className="border-[#ffffff]/10 hover:bg-[#181c29] text-xs"
+                                    className="border-[#ffffff]/10 hover:bg-[#181c29] text-sm"
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell className="!px-0" key={cell.id}>
+                                        <TableCell className="!px-0 py-4" key={cell.id}>
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext()

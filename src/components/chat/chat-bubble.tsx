@@ -37,16 +37,20 @@ export function ChatBubble({ message }: ChatBubbleProps) {
                 </div>
             </div>
 
-            {isSuggestion && <div className="mt-3 flex gap-2 w-full max-w-[50%] justify-end pl-12">
-                <Button className="w-full text-sm bg-[#0066cc] hover:bg-[#0055aa] rounded-full bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
-                    Enviar proposta
-                </Button>
-                <Button className="w-full text-sm rounded-full bg-[#0066cc] hover:bg-[#0055aa] bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
-                    Fazer ligação
-                </Button>
-                <Button className="w-full text-sm rounded-full bg-[#0066cc] hover:bg-[#0055aa] bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
-                    Ver histórico
-                </Button>
+            {isSuggestion && <div className="mt-3 w-full max-w-[50%] justify-end pl-12">
+                <div className="w-full flex gap-2 justify-end">
+                    <Button className="flex-1 text-sm bg-[#0066cc] hover:bg-[#0055aa] rounded-full bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
+                        Enviar proposta
+                    </Button>
+                    <Button className="flex-1 text-sm rounded-full bg-[#0066cc] hover:bg-[#0055aa] bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
+                        Fazer ligação
+                    </Button>
+                    <Button className="flex-1 text-sm rounded-full bg-[#0066cc] hover:bg-[#0055aa] bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
+                        Ver histórico
+                    </Button>
+                </div>
+
+
             </div>}
         </div>
     );
