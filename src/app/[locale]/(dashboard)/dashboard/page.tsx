@@ -2,7 +2,7 @@
 
 import { useDashboardStore } from "@/store/dashboard-store";
 import { useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import Container from "@/components/global/container";
 import { ClientDataTable } from "@/components/dashboard/client-data-table";
 import { columns as clientColumns } from "@/components/dashboard/client-columns";
@@ -21,8 +21,16 @@ export default function DashboardPage() {
 
     if (loading || !data) {
         return (
-            <div className="flex h-full items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            <div className="space-y-[40px]">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px] h-[380px]">
+                    <Skeleton className="lg:col-span-2 h-full rounded-[24px]" />
+                    <Skeleton className="h-full rounded-[24px]" />
+                </div>
+                <Skeleton className="h-[450px] w-full rounded-[24px]" />
+                <Container className="pb-4 space-y-[24px]">
+                    <Skeleton className="h-[40px] w-[200px] rounded-md" />
+                    <Skeleton className="h-[400px] w-full rounded-[24px]" />
+                </Container>
             </div>
         );
     }
@@ -56,11 +64,7 @@ export default function DashboardPage() {
                     <h2 className="text-xl font-semibold">{t("activeClients")}</h2>
                 </div>
 
-                {loading ? (
-                    <div className="flex justify-center p-8">{t("loadingClients")}</div>
-                ) : (
-                    <ClientDataTable columns={clientColumns} data={data.activeClients.data} filters={data.activeClients.filters} />
-                )}
+                <ClientDataTable columns={clientColumns} data={data.activeClients.data} filters={data.activeClients.filters} />
             </Container>
 
         </div>

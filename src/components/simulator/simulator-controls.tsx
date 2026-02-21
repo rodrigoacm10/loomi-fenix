@@ -27,7 +27,7 @@ export function SimulatorControls() {
     };
 
     return (
-        <Container className="space-y-10 py-7">
+        <Container className="space-y-10 py-7 h-full">
             <div>
                 <h3 className="mb-4 text-xl font-semibold">{t("customPlans")}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -54,8 +54,6 @@ export function SimulatorControls() {
                         min={10000}
                         max={500000}
                         step={1000}
-                        rangeClassName="bg-[#1876D2]"
-                        thumbClassName="border-[#1876D2] focus-visible:ring-[#1876D2]"
                         onValueChange={(vals) => setVehicleValue(vals[0])}
                     />
                     <div className="flex justify-between text-sm text-white">
@@ -73,8 +71,6 @@ export function SimulatorControls() {
                         min={18}
                         max={90}
                         step={1}
-                        rangeClassName="bg-[#1876D2]"
-                        thumbClassName="border-[#1876D2] focus-visible:ring-[#1876D2]"
                         onValueChange={(vals) => setClientAge(vals[0])}
                     />
                     <div className="flex justify-between text-sm text-white">
@@ -91,7 +87,7 @@ export function SimulatorControls() {
                         <div key={addon.id} className="flex items-center space-x-2">
                             <Checkbox
                                 id={addon.id}
-                                className="data-[state=checked]:bg-[#1876D2] data-[state=checked]:border-[#1876D2] border-white"
+                                className="data-[state=checked]:bg-loomi-primary data-[state=checked]:border-loomi-primary border-white"
                                 checked={selectedAddons.includes(addon.id)}
                                 onCheckedChange={() => toggleAddon(addon.id)}
                             />

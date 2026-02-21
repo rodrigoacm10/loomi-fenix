@@ -19,7 +19,8 @@
         "dashboard": "Dashboard",
         "tickets": "Tickets",
         "chat": "Chat & Virtual Assistant",
-        "simulator": "Plan Simulator"
+        "simulator": "Plan Simulator",
+        "user": "My Profile"
     },
     "Header": {
         "newTicket": "New Ticket"
@@ -140,5 +141,26 @@
         "submit": "Create Account",
         "alreadyHaveAccount": "Already have an account?",
         "signIn": "Sign in"
+    },
+    "UserPage": {
+        "title": "My Profile",
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Your email address",
+        "save": "Save",
+        "logout": "Logout",
+        "deleteAccount": "Delete Account",
+        "deleteConfirmTitle": "Are you absolutely sure?",
+        "deleteConfirmDesc": "This action cannot be undone. This will permanently delete your account and remove your data from our servers.",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "successUpdateMessage": "Profile updated successfully!",
+        "successUpdateDesc": "Your profile information has been updated.",
+        "successDeleteMessage": "Account deleted successfully!",
+        "successDeleteDesc": "You have been logged out.",
+        "fetchError": "Failed to load user data.",
+        "updateError": "Failed to update profile.",
+        "deleteError": "Failed to delete account."
     }
 }

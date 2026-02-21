@@ -13,12 +13,13 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useTicketStore } from "@/store/ticket-store";
 import { useTranslations } from "next-intl";
+import { getCurrentPathname } from "@/utils/get-current-pathname";
 
 export function Header() {
     const pathname = usePathname();
     const tNav = useTranslations("Navigation");
     const tHeader = useTranslations("Header");
-    const activePath = `/${pathname.split('/').slice(2).join('/')}`;
+    const activePath = getCurrentPathname(pathname);
     const currentKey = Object.entries(pageTitles).find(([path, value]) => path === activePath)?.[1] || "dashboard";
     const currentTitle = tNav(currentKey);
     const { openTicketModal } = useTicketStore();
@@ -31,7 +32,7 @@ export function Header() {
                 {activePath === "/tickets" && (
                     <Button
                         onClick={() => openTicketModal()}
-                        className="rounded-full bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)] hover:bg-[#156abd]"
+                        className="rounded-full bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)] hover:bg-loomi-primary-hover"
                     >
                         <Plus className="h-4 w-4" /> {tHeader("newTicket")}
                     </Button>

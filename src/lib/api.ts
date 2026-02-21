@@ -18,8 +18,39 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
     (response) => response,
-    (error) => {
-        // Handle 401 globally if needed (e.g., redirect to login)
+    async (error) => {
+        const originalRequest = error.config;
+
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+
+            try {
+                const expiredToken = Cookies.get('token');
+
+                if (expiredToken) {
+                    const response = await axios.post(
+                        'https://nortus-challenge.api.stage.loomi.com.br/auth/refresh-token',
+                        { access_token: expiredToken },
+                        { headers: { 'Content-Type': 'application/json' } }
+                    );
+
+                    const newToken = response.data.access_token;
+
+                    if (newToken) {
+                        Cookies.set('token', newToken);
+                        originalRequest.headers.Authorization = `Bearer ${newToken}`;
+                        return api(originalRequest);
+                    }
+                }
+            } catch (refreshError) {
+                Cookies.remove('token');
+                if (typeof window !== 'undefined') {
+                    window.location.href = '/login';
+                }
+                return Promise.reject(refreshError);
+            }
+        }
+
         return Promise.reject(error);
     }
 );

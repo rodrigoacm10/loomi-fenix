@@ -12,12 +12,14 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { getCurrentPathname } from "@/utils/get-current-pathname";
 
 
 const navItems = [
     { key: "dashboard", href: "/dashboard", icon: "icon1.svg" },
     { key: "tickets", href: "/tickets", icon: "icon1.svg" },
     { key: "chat", href: "/chat", icon: "icon1.svg" },
+    { key: "user", href: "/user", icon: "icon1.svg" },
     { key: "simulator", href: "/simulator", icon: "icon1.svg" },
 ];
 
@@ -40,7 +42,7 @@ export function Sidebar() {
                 <nav className="flex flex-1 flex-col items-center justify-center gap-8">
                     <TooltipProvider>
                         {navItems.map((item) => {
-                            const isActive = `/${pathname.split('/').slice(2).join('/')}` === item.href;
+                            const isActive = getCurrentPathname(pathname) === item.href;
 
                             return (
                                 <Tooltip key={item.href} delayDuration={0}>
@@ -48,8 +50,8 @@ export function Sidebar() {
                                         <Link
                                             href={item.href}
                                             className={cn(
-                                                "flex h-14 w-14 items-center justify-center rounded-lg transition-colors hover:bg-[#1876D2]",
-                                                isActive ? "bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]" : "bg-[#2b3248]"
+                                                "flex h-14 w-14 items-center justify-center rounded-lg transition-colors hover:bg-loomi-primary",
+                                                isActive ? "bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]" : "bg-[#2b3248]"
                                             )}
                                         >
                                             <div className="relative h-7 w-7">
@@ -63,7 +65,7 @@ export function Sidebar() {
                                             <span className="sr-only">{t(item.key)}</span>
                                         </Link>
                                     </TooltipTrigger>
-                                    <TooltipContent className="bg-[#1876D2] text-white border-0" side="right">{t(item.key)}</TooltipContent>
+                                    <TooltipContent color="#1876D2" className="bg-loomi-primary text-white border-0" side="right">{t(item.key)}</TooltipContent>
                                 </Tooltip>
                             )
                         })}
@@ -74,12 +76,14 @@ export function Sidebar() {
                     <TooltipProvider>
                         <Tooltip delayDuration={0}>
                             <TooltipTrigger asChild>
-                                <Avatar className="h-14 w-14 border-white">
-                                    <AvatarImage src="" alt="User" />
-                                    <AvatarFallback className="bg-[#1876D2] text-primary-foreground font-semibold">AC</AvatarFallback>
-                                </Avatar>
+                                <Link href="/user">
+                                    <Avatar className="h-14 w-14 border-white">
+                                        <AvatarImage src="" alt="User" />
+                                        <AvatarFallback className="bg-loomi-primary text-primary-foreground font-semibold">AC</AvatarFallback>
+                                    </Avatar>
+                                </Link>
                             </TooltipTrigger>
-                            <TooltipContent side="right">User Profile</TooltipContent>
+                            <TooltipContent className="bg-loomi-primary text-white border-0" side="right">User Profile</TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
                 </div>
