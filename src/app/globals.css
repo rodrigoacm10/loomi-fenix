@@ -121,6 +121,7 @@
     @apply border-border outline-ring/50;
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     @apply bg-background text-foreground;
@@ -130,4 +131,10 @@
 /* OpenLayers Dark Theme Hack */
 .dark-map-layer {
   filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.apexcharts-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }

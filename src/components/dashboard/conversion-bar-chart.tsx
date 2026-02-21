@@ -1,6 +1,7 @@
 "use client";
 
 import { useDashboardStore } from "@/store/dashboard-store";
+import { createCustomTooltip } from "@/lib/chart-tooltip";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
 
@@ -27,7 +28,17 @@ export function ConversionBarChart() {
                 background: 'transparent',
                 fontFamily: 'inherit'
             },
-            colors: ['#3b82f6'],
+            colors: ['#4dd4ce'],
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    type: 'vertical',
+                    shadeIntensity: 0,
+                    opacityFrom: 1,
+                    opacityTo: 0.5,
+                    stops: [0, 100]
+                }
+            },
             plotOptions: {
                 bar: {
                     borderRadius: 4,
@@ -37,21 +48,34 @@ export function ConversionBarChart() {
             dataLabels: { enabled: false },
             xaxis: {
                 categories: data.kpisTrend.labels.slice(0, 6),
-                labels: { style: { colors: '#6b7280' } },
+                labels: { style: { colors: '#ffffff', fontSize: '14px' } },
                 axisBorder: { show: false },
                 axisTicks: { show: false },
+                tooltip: { enabled: false },
+                offsetY: 5
             },
             yaxis: {
-                labels: { style: { colors: '#6b7280' } },
+                labels: {
+                    style: { colors: '#ffffff', fontSize: '14px' },
+                },
+            },
+            theme: { mode: 'dark' as const },
+            tooltip: {
+                theme: 'dark',
+                custom: function (opts: any) {
+                    return createCustomTooltip({ ...opts, activeMetric: 'conversion' });
+                }
             },
             grid: {
                 show: true,
                 borderColor: '#2e344d',
                 strokeDashArray: 3,
-                xaxis: { lines: { show: false } }
-            },
-            theme: { mode: 'dark' as const },
-            tooltip: { theme: 'dark' }
+                xaxis: { lines: { show: false } },
+                padding: {
+                    left: 30,
+                    bottom: 0
+                }
+            }
         };
     }, [data]);
 

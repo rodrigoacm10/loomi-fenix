@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { createCustomTooltip } from "@/lib/chart-tooltip";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -30,7 +31,7 @@ export function KpiTrendsChart() {
                 toolbar: { show: false },
                 background: 'transparent',
                 fontFamily: 'inherit',
-                animations: { enabled: false }
+                animations: { enabled: true }
             },
             colors: ['#4dd4ce'],
             fill: {
@@ -38,24 +39,26 @@ export function KpiTrendsChart() {
                 gradient: {
                     shadeIntensity: 0,
                     opacityFrom: 1,
-                    opacityTo: 0,
+                    opacityTo: 0.5,
                     stops: [0, 100]
                 }
             },
             dataLabels: { enabled: false },
-            stroke: { curve: 'smooth', width: 3 },
+            stroke: { curve: 'smooth', width: 0 },
             xaxis: {
                 categories: data.kpisTrend.labels,
-                labels: { style: { colors: '#6b7280' } },
+                labels: { style: { colors: '#ffffff', fontSize: '14px' } },
                 axisBorder: { show: false },
                 axisTicks: { show: false },
-                tooltip: { enabled: false }
+                tooltip: { enabled: false },
+                offsetY: 5
+
             },
             yaxis: {
                 labels: {
-                    style: { colors: '#6b7280' },
+                    style: { colors: '#ffffff', fontSize: '14px' },
                     formatter: (val: number) => {
-                        if (activeMetric === 'arpu') return `R$ ${(val / 1000).toFixed(0)}k`;
+                        if (activeMetric === 'arpu') return `${(val / 1000).toFixed(0)}`;
                         return `${val}`;
                     }
                 }
@@ -64,11 +67,27 @@ export function KpiTrendsChart() {
                 show: true,
                 borderColor: '#2e344d',
                 strokeDashArray: 3,
-                xaxis: { lines: { show: false } }
+                xaxis: { lines: { show: false } },
+                padding: {
+                    left: 30,
+                }
             },
             theme: { mode: 'dark' as const },
             tooltip: {
-                theme: 'dark'
+                theme: 'dark',
+                custom: function (opts: any) {
+                    return createCustomTooltip({ ...opts, activeMetric });
+                }
+            },
+            markers: {
+                size: 0,
+                colors: ['#ffffff'],
+                strokeColors: '#4dd4ce',
+                strokeWidth: 2,
+                hover: {
+                    size: 5,
+                    sizeOffset: 2
+                }
             }
         };
     }, [data, activeMetric]);
