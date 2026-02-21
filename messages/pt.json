@@ -12,6 +12,7 @@
         "dontHaveAccount": "Não tem uma conta?",
         "signUp": "Cadastre-se",
         "successMessage": "Login realizado com sucesso!",
+        "successDescription": "Você foi redirecionado para o dashboard.",
         "failMessage": "Falha no login. Tente novamente."
     },
     "Navigation": {
@@ -125,5 +126,19 @@
         "viewTicket": "Visualizar Ticket",
         "editTicket": "Editar Ticket",
         "newTicket": "Novo Ticket"
+    },
+    "RegisterPage": {
+        "title": "Criar uma conta",
+        "description": "Preencha os dados abaixo para criar sua conta",
+        "namePlaceholder": "Nome",
+        "emailPlaceholder": "E-mail",
+        "passwordPlaceholder": "Senha",
+        "confirmPasswordPlaceholder": "Confirmar Senha",
+        "successMessage": "Conta criada com sucesso!",
+        "successDescription": "Você foi redirecionado para o login.",
+        "failMessage": "Falha ao criar conta. Tente novamente.",
+        "submit": "Criar Conta",
+        "alreadyHaveAccount": "Já tem uma conta?",
+        "signIn": "Entrar"
     }
 }

@@ -51,11 +51,11 @@ export default function LoginForm() {
             const user = { email: data.email };
 
             login(access_token, user, data.rememberMe);
-            toast.custom((t) => (
+            toast.custom((toastProps) => (
                 <SuccessToast
-                    t={t}
-                    title="Login realizado com sucesso!"
-                    description="Você foi redirecionado para o dashboard."
+                    t={toastProps}
+                    title={t("successMessage")}
+                    description={t("successDescription")}
                 />
             ))
             router.push("/dashboard");
