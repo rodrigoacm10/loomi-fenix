@@ -35,12 +35,12 @@ export function ChatInput({ onSend }: ChatInputProps) {
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={t("writeHere")}
-                className="bg-[#20273e] border border-[#ffffff]/30 text-white rounded-full py-8 px-6 placeholder:text-[#ffffff]"
+                className="bg-[#20273e] border border-white/30 text-white rounded-full py-8 px-6 placeholder:text-white"
             />
             <Button
                 size="icon"
                 onClick={handleSend}
-                className="absolute right-4 h-9 w-9 rounded-full bg-[#0066cc] hover:bg-[#0055aa]"
+                className="absolute right-4 h-9 w-9 rounded-full bg-loomi-secondary hover:bg-loomi-secondary-hover"
             >
                 <SendHorizontal className="h-4 w-4 text-white" />
             </Button>

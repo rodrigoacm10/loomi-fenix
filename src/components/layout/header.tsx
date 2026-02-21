@@ -32,7 +32,7 @@ export function Header() {
                 {activePath === "/tickets" && (
                     <Button
                         onClick={() => openTicketModal()}
-                        className="rounded-full bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)] hover:bg-[#156abd]"
+                        className="rounded-full bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)] hover:bg-loomi-primary-hover"
                     >
                         <Plus className="h-4 w-4" /> {tHeader("newTicket")}
                     </Button>

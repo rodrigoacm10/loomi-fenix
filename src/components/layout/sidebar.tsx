@@ -50,8 +50,8 @@ export function Sidebar() {
                                         <Link
                                             href={item.href}
                                             className={cn(
-                                                "flex h-14 w-14 items-center justify-center rounded-lg transition-colors hover:bg-[#1876D2]",
-                                                isActive ? "bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]" : "bg-[#2b3248]"
+                                                "flex h-14 w-14 items-center justify-center rounded-lg transition-colors hover:bg-loomi-primary",
+                                                isActive ? "bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]" : "bg-[#2b3248]"
                                             )}
                                         >
                                             <div className="relative h-7 w-7">
@@ -65,7 +65,7 @@ export function Sidebar() {
                                             <span className="sr-only">{t(item.key)}</span>
                                         </Link>
                                     </TooltipTrigger>
-                                    <TooltipContent color="#1876D2" className="bg-[#1876D2] text-white border-0" side="right">{t(item.key)}</TooltipContent>
+                                    <TooltipContent color="#1876D2" className="bg-loomi-primary text-white border-0" side="right">{t(item.key)}</TooltipContent>
                                 </Tooltip>
                             )
                         })}
@@ -76,12 +76,14 @@ export function Sidebar() {
                     <TooltipProvider>
                         <Tooltip delayDuration={0}>
                             <TooltipTrigger asChild>
-                                <Avatar className="h-14 w-14 border-white">
-                                    <AvatarImage src="" alt="User" />
-                                    <AvatarFallback className="bg-[#1876D2] text-primary-foreground font-semibold">AC</AvatarFallback>
-                                </Avatar>
+                                <Link href="/user">
+                                    <Avatar className="h-14 w-14 border-white">
+                                        <AvatarImage src="" alt="User" />
+                                        <AvatarFallback className="bg-loomi-primary text-primary-foreground font-semibold">AC</AvatarFallback>
+                                    </Avatar>
+                                </Link>
                             </TooltipTrigger>
-                            <TooltipContent className="bg-[#1876D2] text-white border-0" side="right">User Profile</TooltipContent>
+                            <TooltipContent className="bg-loomi-primary text-white border-0" side="right">User Profile</TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
                 </div>

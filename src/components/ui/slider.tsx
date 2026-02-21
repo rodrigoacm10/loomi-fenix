@@ -46,7 +46,7 @@ function Slider({
           data-slot="slider-range"
           className={cn(
             // dps mudar isso para uma variável no caso a cor
-            "bg-[#1876D2] absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            "bg-loomi-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
           )}
         />
       </SliderPrimitive.Track>
@@ -55,7 +55,7 @@ function Slider({
           data-slot="slider-thumb"
           key={index}
           // dps mudar isso para uma variável no caso a cor do border e do ring
-          className="border-[#1876D2] ring-[#1876D2]/50 block size-4 shrink-0 rounded-full border bg-white shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          className="border-loomi-primary ring-loomi-primary/50 block size-4 shrink-0 rounded-full border bg-white shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
     </SliderPrimitive.Root>

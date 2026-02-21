@@ -11,7 +11,7 @@ interface ErrorToastProps {
 
 export function ErrorToast({ t, title, description }: ErrorToastProps) {
     return (
-        <div className="flex items-start space-x-4 rounded-lg bg-[#d21818ff] p-4 py-5 text-white shadow-lg pointer-events-auto w-[450px]">
+        <div className="flex items-start space-x-4 rounded-lg bg-loomi-danger p-4 py-5 text-white shadow-lg pointer-events-auto w-[450px]">
             <div className="-mt-1 shrink-0 bg-white rounded-full p-1">
                 <X color="#d21818ff" className="h-4 w-4 text-white" strokeWidth={3} />
             </div>

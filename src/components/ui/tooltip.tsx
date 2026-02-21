@@ -49,7 +49,7 @@ function TooltipContent({
       >
         {children}
         {/* depois colocar como variavel essas cores */}
-        <TooltipPrimitive.Arrow className="bg-[#1876D2] fill-[#1876D2] z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
+        <TooltipPrimitive.Arrow className="bg-loomi-primary fill-loomi-primary z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   )

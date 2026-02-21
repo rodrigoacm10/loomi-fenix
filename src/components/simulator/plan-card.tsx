@@ -14,7 +14,7 @@ export function PlanCard({ name, price, isSelected, isRecommended, onSelect }: P
         <Container
             className={cn(
                 "bg-[#23293b] space-y-6 relative cursor-pointer transition-all hover:border-blue-500/50",
-                isSelected ? "ring-2 ring-[#1876D2] border-transparent" : ""
+                isSelected ? "ring-2 ring-loomi-primary border-transparent" : ""
             )}
             onClick={onSelect}
         >

@@ -108,12 +108,12 @@ export function TicketForm() {
                             <FormLabel className="pl-4 font-semibold">{t("clientName")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
-                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
+                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 border text-white">
                                         <p className="text-sm">{field.value}</p>
                                     </div>
                                 ) : (
                                     <Input
-                                        className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
+                                        className="px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10"
                                         placeholder={t("clientPlaceholder")} {...field} />
                                 )}
                             </FormControl>
@@ -130,12 +130,12 @@ export function TicketForm() {
                             <FormLabel className="pl-4 font-semibold">{t("email")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
-                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
+                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 border text-white">
                                         <p className="text-sm">{field.value}</p>
                                     </div>
                                 ) : (
                                     <Input
-                                        className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
+                                        className="px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10"
                                         placeholder={t("emailPlaceholder")} {...field} />
                                 )}
                             </FormControl>
@@ -151,21 +151,21 @@ export function TicketForm() {
                         <FormItem>
                             <FormLabel className="pl-4 font-semibold">{t("priority")}</FormLabel>
                             {isViewMode ? (
-                                <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
+                                <div className="px-5 py-4 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 border text-white">
                                     <p className="text-sm">{field.value}</p>
                                 </div>
                             ) : (
                                 <Select onValueChange={field.onChange} value={field.value}>
                                     <FormControl>
                                         <SelectTrigger
-                                            className="w-full px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
+                                            className="w-full px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 focus:ring-4 focus:ring-loomi-bg-card/20 focus:border-loomi-bg-card">
                                             <SelectValue placeholder={t("priorityPlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>
-                                    <SelectContent className="rounded-[20px] bg-[#171d30] border-0 text-white">
-                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Baixa">Baixa</SelectItem>
-                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Média">Média</SelectItem>
-                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Urgente">Urgente</SelectItem>
+                                    <SelectContent className="rounded-[20px] bg-loomi-bg-card border-0 text-white">
+                                        <SelectItem className="rounded-[20px] !text-white !bg-loomi-bg-card hover:!text-white hover:!bg-loomi-primary-hover" value="Baixa">Baixa</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-loomi-bg-card hover:!text-white hover:!bg-loomi-primary-hover" value="Média">Média</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-loomi-bg-card hover:!text-white hover:!bg-loomi-primary-hover" value="Urgente">Urgente</SelectItem>
                                     </SelectContent>
                                 </Select>
                             )}
@@ -181,21 +181,21 @@ export function TicketForm() {
                         <FormItem>
                             <FormLabel className="pl-4 font-semibold">{t("status")}</FormLabel>
                             {isViewMode ? (
-                                <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
+                                <div className="px-5 py-4 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 border text-white">
                                     <p className="text-sm">{field.value}</p>
                                 </div>
                             ) : (
                                 <Select onValueChange={field.onChange} value={field.value}>
                                     <FormControl>
                                         <SelectTrigger
-                                            className="w-full px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 focus:ring-4 focus:ring-[#171d30]/20 focus:border-[#171d30]">
+                                            className="w-full px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 focus:ring-4 focus:ring-loomi-bg-card/20 focus:border-loomi-bg-card">
                                             <SelectValue placeholder={t("statusPlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>
-                                    <SelectContent className="rounded-[20px] bg-[#171d30] border-0 text-white">
-                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Aberto">Aberto</SelectItem>
-                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Em andamento">Em andamento</SelectItem>
-                                        <SelectItem className="rounded-[20px] !text-white !bg-[#171d30] hover:!text-white hover:!bg-[#156abd]" value="Fechado">Fechado</SelectItem>
+                                    <SelectContent className="rounded-[20px] bg-loomi-bg-card border-0 text-white">
+                                        <SelectItem className="rounded-[20px] !text-white !bg-loomi-bg-card hover:!text-white hover:!bg-loomi-primary-hover" value="Aberto">Aberto</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-loomi-bg-card hover:!text-white hover:!bg-loomi-primary-hover" value="Em andamento">Em andamento</SelectItem>
+                                        <SelectItem className="rounded-[20px] !text-white !bg-loomi-bg-card hover:!text-white hover:!bg-loomi-primary-hover" value="Fechado">Fechado</SelectItem>
                                     </SelectContent>
                                 </Select>
                             )}
@@ -212,12 +212,12 @@ export function TicketForm() {
                             <FormLabel className="pl-4 font-semibold">{t("responsible")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
-                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
+                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 border text-white">
                                         <p className="text-sm">{field.value}</p>
                                     </div>
                                 ) : (
                                     <Input
-                                        className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
+                                        className="px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10"
                                         placeholder={t("responsiblePlaceholder")} {...field} />
                                 )}
                             </FormControl>
@@ -234,11 +234,11 @@ export function TicketForm() {
                             <FormLabel className="pl-4 font-semibold">{t("subject")}</FormLabel>
                             <FormControl>
                                 {isViewMode ? (
-                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 border text-white">
+                                    <div className="px-5 py-4 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 border text-white">
                                         <p className="text-sm">{field.value}</p>
                                     </div>
                                 ) : (
-                                    <Textarea className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10 min-h-[120px]" placeholder={t("subjectPlaceholder")} {...field} />
+                                    <Textarea className="px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10 min-h-[120px]" placeholder={t("subjectPlaceholder")} {...field} />
                                 )}
                             </FormControl>
                             <FormMessage />
@@ -249,14 +249,14 @@ export function TicketForm() {
                 <div className="flex items-center justify-center gap-2">
                     <Button
                         variant="ghost"
-                        className="ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-[#070b19] hover:ring-[#ffffff] hover:text-white"
+                        className="ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-black hover:ring-white hover:text-white"
                         onClick={() => closeTicketModal()}
                     >
                         {isViewMode ? t("close") : t("cancel")}
                     </Button>
 
                     {!isViewMode && (
-                        <Button className="bg-[#1876D2] hover:bg-[#156abd] w-[100px] p-6 rounded-[14px]" type="submit" onClick={() => console.log('ENVIAR ')}>
+                        <Button className="bg-loomi-primary hover:bg-loomi-primary-hover w-[100px] p-6 rounded-[14px]" type="submit" onClick={() => console.log('ENVIAR ')}>
                             {t("save")}
                         </Button>
                     )}

@@ -61,18 +61,18 @@ export function DeleteUserDialog({ userId }: { userId: string }) {
                     {t("deleteAccount")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="!rounded-[24px] sm:max-w-[425px] text-white bg-[#0b1125] border-0">
+            <DialogContent className="!rounded-[24px] sm:max-w-[425px] text-white bg-loomi-bg-dark border-0">
                 <DialogHeader className="space-y-6">
                     <DialogTitle className="text-xl font-normal">{t("deleteConfirmTitle")}</DialogTitle>
                     <DialogDescription className="text-white text-sm">
                         {t("deleteConfirmDesc")}
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter className="mt-4 gap-2 sm:gap-0">
+                <DialogFooter className="flex mt-4 gap-2">
                     <Button
                         onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))}
                         variant="ghost"
-                        className="ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-[#070b19] hover:ring-[#ffffff] hover:text-white"
+                        className="ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-black hover:ring-white hover:text-white"
                     >
                         {t("cancel")}
                     </Button>
@@ -80,7 +80,7 @@ export function DeleteUserDialog({ userId }: { userId: string }) {
                         variant="destructive"
                         onClick={handleDelete}
                         disabled={isDeleting}
-                        className="bg-[#d21818ff] hover:bg-[#b51414] w-[100px] p-6 rounded-[14px]"
+                        className="bg-loomi-danger hover:bg-loomi-danger-hover w-[100px] p-6 rounded-[14px]"
                     >
                         {isDeleting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                         {t("confirm")}

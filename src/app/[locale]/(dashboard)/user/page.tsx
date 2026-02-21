@@ -135,7 +135,7 @@ export default function UserPage() {
                         <Skeleton className="h-[72px] flex-1 rounded-[15px]" />
                     </div>
 
-                    <div className="pt-8 mt-8 border-t border-[#ffffff]/10">
+                    <div className="pt-8 mt-8 border-t border-white/10">
                         <Skeleton className="h-14 w-full rounded-[15px]" />
                     </div>
                 </Container>
@@ -151,8 +151,8 @@ export default function UserPage() {
                 <h1 className="text-xl font-bold text-white">{t("title")}</h1>
                 <div className="flex flex-col items-center justify-center space-y-4 relative">
                     <div className="relative group cursor-pointer">
-                        <div className="h-32 w-32 border-4 border-[#1876D2] rounded-full flex">
-                            <div className="bg-[#1876D2] text-white text-4xl font-semibold rounded-full flex-1 flex items-center justify-center">
+                        <div className="h-32 w-32 border-4 border-loomi-primary rounded-full flex">
+                            <div className="bg-loomi-primary text-white text-4xl font-semibold rounded-full flex-1 flex items-center justify-center">
                                 <p>{initials}</p> </div>
                         </div>
                         <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -171,7 +171,7 @@ export default function UserPage() {
                                     <FormLabel className="pl-4 font-semibold">{t("nameLabel")}</FormLabel>
                                     <FormControl>
                                         <Input
-                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
+                                            className="px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10"
                                             placeholder={t("namePlaceholder")} {...field} />
                                     </FormControl>
                                     <FormMessage />
@@ -187,7 +187,7 @@ export default function UserPage() {
                                     <FormLabel className="pl-4 font-semibold">{t("emailLabel")}</FormLabel>
                                     <FormControl>
                                         <Input
-                                            className="px-5 py-6 mt-1 rounded-[20px] bg-[#171d30] border-[#ffffff]/10"
+                                            className="px-5 py-6 mt-1 rounded-[20px] bg-loomi-bg-card border-white/10"
                                             placeholder={t("emailPlaceholder")} {...field} />
                                     </FormControl>
                                     <FormMessage />
@@ -199,7 +199,7 @@ export default function UserPage() {
                             <Button
                                 type="submit"
                                 disabled={isSaving}
-                                className="flex-1 bg-[#1876D2] hover:bg-[#156abd] w-[100px] p-6 rounded-[14px]"
+                                className="flex-1 bg-loomi-primary hover:bg-loomi-primary-hover w-[100px] p-6 rounded-[14px]"
                             >
                                 {isSaving ? <Loader2 className="w-5 h-5 mr-2 animate-spin" /> : <Save className="w-5 h-5 mr-2" />}
                                 {t("save")}
@@ -209,7 +209,7 @@ export default function UserPage() {
                                 type="button"
                                 onClick={handleLogout}
                                 variant="ghost"
-                                className="flex-1 ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-[#070b19] hover:ring-[#ffffff] hover:text-white"
+                                className="flex-1 ring-1 ring-inset w-[100px] p-6 rounded-[14px] hover:bg-black hover:ring-white hover:text-white"
                             >
                                 <LogOut className="w-5 h-5 mr-2" />
                                 {t("logout")}
@@ -218,7 +218,7 @@ export default function UserPage() {
                     </form>
                 </Form>
 
-                <div className="pt-8 mt-8 border-t border-[#ffffff]/10">
+                <div className="pt-8 mt-8 border-t border-white/10">
                     <DeleteUserDialog userId={userId} />
                 </div>
             </Container>

@@ -17,7 +17,7 @@ export function SimulatorSummary() {
 
     return (
         <div className="space-y-[40px] h-full flex flex-col">
-            <Container className="bg-[#171d30] space-y-[32px]">
+            <Container className="bg-loomi-bg-card space-y-[32px]">
                 <h2 className="text-xl font-semibold">{t("includedBenefits")}</h2>
                 <div className="flex flex-wrap gap-2">
                     {includedBenefits.map((benefit, index) => (

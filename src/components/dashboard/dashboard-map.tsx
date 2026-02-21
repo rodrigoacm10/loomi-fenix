@@ -134,10 +134,10 @@ export function DashboardMap() {
                 <h3 className="text-[18px] font-semibold text-white">{t("title")}</h3>
                 <div className="flex space-x-3">
                     <Select value={selectedLocal} onValueChange={setSelectedLocal}>
-                        <SelectTrigger className="w-[180px] bg-[#1a1c26] border-none text-gray-300 h-9 rounded-full px-4">
+                        <SelectTrigger className="w-[180px] bg-loomi-bg-card border-none text-gray-300 h-9 rounded-full px-4">
                             <SelectValue placeholder={t("allLocations")} />
                         </SelectTrigger>
-                        <SelectContent className="bg-[#1a1c26] border-[#2e344d] text-gray-300">
+                        <SelectContent className="bg-loomi-bg-card border-[#2e344d] text-gray-300">
                             <SelectItem value="all">{t("allLocations")}</SelectItem>
                             {locales.map(local => (
                                 <SelectItem key={local} value={local}>{local}</SelectItem>
@@ -145,10 +145,10 @@ export function DashboardMap() {
                         </SelectContent>
                     </Select>
                     <Select value={selectedType} onValueChange={setSelectedType}>
-                        <SelectTrigger className="w-[180px] bg-[#1a1c26] border-none text-gray-300 h-9 rounded-full px-4">
+                        <SelectTrigger className="w-[180px] bg-loomi-bg-card border-none text-gray-300 h-9 rounded-full px-4">
                             <SelectValue placeholder={t("allTypes")} />
                         </SelectTrigger>
-                        <SelectContent className="bg-[#1a1c26] border-[#2e344d] text-gray-300">
+                        <SelectContent className="bg-loomi-bg-card border-[#2e344d] text-gray-300">
                             <SelectItem value="all">{t("allTypes")}</SelectItem>
                             {types.map(type => (
                                 <SelectItem key={type} value={type} className="capitalize">{type}</SelectItem>

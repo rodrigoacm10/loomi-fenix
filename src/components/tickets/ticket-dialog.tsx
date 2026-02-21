@@ -17,7 +17,7 @@ export function TicketDialog() {
 
     return (
         <Dialog open={isTicketModalOpen} onOpenChange={(open) => !open && closeTicketModal()}>
-            <DialogContent className="!rounded-[24px] sm:max-w-[500px] text-white bg-[#0b1125] border-0">
+            <DialogContent className="!rounded-[24px] sm:max-w-[500px] text-white bg-loomi-bg-dark border-0">
                 <DialogHeader className="space-y-6">
                     <DialogTitle className="text-xl font-normal">{isViewMode ? t("viewTicket") : (selectedTicket ? t("editTicket") : t("newTicket"))}</DialogTitle>
                     <DialogDescription className="text-white text-sm">

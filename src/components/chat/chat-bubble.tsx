@@ -20,8 +20,8 @@ export function ChatBubble({ message }: ChatBubbleProps) {
             <div className={cn(
                 "relative max-w-[50%] rounded-2xl p-4 text-sm",
                 isAssistant || isSuggestion
-                    ? "bg-[#3f4859] text-white rounded-br-none border-2 border-[#656c79]"
-                    : "bg-[#0066cc] text-white rounded-bl-none"
+                    ? "bg-[#3f4859] text-white rounded-br-none border-2 border-muted-foreground"
+                    : "bg-loomi-secondary text-white rounded-bl-none"
             )}>
                 <div className="mb-1 text-xisSuggestions opacity-70 font-semibold">
                     {message.author}
@@ -39,13 +39,13 @@ export function ChatBubble({ message }: ChatBubbleProps) {
 
             {isSuggestion && <div className="mt-3 w-full max-w-[50%] justify-end pl-12">
                 <div className="w-full flex gap-2 justify-end">
-                    <Button className="flex-1 text-sm bg-[#0066cc] hover:bg-[#0055aa] rounded-full bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
+                    <Button className="flex-1 text-sm bg-loomi-secondary hover:bg-loomi-secondary-hover rounded-full bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
                         Enviar proposta
                     </Button>
-                    <Button className="flex-1 text-sm rounded-full bg-[#0066cc] hover:bg-[#0055aa] bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
+                    <Button className="flex-1 text-sm rounded-full bg-loomi-secondary hover:bg-loomi-secondary-hover bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
                         Fazer ligação
                     </Button>
-                    <Button className="flex-1 text-sm rounded-full bg-[#0066cc] hover:bg-[#0055aa] bg-[#1876D2] shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
+                    <Button className="flex-1 text-sm rounded-full bg-loomi-secondary hover:bg-loomi-secondary-hover bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
                         Ver histórico
                     </Button>
                 </div>

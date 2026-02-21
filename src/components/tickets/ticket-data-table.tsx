@@ -100,7 +100,7 @@ export function TicketDataTable<TData, TValue>({
                         onChange={(event) =>
                             setGlobalFilter(event.target.value)
                         }
-                        className="w-full pl-10 rounded-full h-9 border-0 bg-[#0b1125] text-white placeholder:text-white"
+                        className="w-full pl-10 rounded-full h-9 border-0 bg-loomi-bg-dark text-white placeholder:text-white"
                     />
                     <div className="absolute left-3 top-0 h-full flex items-center pr-3">
                         <Search className="h-5 w-5 text-white" />
@@ -114,14 +114,14 @@ export function TicketDataTable<TData, TValue>({
                         table.getColumn("status")?.setFilterValue(value === "all" ? undefined : value)
                     }
                 >
-                    <SelectTrigger className="w-[250px] px-5 bg-[#0b1125] border-0 rounded-full h-9">
+                    <SelectTrigger className="w-[250px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9">
                         <SelectValue placeholder={t("statusPlaceholder")} />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#0b1125] text-white border-0">
-                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">{t("allStatus")}</SelectItem>
-                        <SelectItem value="Aberto" className="focus:bg-[#1876D2] focus:text-white">{t("open")}</SelectItem>
-                        <SelectItem value="Em andamento" className="focus:bg-[#1876D2] focus:text-white">{t("inProgress")}</SelectItem>
-                        <SelectItem value="Fechado" className="focus:bg-[#1876D2] focus:text-white">{t("closed")}</SelectItem>
+                    <SelectContent className="bg-loomi-bg-dark text-white border-0">
+                        <SelectItem value="all" className="focus:bg-loomi-primary focus:text-white">{t("allStatus")}</SelectItem>
+                        <SelectItem value="Aberto" className="focus:bg-loomi-primary focus:text-white">{t("open")}</SelectItem>
+                        <SelectItem value="Em andamento" className="focus:bg-loomi-primary focus:text-white">{t("inProgress")}</SelectItem>
+                        <SelectItem value="Fechado" className="focus:bg-loomi-primary focus:text-white">{t("closed")}</SelectItem>
                     </SelectContent>
                 </Select>
 
@@ -131,14 +131,14 @@ export function TicketDataTable<TData, TValue>({
                         table.getColumn("priority")?.setFilterValue(value === "all" ? undefined : value)
                     }
                 >
-                    <SelectTrigger className="w-[320px] px-5 bg-[#0b1125] border-0 rounded-full h-9">
+                    <SelectTrigger className="w-[320px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9">
                         <SelectValue placeholder={t("priorityPlaceholder")} />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#0b1125] text-white border-0">
-                        <SelectItem value="all" className="focus:bg-[#1876D2] focus:text-white">{t("allPriorities")}</SelectItem>
-                        <SelectItem value="Urgente" className="focus:bg-[#1876D2] focus:text-white">{t("urgent")}</SelectItem>
-                        <SelectItem value="Média" className="focus:bg-[#1876D2] focus:text-white">{t("medium")}</SelectItem>
-                        <SelectItem value="Baixa" className="focus:bg-[#1876D2] focus:text-white">{t("low")}</SelectItem>
+                    <SelectContent className="bg-loomi-bg-dark text-white border-0">
+                        <SelectItem value="all" className="focus:bg-loomi-primary focus:text-white">{t("allPriorities")}</SelectItem>
+                        <SelectItem value="Urgente" className="focus:bg-loomi-primary focus:text-white">{t("urgent")}</SelectItem>
+                        <SelectItem value="Média" className="focus:bg-loomi-primary focus:text-white">{t("medium")}</SelectItem>
+                        <SelectItem value="Baixa" className="focus:bg-loomi-primary focus:text-white">{t("low")}</SelectItem>
                     </SelectContent>
                 </Select>
 
@@ -148,7 +148,7 @@ export function TicketDataTable<TData, TValue>({
                             variant="outline"
                             role="combobox"
                             aria-expanded={isResponsibleOpen}
-                            className="w-[320px] px-5 bg-[#0b1125] hover:bg-[#0b1125] hover:text-white border-0 rounded-full justify-between h-9"
+                            className="w-[320px] px-5 bg-loomi-bg-dark hover:bg-loomi-bg-dark hover:text-white border-0 rounded-full justify-between h-9"
                         >
                             {currentResponsibleFilter
                                 ? uniqueResponsibles.find((responsible) => responsible === currentResponsibleFilter)
@@ -156,8 +156,8 @@ export function TicketDataTable<TData, TValue>({
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-[200px] p-0 border-0 bg-[#0b1125]">
-                        <Command shouldFilter={false} className="bg-[#0b1125] border-0 text-white">
+                    <PopoverContent className="w-[200px] p-0 border-0 bg-loomi-bg-dark">
+                        <Command shouldFilter={false} className="bg-loomi-bg-dark border-0 text-white">
                             <CommandInput
                                 placeholder={t("searchResponsible")}
                                 className="text-white placeholder:text-gray-400"
@@ -171,7 +171,7 @@ export function TicketDataTable<TData, TValue>({
                                         setIsResponsibleOpen(false)
                                         setResponsibleSearch("")
                                     }}
-                                    className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-[#1876D2] hover:text-white"
+                                    className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-loomi-primary hover:text-white"
                                 >
                                     <Check
                                         className={cn(
@@ -197,7 +197,7 @@ export function TicketDataTable<TData, TValue>({
                                                             setIsResponsibleOpen(false)
                                                             setResponsibleSearch("")
                                                         }}
-                                                        className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-[#1876D2] hover:text-white"
+                                                        className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-loomi-primary hover:text-white"
                                                     >
                                                         <Check
                                                             className={cn(
@@ -222,14 +222,14 @@ export function TicketDataTable<TData, TValue>({
                 </Popover>
             </div>
 
-            <div className="rounded-[20px] bg-[#23283a] px-6 pb-6">
+            <div className="rounded-[20px] bg-loomi-table px-6 pb-6">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow className="border-[#ffffff]/10 hover:bg-transparent text-sm !py-2" key={headerGroup.id}>
+                            <TableRow className="border-white/10 hover:bg-transparent text-sm !py-2" key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead className="px-0 py-4 text-[#C9C9C9]" key={header.id}>
+                                        <TableHead className="px-0 py-4 text-loomi-muted" key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -248,7 +248,7 @@ export function TicketDataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
-                                    className="border-[#ffffff]/10 hover:bg-[#181c29] text-sm"
+                                    className="border-white/10 hover:bg-loomi-bg-card-hover text-sm"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell className="!px-0 py-4" key={cell.id}>
@@ -277,7 +277,7 @@ export function TicketDataTable<TData, TValue>({
             <div className="flex items-center justify-end pt-3">
                 <Button
                     variant="ghost"
-                    className="hidden h-8 w-8 p-0 mr-8 lg:flex hover:text-white hover:bg-[#1876D2]"
+                    className="hidden h-8 w-8 p-0 mr-8 lg:flex hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
                 >
@@ -285,7 +285,7 @@ export function TicketDataTable<TData, TValue>({
                 </Button>
                 <Button
                     variant="ghost"
-                    className="h-8 w-8 p-0 mr-4 hover:text-white hover:bg-[#1876D2]"
+                    className="h-8 w-8 p-0 mr-4 hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
                 >
@@ -296,7 +296,7 @@ export function TicketDataTable<TData, TValue>({
                 </div>
                 <Button
                     variant="ghost"
-                    className="h-8 w-8 p-0 ml-4 hover:text-white hover:bg-[#1876D2]"
+                    className="h-8 w-8 p-0 ml-4 hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
                 >
@@ -304,7 +304,7 @@ export function TicketDataTable<TData, TValue>({
                 </Button>
                 <Button
                     variant="ghost"
-                    className="hidden h-8 w-8 p-0 ml-8 lg:flex hover:text-white hover:bg-[#1876D2]"
+                    className="hidden h-8 w-8 p-0 ml-8 lg:flex hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
                 >

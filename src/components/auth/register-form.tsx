@@ -89,7 +89,7 @@ export default function RegisterForm() {
                             autoCorrect="off"
                             disabled={isLoading}
                             {...register("name")}
-                            className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
+                            className="px-5 py-6 rounded-[15px] border-white/40"
                         />
                         {errors.name && (
                             <p className="text-sm text-red-500">{errors.name.message}</p>
@@ -105,7 +105,7 @@ export default function RegisterForm() {
                             autoCorrect="off"
                             disabled={isLoading}
                             {...register("email")}
-                            className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
+                            className="px-5 py-6 rounded-[15px] border-white/40"
                         />
                         {errors.email && (
                             <p className="text-sm text-red-500">{errors.email.message}</p>
@@ -121,7 +121,7 @@ export default function RegisterForm() {
                                 disabled={isLoading}
                                 placeholder={t("passwordPlaceholder")}
                                 {...register("password")}
-                                className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
+                                className="px-5 py-6 rounded-[15px] border-white/40"
                             />
                             <button
                                 type="button"
@@ -149,14 +149,14 @@ export default function RegisterForm() {
                                 disabled={isLoading}
                                 placeholder={t("confirmPasswordPlaceholder")}
                                 {...register("confirmPassword")}
-                                className="px-5 py-6 rounded-[15px] border-[#ffffff]/40"
+                                className="px-5 py-6 rounded-[15px] border-white/40"
                             />
                         </div>
                         {errors.confirmPassword && (
                             <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
                         )}
                     </div>
-                    <Button disabled={isLoading} className="mt-4 bg-[#1876D2] py-6 rounded-[15px]">
+                    <Button disabled={isLoading} className="mt-4 bg-loomi-primary py-6 rounded-[15px]">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         {t("submit")}
                     </Button>
@@ -164,7 +164,7 @@ export default function RegisterForm() {
             </form>
             <div className="text-center text-sm">
                 {t("alreadyHaveAccount")}{" "}
-                <Link href="/login" className="font-semibold text-[#1876D2] hover:underline">
+                <Link href="/login" className="font-semibold text-loomi-primary hover:underline">
                     {t("signIn")}
                 </Link>
             </div>

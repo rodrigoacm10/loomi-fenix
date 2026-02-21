@@ -87,7 +87,7 @@ export function SimulatorControls() {
                         <div key={addon.id} className="flex items-center space-x-2">
                             <Checkbox
                                 id={addon.id}
-                                className="data-[state=checked]:bg-[#1876D2] data-[state=checked]:border-[#1876D2] border-white"
+                                className="data-[state=checked]:bg-loomi-primary data-[state=checked]:border-loomi-primary border-white"
                                 checked={selectedAddons.includes(addon.id)}
                                 onCheckedChange={() => toggleAddon(addon.id)}
                             />
