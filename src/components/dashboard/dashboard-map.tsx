@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
 import { useDashboardStore } from "@/store/dashboard-store";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { MAP_ICONS } from "@/lib/map-icons";
 import 'ol/ol.css';
 import Map from 'ol/Map';
 import View from 'ol/View';
@@ -12,7 +14,7 @@ import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
-import { Style, Circle as CircleStyle, Fill, Stroke } from 'ol/style';
+import { Style, Circle as CircleStyle, Fill, Stroke, Icon } from 'ol/style';
 
 
 export function DashboardMap() {
@@ -20,8 +22,31 @@ export function DashboardMap() {
     const mapInstance = useRef<Map | null>(null);
     const { mapLocations } = useDashboardStore();
 
+    const [selectedLocal, setSelectedLocal] = useState('all');
+    const [selectedType, setSelectedType] = useState('all');
+
+    const types = useMemo(() => Array.from(new Set(mapLocations.map(l => l.category))).filter(Boolean).sort(), [mapLocations]);
+
+    const locales = useMemo(() => {
+        const set = new Set(mapLocations.map(l => {
+            if (!l.address) return '';
+            const parts = l.address.split('-');
+            return parts[parts.length - 1].trim();
+        }).filter(Boolean));
+        return Array.from(set).sort();
+    }, [mapLocations]);
+
+    const filteredLocations = useMemo(() => {
+        return mapLocations.filter(loc => {
+            const locState = loc.address ? loc.address.split('-').pop()?.trim() : '';
+            if (selectedLocal !== 'all' && locState !== selectedLocal) return false;
+            if (selectedType !== 'all' && loc.category !== selectedType) return false;
+            return true;
+        });
+    }, [mapLocations, selectedLocal, selectedType]);
+
     const features = useMemo(() => {
-        return mapLocations.map(location => {
+        return filteredLocations.map(location => {
             const coords = location.coordinates;
             if (!coords || coords.length !== 2) return null;
 
@@ -31,22 +56,34 @@ export function DashboardMap() {
                 description: location.description,
             });
 
-            feature.setStyle(new Style({
-                image: new CircleStyle({
-                    radius: 7,
-                    fill: new Fill({ color: location.color || '#3b82f6' }),
-                    stroke: new Stroke({ color: '#ffffff', width: 2 })
+            const svgString = MAP_ICONS[location.icon] || MAP_ICONS['map-pin'];
+            const iconUrl = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgString || '<svg></svg>');
+
+            feature.setStyle([
+                new Style({
+                    image: new CircleStyle({
+                        radius: 12,
+                        fill: new Fill({ color: location.color || '#3b82f6' }),
+                    })
+                }),
+                new Style({
+                    image: new Icon({
+                        src: iconUrl,
+                        scale: 1
+                    })
                 })
-            }));
+            ]);
 
             return feature;
         }).filter(Boolean) as Feature<Point>[];
-    }, [mapLocations]);
+    }, [filteredLocations]);
 
     useEffect(() => {
         if (!mapRef.current) return;
 
+        // 1. INICIALIZAÇÃO IGUAL AOS EXEMPLOS DA DOC
         if (!mapInstance.current) {
+            // Cria as fontes e camadas já com os pontos iniciais
             const vectorSource = new VectorSource({ features });
             const vectorLayer = new VectorLayer({ source: vectorSource });
             const tileLayer = new TileLayer({
@@ -54,35 +91,78 @@ export function DashboardMap() {
                 className: 'dark-map-layer'
             });
 
+            // Cria o mapa definindo o zoom e centro iniciais direto na View, sem firulas
             mapInstance.current = new Map({
                 target: mapRef.current,
                 layers: [tileLayer, vectorLayer],
                 view: new View({
-                    center: fromLonLat([-51.9253, -14.2350]),
-                    zoom: 4,
+                    center: fromLonLat([-34.8717, -8.0631]), // Recife
+                    zoom: 13, // Zoom inicial fixo (parecido com os exemplos que usam 14 e 19)
                 }),
                 controls: []
             });
+
         } else {
-            const layers = mapInstance.current.getLayers().getArray();
+            // 2. ATUALIZAÇÃO (Quando você clica nos filtros de Local ou Tipo)
+            const map = mapInstance.current;
+            const layers = map.getLayers().getArray();
             const vectorLayer = layers.find(l => l instanceof VectorLayer) as VectorLayer<VectorSource> | undefined;
+
             if (vectorLayer) {
                 const source = vectorLayer.getSource();
                 if (source) {
+                    // Limpa os pontos velhos e adiciona os filtrados
                     source.clear();
                     source.addFeatures(features);
+
+                    // Como houve um filtro, agora sim a gente faz a câmera se mexer para os pontos novos
+                    if (features.length > 0) {
+                        const extent = source.getExtent();
+                        if (extent && extent[0] !== Infinity) {
+                            map.getView().fit(extent, {
+                                padding: [60, 60, 60, 60],
+                                maxZoom: 15, // Limite máximo para não dar zoom extremo em 1 ponto só
+                                duration: 800 // Animação suave de 800ms
+                            });
+                        }
+                    }
                 }
             }
         }
 
-        return () => {
-        };
+        return () => { };
     }, [features]);
 
     return (
         <div className="flex flex-col h-full space-y-4">
-            <h3 className="font-semibold text-white">Mapa de clientes por região</h3>
-            <div className="flex-1 rounded-xl overflow-hidden relative border border-[#2e344d]">
+            <div className="flex items-center justify-between">
+                <h3 className="text-[18px] font-semibold text-white">Mapa de clientes por região</h3>
+                <div className="flex space-x-3">
+                    <Select value={selectedLocal} onValueChange={setSelectedLocal}>
+                        <SelectTrigger className="w-[180px] bg-[#1a1c26] border-none text-gray-300 h-9 rounded-full px-4">
+                            <SelectValue placeholder="Todos os locais" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[#1a1c26] border-[#2e344d] text-gray-300">
+                            <SelectItem value="all">Todos os locais</SelectItem>
+                            {locales.map(local => (
+                                <SelectItem key={local} value={local}>{local}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                    <Select value={selectedType} onValueChange={setSelectedType}>
+                        <SelectTrigger className="w-[180px] bg-[#1a1c26] border-none text-gray-300 h-9 rounded-full px-4">
+                            <SelectValue placeholder="Todos os tipos" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[#1a1c26] border-[#2e344d] text-gray-300">
+                            <SelectItem value="all">Todos os tipos</SelectItem>
+                            {types.map(type => (
+                                <SelectItem key={type} value={type} className="capitalize">{type}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+            </div>
+            <div className="flex-1 rounded-2xl overflow-hidden relative border border-[#2e344d]">
                 <div ref={mapRef} className="w-full h-full" />
             </div>
         </div>
