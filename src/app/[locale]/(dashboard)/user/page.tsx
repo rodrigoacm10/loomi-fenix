@@ -26,6 +26,7 @@ import { ErrorToast } from "@/components/global/error-toast";
 import Container from "@/components/global/container";
 import { DeleteUserDialog } from "@/components/user/delete-user-dialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import LanguageSelector from "@/components/global/language-selector";
 
 const userSchema = z.object({
     name: z.string().min(1, "Nome é obrigatório"),
@@ -148,7 +149,10 @@ export default function UserPage() {
     return (
         <div className="flex w-full justify-center">
             <Container className="max-w-[600px] w-full">
-                <h1 className="text-xl font-bold text-white">{t("title")}</h1>
+                <div className="flex items-center justify-between">
+                    <h1 className="text-xl font-bold text-white">{t("title")}</h1>
+                    <LanguageSelector />
+                </div>
                 <div className="flex flex-col items-center justify-center space-y-4 relative">
                     <div className="relative group cursor-pointer">
                         <div className="h-32 w-32 border-4 border-loomi-primary rounded-full flex">

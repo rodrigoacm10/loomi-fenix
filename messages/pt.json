@@ -162,5 +162,14 @@
         "fetchError": "Falha ao carregar dados do usuário.",
         "updateError": "Falha ao atualizar perfil.",
         "deleteError": "Falha ao deletar conta."
+    },
+    "ChatAnalysis": {
+        "aiAnalysis": "Análise da IA",
+        "priority": "Prioridade"
+    },
+    "AiSuggestion": {
+        "sendProposal": "Enviar proposta",
+        "makeCall": "Fazer ligação",
+        "viewHistory": "Ver histórico"
     }
 }
