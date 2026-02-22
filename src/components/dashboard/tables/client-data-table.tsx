@@ -102,7 +102,7 @@ export function ClientDataTable<TData, TValue>({
                 value="Todos"
                 className="focus:bg-loomi-primary focus:text-white"
               >
-                {t('all')}
+                {t('allStatus')}
               </SelectItem>
               {filters.status
                 .filter((s) => s !== 'Todos' && s !== 'all')
@@ -137,7 +137,7 @@ export function ClientDataTable<TData, TValue>({
                 value="Todos"
                 className="focus:bg-loomi-primary focus:text-white"
               >
-                {t('all')}
+                {t('allTypes')}
               </SelectItem>
               {filters.secureType
                 .filter((t) => t !== 'Todos' && t !== 'all')
@@ -172,10 +172,10 @@ export function ClientDataTable<TData, TValue>({
                 value="Todos"
                 className="focus:bg-loomi-primary focus:text-white"
               >
-                {t('all')}
+                {t('allLocations')}
               </SelectItem>
               {filters.locations
-                .filter((l) => l !== 'Todos' && l !== 'axl:w-62.5ll')
+                .filter((l) => l !== 'Todos' && l !== 'all')
                 .map((l) => (
                   <SelectItem
                     key={l}

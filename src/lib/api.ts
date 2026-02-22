@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 const api = axios.create({
-  baseURL: 'https://nortus-challenge.api.stage.loomi.com.br',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -29,7 +29,7 @@ api.interceptors.response.use(
 
         if (expiredToken) {
           const response = await axios.post(
-            'https://nortus-challenge.api.stage.loomi.com.br/auth/refresh-token',
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
             { access_token: expiredToken },
             { headers: { 'Content-Type': 'application/json' } },
           )
