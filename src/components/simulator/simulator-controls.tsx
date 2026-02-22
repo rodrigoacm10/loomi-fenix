@@ -35,7 +35,11 @@ export function SimulatorControls() {
                         <PlanCard
                             key={plan.name}
                             name={plan.name}
-                            price={planCalculatePrice({ planValue: plan.value, vehicleValue, clientAge, selectedAddons })}
+                            price={
+                                selectedPlan === plan.name
+                                    ? planCalculatePrice({ planValue: plan.value, vehicleValue, clientAge, selectedAddons })
+                                    : plan.value
+                            }
                             isSelected={selectedPlan === plan.name}
                             isRecommended={plan.name === 'Premium'}
                             onSelect={() => setSelectedPlan(plan.name)}
