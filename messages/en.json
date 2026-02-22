@@ -15,6 +15,16 @@
         "successDescription": "You have been redirected to the dashboard.",
         "failMessage": "Failed to login. Please try again."
     },
+    "ForgotPasswordPage": {
+        "title": "Forgot password?",
+        "description": "Enter your email to receive a password reset link.",
+        "emailPlaceholder": "Email",
+        "submit": "Send Link",
+        "backToLogin": "Back to login",
+        "successMessage": "Email sent!",
+        "successDescription": "If the email exists, you will receive a link shortly.",
+        "failMessage": "Failed to send email. Please try again."
+    },
     "Navigation": {
         "dashboard": "Dashboard",
         "tickets": "Tickets",

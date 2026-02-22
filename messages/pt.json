@@ -15,6 +15,16 @@
         "successDescription": "Você foi redirecionado para o dashboard.",
         "failMessage": "Falha no login. Tente novamente."
     },
+    "ForgotPasswordPage": {
+        "title": "Esqueceu a senha?",
+        "description": "Insira o seu e-mail para receber um link de redefinição de senha.",
+        "emailPlaceholder": "E-mail",
+        "submit": "Enviar Link",
+        "backToLogin": "Voltar para o login",
+        "successMessage": "E-mail enviado!",
+        "successDescription": "Se o e-mail existir, você receberá um link em breve.",
+        "failMessage": "Falha ao enviar e-mail. Tente novamente."
+    },
     "Navigation": {
         "dashboard": "Dashboard",
         "tickets": "Tickets",
