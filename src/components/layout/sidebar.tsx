@@ -9,10 +9,10 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { getCurrentPathname } from "@/utils/get-current-pathname";
+import { Camera } from "lucide-react";
 
 
 const navItems = [
@@ -77,10 +77,15 @@ export function Sidebar() {
                         <Tooltip delayDuration={0}>
                             <TooltipTrigger asChild>
                                 <Link href="/user">
-                                    <Avatar className="h-14 w-14 border-white">
-                                        <AvatarImage src="" alt="User" />
-                                        <AvatarFallback className="bg-loomi-primary text-primary-foreground font-semibold">AC</AvatarFallback>
-                                    </Avatar>
+                                    <div className="relative group cursor-pointer">
+                                        <div className="h-14 w-14 border-4 border-loomi-primary rounded-full flex">
+                                            <div className="bg-loomi-primary text-white  font-semibold rounded-full flex-1 flex items-center justify-center">
+                                                <p>AC</p> </div>
+                                        </div>
+                                        <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <Camera className="w-8 h-8 text-white" />
+                                        </div>
+                                    </div>
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent className="bg-loomi-primary text-white border-0" side="right">User Profile</TooltipContent>
