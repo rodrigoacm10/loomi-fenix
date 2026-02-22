@@ -1,6 +1,7 @@
 import { ConversationAnalysis } from "@/types/chat";
 import { Sparkles, Activity, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Container from "../global/container";
 
 interface ChatAnalysisPanelProps {
     analysis: ConversationAnalysis;
@@ -12,16 +13,16 @@ export function ChatAnalysisPanel({ analysis }: ChatAnalysisPanelProps) {
     if (!analysis) return null;
 
     return (
-        <div className="w-80 shrink-0 bg-[#171d30] border-l border-white/5 flex flex-col h-full overflow-y-auto hidden lg:flex rounded-tr-[24px] rounded-br-[24px]">
-            <div className="p-6 border-b border-white/5 flex items-center gap-2">
+        <Container className="w-full lg:w-80 space-y-4">
+            <div className="border-b border-white/5 flex items-center gap-2 pb-4">
                 <Sparkles className="w-5 h-5 text-loomi-primary" />
                 <h3 className="font-semibold text-white">{t("aiAnalysis")}</h3>
             </div>
 
-            <div className="p-6 space-y-8">
+            <div className="space-y-8">
                 {analysis.insights && (
                     <div className="space-y-4">
-                        <h4 className="text-sm font-medium text-loomi-muted uppercase tracking-wider">
+                        <h4 className="text-sm font-medium text-loomi-muted uppercase">
                             {analysis.insights.title || "Insights"}
                         </h4>
                         <div className="space-y-3">
@@ -40,7 +41,7 @@ export function ChatAnalysisPanel({ analysis }: ChatAnalysisPanelProps) {
 
                 {analysis.futureSteps && (
                     <div className="space-y-4">
-                        <h4 className="text-sm font-medium text-loomi-muted uppercase tracking-wider">
+                        <h4 className="text-sm font-medium text-loomi-muted uppercase">
                             {analysis.futureSteps.title || "Próximos Passos"}
                         </h4>
                         <div className="space-y-3">
@@ -49,7 +50,7 @@ export function ChatAnalysisPanel({ analysis }: ChatAnalysisPanelProps) {
                                     <CheckCircle2 className={`w-5 h-5 mt-0.5 shrink-0 ${step.priority === 'high' ? 'text-loomi-danger' : step.priority === 'medium' ? 'text-orange-400' : 'text-loomi-secondary'}`} />
                                     <div className="flex-1">
                                         <p className="text-sm text-white">{step.action}</p>
-                                        <p className="text-[10px] text-loomi-muted mt-1 uppercase tracking-wider">{t("priority")} {step.priority}</p>
+                                        <p className="text-[10px] text-loomi-muted mt-1 uppercase">{t("priority")} {step.priority}</p>
                                     </div>
                                 </div>
                             ))}
@@ -57,6 +58,6 @@ export function ChatAnalysisPanel({ analysis }: ChatAnalysisPanelProps) {
                     </div>
                 )}
             </div>
-        </div>
+        </Container >
     );
 }

@@ -15,18 +15,7 @@ import { Input } from "@/components/ui/input";
 
 import api from "@/lib/api";
 import { SuccessToast } from "../global/success-toast";
-
-const registerSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-    confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-});
-
-type RegisterFormValues = z.infer<typeof registerSchema>;
+import { RegisterFormValues, registerSchema } from "@/schemas/register-schema";
 
 export default function RegisterForm() {
     const [isLoading, setIsLoading] = useState(false);
@@ -156,7 +145,7 @@ export default function RegisterForm() {
                             <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
                         )}
                     </div>
-                    <Button disabled={isLoading} className="mt-4 bg-loomi-primary py-6 rounded-[15px]">
+                    <Button disabled={isLoading} className="mt-4 bg-loomi-secondary hover:bg-loomi-secondary-hover py-6 rounded-[15px]">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         {t("submit")}
                     </Button>

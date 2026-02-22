@@ -8,7 +8,7 @@ import { ChatAnalysisPanel } from "@/components/chat/chat-analysis-panel";
 import { Skeleton } from "@/components/ui/skeleton";
 import Container from "@/components/global/container";
 import { useTranslations } from "next-intl";
-import { Bot, Plus } from "lucide-react";
+import { AiSuggestionButton } from "@/components/chat/ai-suggestion-button";
 
 export default function ChatPage() {
     const { messages, loading, fetchChatData, sendMessage, conversationAnalysis, iaSuggestion } = useChatStore();
@@ -20,9 +20,9 @@ export default function ChatPage() {
 
 
     return (
-        <div className="flex flex-col lg:flex-row h-[calc(100vh-155px)] gap-6">
-            <div className="flex flex-col flex-1 min-w-0 h-full">
-                <Container className="flex flex-col flex-1 min-h-0 bg-loomi-bg-card/50 border-0 h-full rounded-[24px]">
+        <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex flex-col lg:flex-1 h-[calc(100vh-155px)] min-w-0 min-h-0 rounded-[24px]">
+                <Container className="flex flex-col flex-1 min-h-0 bg-loomi-bg-card/50 border-0 rounded-[24px]">
                     <div
                         className="flex-1 overflow-y-auto px-4 py-4 space-y-4 custom-scrollbar"
                     >
@@ -56,26 +56,9 @@ export default function ChatPage() {
                     </div>
                 </Container>
 
-                <div className="mt-4 flex flex-col items-center">
+                <div className="mt-4 flex flex-col">
                     {iaSuggestion && !loading && (
-                        <div className="max-w-4xl w-full mx-auto mb-3 flex justify-end">
-                            <button
-                                onClick={() => sendMessage({ author: "Assistente", content: iaSuggestion })}
-                                className="flex items-center gap-2 bg-[#2a324a] hover:bg-[#343e5c] transition-colors border border-loomi-primary/30 text-white rounded-2xl p-3 text-sm text-left max-w-[80%]"
-                            >
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <Bot className="w-5 h-5 text-loomi-primary" />
-
-                                        <p className="text-[10px] uppercase font-bold text-loomi-primary">
-                                            Sugestão da IA (Clique para enviar)
-                                        </p>
-                                    </div>
-
-                                    <p className="opacity-90 leading-relaxed">{iaSuggestion}</p>
-                                </div>
-                            </button>
-                        </div>
+                        <AiSuggestionButton suggestion={iaSuggestion} onSend={sendMessage} />
                     )}
                     <div className="w-full">
                         <ChatInput onSend={sendMessage} />

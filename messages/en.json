@@ -170,6 +170,7 @@
     "AiSuggestion": {
         "sendProposal": "Send proposal",
         "makeCall": "Make a call",
-        "viewHistory": "View history"
+        "viewHistory": "View history",
+        "hint": "AI Suggestion (Click to send)"
     }
 }
