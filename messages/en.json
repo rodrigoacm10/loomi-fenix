@@ -126,7 +126,21 @@
         "dialogDescription": "Fill in the details below to register a new ticket on the platform.",
         "viewTicket": "View Ticket",
         "editTicket": "Edit Ticket",
-        "newTicket": "New Ticket"
+        "newTicket": "New Ticket",
+        "successUpdateMessage": "Ticket updated successfully!",
+        "successUpdateDescription": "The ticket has been updated and is now in your list.",
+        "successCreateMessage": "Ticket created successfully!",
+        "successCreateDescription": "The ticket has been created and is now in your list.",
+        "errorSaveMessage": "Error saving ticket"
+    },
+    "DeleteTicketDialog": {
+        "title": "Delete Ticket",
+        "description": "Are you sure you want to delete ticket",
+        "warning": "This action cannot be undone.",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "successDeleteMessage": "Ticket deleted successfully!",
+        "errorDeleteMessage": "Error deleting ticket"
     },
     "RegisterPage": {
         "title": "Create an account",

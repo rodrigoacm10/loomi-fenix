@@ -3,5 +3,5 @@ export default function Home() {
     <div className="min-h-screen bg-black">
       <p className="text-lg text-white">lgjfdg</p>
     </div>
-  );
+  )
 }
