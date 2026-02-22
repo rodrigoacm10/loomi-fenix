@@ -147,7 +147,7 @@
 }
 
 .dark-map-layer {
-  filter: invert(80%) hue-rotate(350deg) saturate(80%) brightness(100%) contrast(100%);
+  filter: invert(10%) hue-rotate(350deg) saturate(80%) brightness(100%) contrast(100%);
 }
 
 .apexcharts-tooltip {

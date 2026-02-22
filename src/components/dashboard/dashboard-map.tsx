@@ -135,23 +135,23 @@ export function DashboardMap() {
                 <div className="flex flex-col sm:flex-row gap-3">
                     <Select value={selectedLocal} onValueChange={setSelectedLocal}>
                         <SelectTrigger className="w-full sm:w-[180px] bg-loomi-bg-card border-none text-white h-9 rounded-full px-4">
-                            <SelectValue placeholder={t("allLocations")} />
+                            <SelectValue className="focus:bg-loomi-primary focus:text-white" placeholder={t("allLocations")} />
                         </SelectTrigger>
                         <SelectContent className="bg-loomi-bg-card border-[#2e344d] text-white">
-                            <SelectItem value="all">{t("allLocations")}</SelectItem>
+                            <SelectItem className="focus:bg-loomi-primary focus:text-white" value="all">{t("allLocations")}</SelectItem>
                             {locales.map(local => (
-                                <SelectItem key={local} value={local}>{local}</SelectItem>
+                                <SelectItem className="focus:bg-loomi-primary focus:text-white" key={local} value={local}>{local}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
                     <Select value={selectedType} onValueChange={setSelectedType}>
                         <SelectTrigger className="w-full sm:w-[180px] bg-loomi-bg-card border-none text-white h-9 rounded-full px-4">
-                            <SelectValue placeholder={t("allTypes")} />
+                            <SelectValue className="focus:bg-loomi-primary focus:text-white" placeholder={t("allTypes")} />
                         </SelectTrigger>
                         <SelectContent className="bg-loomi-bg-card border-[#2e344d] text-white">
-                            <SelectItem value="all">{t("allTypes")}</SelectItem>
+                            <SelectItem className="focus:bg-loomi-primary focus:text-white" value="all">{t("allTypes")}</SelectItem>
                             {types.map(type => (
-                                <SelectItem key={type} value={type} className="capitalize">{type}</SelectItem>
+                                <SelectItem className="focus:bg-loomi-primary focus:text-white capitalize" key={type} value={type}>{type}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
