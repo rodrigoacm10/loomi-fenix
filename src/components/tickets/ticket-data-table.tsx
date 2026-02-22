@@ -29,10 +29,11 @@ import {
     CommandInput,
     CommandList,
 } from "@/components/ui/command"
-import { Check, ChevronsUpDown, Search, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react"
+import { Check, ChevronsUpDown, Search, ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Ticket } from "@/types/ticket"
 import { useTranslations } from "next-intl"
+import Image from "next/image"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -279,38 +280,38 @@ export function TicketDataTable<TData, TValue>({
             <div className="flex items-center justify-end pt-3">
                 <Button
                     variant="ghost"
-                    className="hidden h-8 w-8 p-0 mr-8 lg:flex hover:text-white hover:bg-loomi-primary"
+                    className="hidden h-10 w-10 p-0 mr-8 lg:flex hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
                 >
-                    <ChevronsLeft className="h-4 w-4" />
+                    <Image src="/icons/lastpage.svg" alt="First Page" width={24} height={24} className="rotate-180" />
                 </Button>
                 <Button
                     variant="ghost"
-                    className="h-8 w-8 p-0 mr-4 hover:text-white hover:bg-loomi-primary"
+                    className="h-10 w-10 p-0 mr-4 hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
                 >
-                    <ChevronLeft className="h-4 w-4" />
+                    <ChevronLeft className="h-6 w-6" />
                 </Button>
                 <div className="flex w-[100px] items-center justify-center text-sm font-medium">
                     {currentPage} de {totalPages}
                 </div>
                 <Button
                     variant="ghost"
-                    className="h-8 w-8 p-0 ml-4 hover:text-white hover:bg-loomi-primary"
+                    className="h-10 w-10 p-0 ml-4 hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
                 >
-                    <ChevronRight className="h-4 w-4" />
+                    <ChevronRight className="h-6 w-6" />
                 </Button>
                 <Button
                     variant="ghost"
-                    className="hidden h-8 w-8 p-0 ml-8 lg:flex hover:text-white hover:bg-loomi-primary"
+                    className="hidden h-10 w-10 p-0 ml-8 lg:flex hover:text-white hover:bg-loomi-primary"
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
                 >
-                    <ChevronsRight className="h-4 w-4" />
+                    <Image src="/icons/lastpage.svg" alt="Last Page" width={24} height={24} />
                 </Button>
             </div>
         </div >

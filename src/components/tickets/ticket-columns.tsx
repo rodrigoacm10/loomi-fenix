@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Ticket } from "@/types/ticket"
 import { Button } from "@/components/ui/button"
-import { Edit, Eye } from "lucide-react"
+import Image from "next/image"
 import { format } from "date-fns"
 import { useTicketStore } from '@/store/ticket-store'
 import { TicketBadge } from "./ticket-badge"
@@ -93,10 +93,10 @@ export const columns: ColumnDef<Ticket>[] = [
             return (
                 <div className="flex items-center gap-5">
                     <Button onClick={() => openTicketModal(ticket, false)} variant="ghost" className="p-0 hover:cursor-pointer hover:bg-transparent font-normal hover:text-white">
-                        {t("edit")} <Edit className="h-4 w-4" />
+                        {t("edit")} <Image src="/icons/ticket/edit.svg" alt="Edit" width={16} height={16} />
                     </Button>
                     <Button onClick={() => openTicketModal(ticket, true)} variant="ghost" className="p-0 hover:cursor-pointer hover:bg-transparent font-normal hover:text-white">
-                        {t("view")} <Eye className="h-4 w-4" />
+                        {t("view")} <Image src="/icons/ticket/see.svg" alt="View" width={16} height={16} />
                     </Button>
                 </div>
             )

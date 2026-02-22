@@ -7,7 +7,9 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
+    DialogClose,
 } from "@/components/ui/dialog"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useTicketStore } from "@/store/ticket-store"
 import { toast } from "sonner"
@@ -35,9 +37,17 @@ export function DeleteTicketDialog() {
 
     return (
         <Dialog open={isDeleteModalOpen} onOpenChange={(open) => !open && closeDeleteModal()}>
-            <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>Excluir Ticket</DialogTitle>
+            <DialogContent showCloseButton={false} className="!rounded-[24px] sm:max-w-[425px] text-white bg-loomi-bg-dark border-0">
+                <DialogHeader className="space-y-4">
+                    <div className="flex items-center justify-between pointer-events-none">
+                        <DialogTitle className="text-xl font-normal pointer-events-auto">
+                            Excluir Ticket
+                        </DialogTitle>
+                        <DialogClose className="rounded-full hover:bg-white/10 cursor-pointer pointer-events-auto">
+                            <Image src="/icons/ticket/close.svg" alt="Close" width={45} height={45} />
+                            <span className="sr-only">Close</span>
+                        </DialogClose>
+                    </div>
                     <DialogDescription>
                         Tem certeza que deseja excluir o ticket <strong>{ticketToDelete?.ticketId}</strong>?
                         Esta ação não pode ser desfeita.

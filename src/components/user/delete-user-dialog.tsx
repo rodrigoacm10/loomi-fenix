@@ -19,7 +19,9 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
+    DialogClose,
 } from "@/components/ui/dialog";
+import Image from "next/image";
 
 export function DeleteUserDialog({ userId }: { userId: string }) {
     const t = useTranslations("UserPage");
@@ -61,9 +63,17 @@ export function DeleteUserDialog({ userId }: { userId: string }) {
                     {t("deleteAccount")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="!rounded-[24px] sm:max-w-[425px] text-white bg-loomi-bg-dark border-0">
-                <DialogHeader className="space-y-6">
-                    <DialogTitle className="text-xl font-normal">{t("deleteConfirmTitle")}</DialogTitle>
+            <DialogContent showCloseButton={false} className="!rounded-[24px] sm:max-w-[425px] text-white bg-loomi-bg-dark border-0">
+                <DialogHeader className="space-y-4">
+                    <div className="flex items-center justify-between pointer-events-none">
+                        <DialogTitle className="text-xl font-normal pointer-events-auto">
+                            {t("deleteConfirmTitle")}
+                        </DialogTitle>
+                        <DialogClose className="rounded-full hover:bg-white/10 cursor-pointer pointer-events-auto">
+                            <Image src="/icons/ticket/close.svg" alt="Close" width={45} height={45} />
+                            <span className="sr-only">Close</span>
+                        </DialogClose>
+                    </div>
                     <DialogDescription className="text-white text-sm">
                         {t("deleteConfirmDesc")}
                     </DialogDescription>
