@@ -70,6 +70,37 @@ src/
 
 ---
 
+---
+
+## 📈 Relatório de Progresso (Entregável Obrigatório)
+
+### 📋 Ferramenta de Gestão e Backlog
+A organização das atividades foi realizada por meio de uma estrutura de **backlog técnico e funcional**, onde cada requisito do desafio foi transformado em uma tarefa específica. O acompanhamento do progresso foi feito utilizando o **Trello** para gestão de cards e o versionamento semântico do Git.
+
+**Link do Quadro:** [Trello - Projeto Fênix](https://trello.com/invite/b/699b41df34e204fa2b9732a3/ATTI150aa8c918fafc6c18bb315b44f9702b4F79E460/projeto-fenix)
+
+### 🎯 Organização e Priorização
+A definição da ordem de desenvolvimento seguiu uma lógica de **dependência e complexidade**:
+1.  **Fundação e Autenticação (Auth)**: O ponto de partida foi o fluxo de Login, pois ele provê a base de segurança e o contexto de usuário necessário para as demais rotas.
+2.  **Layout Base**: Desenvolvimento do shell da aplicação (Sidebar, Header e Containers), servindo de base para todas as telas do dashboard.
+3.  **Gestão de Tickets (Mais trabalhoso)**: Priorizado logo após o layout por envolver fluxos de CRUD, estados complexos de modais e integração com dados.
+4.  **Chat com IA**: Implementação da interface de conversa e lógica de sugestões.
+5.  **Simulador de Planos**: Desenvolvimento da lógica de cálculo e interatividade dos sliders.
+6.  **Dashboard de KPIs**: Implementação final congregando os gráficos e o mapa, consolidando a visão geral do sistema.
+7.  **Perfil do Usuário**: Ajustes finais e gerenciamento de informações de conta.
+
+### 🧠 Principais Dificuldades
+- **Integração com OpenLayers**: A configuração do mapa para aceitar markers customizados, cores dinâmicas e camadas de estilo escuro sobre uma API de mapas aberta exigiu um estudo aprofundado da documentação da biblioteca.
+- **Padronização Visual (Gráficos e Mapas)**: Garantir que bibliotecas externas (ApexCharts e OpenLayers) seguissem rigorosamente a identidade visual (Dark Mode, paleta Loomi).
+- **Lógica do Simulador**: Entender e implementar a reatividade necessária para que sliders, checkboxes e planos se influenciassem mutuamente em tempo real sem prejudicar a performance.
+
+### 🚀 O que faria diferente com mais tempo
+- **Fidelidade Visual dos Gráficos**: Gostaria de dedicar mais tempo para customizar o OpenLayers e deixá-lo 100% idêntico ao protótipo do Figma (detalhes de tema, icons e zoom).
+- **Animações**: Implementaria transições mais fluidas e micro-interações interessantes (usando Framer Motion) para elevar ainda mais a percepção de modernidade da interface.
+- **Testes Automatizados**: Implementação de testes unitários com Jest/React Testing Library e testes E2E com Playwright para garantir a resiliência dos fluxos críticos.
+
+---
+
 ## 🤖 Uso de Inteligência Artificial
 
 O desenvolvimento deste projeto foi realizado com o suporte estratégico de ferramentas de Inteligência Artificial, seguindo as diretrizes de uso consciente e ético.
