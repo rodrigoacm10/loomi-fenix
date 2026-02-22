@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Projeto Fênix - Desafio Loomi Front-end
 
-## Getting Started
+Este repositório contém o **Projeto Fênix**, uma interface de operador moderna desenvolvida para o sistema Nortus. O projeto foi construído como parte do desafio técnico para a Loomi, utilizando tecnologias de ponta para superar as limitações de uma API legada e proporcionar uma experiência de usuário fluida e responsiva.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Contexto do Projeto
+
+O sistema original da Nortus possui quase uma década e opera sobre um backend monolítico robusto, porém lento para a web moderna. O **Projeto Fênix** nasceu com a missão de revitalizar essa experiência sem alterar a API v1 (legacy).
+
+O foco principal foi:
+- **Performance**: Superar travamentos em listas grandes de clientes.
+- **Interatividade**: Eliminar o congelamento da tela em ações críticas.
+- **Feedback**: Prover respostas visuais claras e imediatas para cada ação do usuário.
+- **Sincronização**: Gerenciar estados de forma eficiente para evitar a necessidade de atualizações constantes da página (F5).
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+O projeto foi construído utilizando um stack moderno e focado em escalabilidade:
+
+- **Framework**: [Next.js v14+](https://nextjs.org/) (App Router)
+- **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
+- **Estilização**: [TailwindCSS](https://tailwindcss.com/)
+- **Gerenciamento de Estado**: [Zustand](https://zustand-demo.pmnd.rs/)
+- **Gráficos**: [ApexCharts.js](https://apexcharts.com/)
+- **Mapas**: [OpenLayers](https://openlayers.org/)
+- **Validação de Formulários**: [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+- **Internacionalização**: [next-intl](https://next-intl-docs.vercel.app/)
+- **Feedback Visual**: [Sonner](https://sonner.steventey.com/)
+- **Consumo de API**: [Axios](https://axios-http.com/)
+- **Autenticação**: Tokens armazenados em Cookies e LocalStorage.
+
+---
+
+## ✨ Funcionalidades
+
+### 1. Autenticação (Login)
+Fluxo de acesso seguro com validação de campos e proteção de rotas privadas. Os dados de sessão são persistidos para garantir uma experiência de uso contínua.
+
+### 2. Dashboard de KPIs
+Visualização de dados críticos como **ARPU, Retenção, Churn e Conversão** por meio de gráficos interativos. Inclui um mapa geográfico para monitoramento de clientes por região.
+
+### 3. Gestão de Tickets
+Interface completa para listagem, filtro, criação e edição de tickets, com feedback instantâneo via toasts e estados de loading tratados.
+
+### 4. Chat com IA
+Simulador de atendimento assistido por inteligência artificial, oferecendo sugestões contextuais e ações rápidas para o operador.
+
+### 5. Simulador de Planos
+Ferramenta interativa para personalização de planos com atualização de valores em tempo real, facilitando a decisão do consultor.
+
+---
+
+## 📁 Estrutura do Projeto
+
+```text
+src/
+├── app/          # Rotas e layouts (Next.js App Router)
+├── components/   # Componentes de UI e lógica de interface
+├── hooks/        # Hooks customizados para lógica reutilizável
+├── i18n/         # Configurações de internacionalização
+├── lib/          # Configurações de bibliotecas externas (Axios, etc)
+├── services/     # Camada de comunicação com a API legada
+├── store/        # Gerenciamento de estado global com Zustand
+├── types/        # Definições de tipos TypeScript
+└── utils/        # Funções utilitárias e ajudantes
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🤖 Uso de Inteligência Artificial
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O desenvolvimento deste projeto foi realizado com o suporte estratégico de ferramentas de Inteligência Artificial, seguindo as diretrizes de uso consciente e ético.
 
-## Learn More
+**Ferramenta Utilizada**: **Antigravity (by Google DeepMind)**
+**Modelos**: **Gemini 3 Flash**
 
-To learn more about Next.js, take a look at the following resources:
+### Exemplos de Prompts (Objetividade):
+- *"Estruture um componente de dashboard no Next.js que consuma dados da API `/nortus-v1/dashboard` e os exiba usando ApexCharts."*
+- *"Gere um schema Zod para validação do formulário de criação de tickets baseado no contrato da API legada."*
+- *"Refatore a lógica de cálculo do Simulador de Planos para garantir que o estado seja atualizado em tempo real conforme os sliders mudam."*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Impacto nas Decisões Técnicas:
+- **Arquitetura de Estado Atômica por Domínio**: Emprego de múltiplas **Stores especializadas** (Auth, Ticket, Dashboard) com **Zustand**, garantindo um estado global granular que evita re-renderizações em cascata e facilita a manutenção de fluxos complexos como a sincronização entre o Mapa e os KPIs do Dashboard.
+- **Eficiência**: O uso da IA permitiu uma prototipagem rápida de componentes complexos (como o Mapa OpenLayers e Gráficos), garantindo mais tempo para o refino da lógica de negócio e UX.
+- **Qualidade**: Padrões de **Clean Code** e tipagem de qualidade com **TypeScript** foram mantidos através de revisões constantes auxiliadas pelo modelo Gemini.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> [!IMPORTANT]
+> A Inteligência Artificial foi utilizada estritamente como ferramenta de suporte e aceleração. Toda a lógica de negócio, arquitetura final e decisões criativas foram concebidas e validadas por mim, garantindo a autoria e integridade da entrega.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚙️ Como Executar
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/rodrigoacm10/loomi-fenix.git
+   ```
+2. **Instale as dependências**:
+   ```bash
+   npm install
+   ```
+3. **Inicie o servidor de desenvolvimento**:
+   ```bash
+   npm run dev
+   ```
+4. **Acesse**: `http://localhost:3000`
+
+---
+
+## 📌 Diferenciais Implementados
+
+- ✅ **Internacionalização (i18n)**: Suporte para múltiplos idiomas.
+- ✅ **Acessibilidade**: Uso de componentes ShadcnUI para garantir semântica e acessibilidade.
+- ✅ **Loading Skeletons**: Tratamento de estados vazios e carregamento.
+- ✅ **Clean Code**: Separação clara de responsabilidades e tipagem rigorosa.
+
+---
+
+Desenvolvido por **Rodrigo**, como parte do processo seletivo da **Loomi**.
