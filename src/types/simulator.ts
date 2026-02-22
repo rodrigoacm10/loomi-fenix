@@ -9,15 +9,3 @@ export interface SimulatorResponse {
     includedBenefits: string[];
     plansIndicators: PlanIndicator[];
 }
-
-export interface SimulatorState {
-    vehicleValue: number;
-    clientAge: number;
-    selectedAddons: string[];
-}
-
-export interface CoverageAddon {
-    id: string;
-    label: string;
-    price: number;
-}

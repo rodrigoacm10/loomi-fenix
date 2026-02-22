@@ -14,7 +14,7 @@ interface ChatState {
     sendMessage: ({ author, content }: { author: string, content: string }) => Promise<void>;
 }
 
-export const useChatStore = create<ChatState>((set, get) => ({
+export const useChatStore = create<ChatState>((set) => ({
     messages: [],
     author: null,
     iaSuggestion: null,

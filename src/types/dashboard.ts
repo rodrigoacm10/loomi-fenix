@@ -1,26 +1,16 @@
-export interface TrendItem {
-    name: string;
-    data: number[];
-}
-
 export interface KpisTrend {
     labels: string[];
-    arpuTrend: TrendItem;
-    conversionTrend: TrendItem;
-    churnTrend: TrendItem;
-    retentionTrend: TrendItem;
-}
-
-export interface KpiResumeItem {
-    valor: number;
-    variacao: number;
+    arpuTrend: { name: string; data: number[] };
+    conversionTrend: { name: string; data: number[] };
+    churnTrend: { name: string; data: number[] };
+    retentionTrend: { name: string; data: number[] };
 }
 
 export interface KpisResume {
-    arpu: KpiResumeItem;
-    conversion: KpiResumeItem;
-    retention: KpiResumeItem;
-    churn: KpiResumeItem;
+    arpu: { valor: number; variacao: number };
+    conversion: { valor: number; variacao: number };
+    retention: { valor: number; variacao: number };
+    churn: { valor: number; variacao: number };
 }
 
 export interface Segment {
@@ -39,14 +29,12 @@ export interface ActiveClient {
     location: string;
 }
 
-export interface ClientFilters {
-    status: string[];
-    secureType: string[];
-    locations: string[];
-}
-
 export interface ActiveClientsData {
-    filters: ClientFilters;
+    filters: {
+        status: string[];
+        secureType: string[];
+        locations: string[];
+    };
     data: ActiveClient[];
 }
 

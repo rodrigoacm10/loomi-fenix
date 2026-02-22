@@ -19,8 +19,6 @@ interface SimulatorStore {
     setClientAge: (age: number) => void;
     toggleAddon: (id: string) => void;
     setSelectedPlan: (plan: string) => void;
-
-    calculatePlanPrice: (plan: PlanIndicator) => number;
 }
 
 export const useSimulatorStore = create<SimulatorStore>((set, get) => ({
@@ -60,26 +58,4 @@ export const useSimulatorStore = create<SimulatorStore>((set, get) => ({
         };
     }),
     setSelectedPlan: (plan) => set({ selectedPlan: plan }),
-
-    calculatePlanPrice: (plan) => {
-        const state = get();
-
-        let finalPrice = plan.value;
-
-        const vehicleDiff = Math.max(0, state.vehicleValue - 10000);
-        const vehicleSurcharge = (vehicleDiff / 10000) * 15;
-        finalPrice += vehicleSurcharge;
-
-        if (state.clientAge < 25) finalPrice += 60;
-        else if (state.clientAge > 60) finalPrice += 30;
-
-        const addonsCost = state.selectedAddons.reduce((acc, addonId) => {
-            const addon = MOCK_ADDONS.find(a => a.id === addonId);
-            return acc + (addon ? addon.price : 0);
-        }, 0);
-
-        finalPrice += addonsCost;
-
-        return parseFloat(finalPrice.toFixed(2));
-    }
 }));

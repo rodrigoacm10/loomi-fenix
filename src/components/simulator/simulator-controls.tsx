@@ -6,6 +6,7 @@ import { MOCK_ADDONS } from "@/services/simulator";
 import { PlanCard } from "./plan-card";
 import Container from "../global/container";
 import { useTranslations } from "next-intl";
+import { planCalculatePrice } from "@/utils/plan-calculate-price";
 
 export function SimulatorControls() {
     const t = useTranslations("Simulator");
@@ -18,8 +19,7 @@ export function SimulatorControls() {
         clientAge,
         setClientAge,
         selectedAddons,
-        toggleAddon,
-        calculatePlanPrice
+        toggleAddon
     } = useSimulatorStore();
 
     const formatCurrency = (value: number) => {
@@ -35,7 +35,7 @@ export function SimulatorControls() {
                         <PlanCard
                             key={plan.name}
                             name={plan.name}
-                            price={calculatePlanPrice({ ...plan, value: plan.value })}
+                            price={planCalculatePrice({ planValue: plan.value, vehicleValue, clientAge, selectedAddons })}
                             isSelected={selectedPlan === plan.name}
                             isRecommended={plan.name === 'Premium'}
                             onSelect={() => setSelectedPlan(plan.name)}

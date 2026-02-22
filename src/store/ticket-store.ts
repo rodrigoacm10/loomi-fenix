@@ -27,7 +27,7 @@ interface TicketState {
     closeDeleteModal: () => void;
 }
 
-export const useTicketStore = create<TicketState>((set, get) => ({
+export const useTicketStore = create<TicketState>((set) => ({
     tickets: [],
     loading: false,
     error: null,

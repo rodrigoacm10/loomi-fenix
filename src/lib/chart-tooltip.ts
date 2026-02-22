@@ -1,13 +1,12 @@
-export function createCustomTooltip({ series, seriesIndex, dataPointIndex, w, activeMetric, isCurrency = false }: {
-    series: any;
+export function createCustomTooltip({ series, seriesIndex, dataPointIndex, activeMetric, isCurrency = false }: {
+    series: number[][]; // Assuming series contains arrays of numbers
     seriesIndex: number;
     dataPointIndex: number;
-    w: any;
     activeMetric: string;
     isCurrency?: boolean;
 }) {
     const value = series[seriesIndex][dataPointIndex];
-    let formattedValue = value;
+    let formattedValue: string | number = value;
 
     if (isCurrency || activeMetric === 'arpu') {
         formattedValue = `R$ ${value >= 1000 ? (value / 1000).toFixed(1) + 'k' : value}`;

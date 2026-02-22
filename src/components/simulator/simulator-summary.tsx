@@ -1,8 +1,6 @@
-import { MOCK_ADDONS } from "@/services/simulator";
 import { useSimulatorStore } from "@/store/simulator-store";
 import Container from "../global/container";
 import { BenefitBadge } from "./benefit-badge";
-import { planCalculatePrice } from "@/utils/plan-calculate-price";
 import { useTranslations } from "next-intl";
 
 export function SimulatorSummary() {
@@ -30,8 +28,6 @@ export function SimulatorSummary() {
                 <h2 className="text-xl font-semibold mb-[32px]">{t("indicators")}</h2>
                 <div className="space-y-[32px]  flex-1 flex flex-col">
                     {plans.map((plan) => {
-                        const calculatedPrice = planCalculatePrice({ planValue: plan.value, vehicleValue, clientAge, selectedAddons });
-
                         return (
                             <Container key={plan.name} className="bg-[#23293b] flex-1 flex items-center justify-between">
                                 <div className="space-y-1">
@@ -47,7 +43,7 @@ export function SimulatorSummary() {
                                 </div>
                                 <div className="text-right">
                                     <p className="text-lg font-bold text-white">
-                                        R$ {calculatedPrice.toFixed(2).replace('.', ',')}
+                                        R$ {plan.value.toFixed(2).replace('.', ',')}
                                     </p>
                                 </div>
                             </Container>
