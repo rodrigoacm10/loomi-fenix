@@ -1,58 +1,58 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const api = axios.create({
-    baseURL: 'https://nortus-challenge.api.stage.loomi.com.br',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-});
+  baseURL: 'https://nortus-challenge.api.stage.loomi.com.br',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
 
 api.interceptors.request.use((config) => {
-    const token = Cookies.get('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
+  const token = Cookies.get('token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
 
 api.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-        const originalRequest = error.config;
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config
 
-        if (error.response?.status === 401 && !originalRequest._retry) {
-            originalRequest._retry = true;
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true
 
-            try {
-                const expiredToken = Cookies.get('token');
+      try {
+        const expiredToken = Cookies.get('token')
 
-                if (expiredToken) {
-                    const response = await axios.post(
-                        'https://nortus-challenge.api.stage.loomi.com.br/auth/refresh-token',
-                        { access_token: expiredToken },
-                        { headers: { 'Content-Type': 'application/json' } }
-                    );
+        if (expiredToken) {
+          const response = await axios.post(
+            'https://nortus-challenge.api.stage.loomi.com.br/auth/refresh-token',
+            { access_token: expiredToken },
+            { headers: { 'Content-Type': 'application/json' } },
+          )
 
-                    const newToken = response.data.access_token;
+          const newToken = response.data.access_token
 
-                    if (newToken) {
-                        Cookies.set('token', newToken);
-                        originalRequest.headers.Authorization = `Bearer ${newToken}`;
-                        return api(originalRequest);
-                    }
-                }
-            } catch (refreshError) {
-                Cookies.remove('token');
-                if (typeof window !== 'undefined') {
-                    window.location.href = '/login';
-                }
-                return Promise.reject(refreshError);
-            }
+          if (newToken) {
+            Cookies.set('token', newToken)
+            originalRequest.headers.Authorization = `Bearer ${newToken}`
+            return api(originalRequest)
+          }
         }
-
-        return Promise.reject(error);
+      } catch (refreshError) {
+        Cookies.remove('token')
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login'
+        }
+        return Promise.reject(refreshError)
+      }
     }
-);
 
-export default api;
+    return Promise.reject(error)
+  },
+)
+
+export default api
