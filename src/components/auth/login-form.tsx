@@ -1,70 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { toast } from "sonner";
 import { Loader2, Eye, EyeOff } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import api from "@/lib/api";
-import { useAuthStore } from "@/store/auth-store";
-import { SuccessToast } from "../global/success-toast";
-import { ErrorToast } from "../global/error-toast";
-import { LoginFormValues, loginSchema } from "@/schemas/login-schema";
+import { useLoginForm } from "@/hooks/use-login-form";
 
 export default function LoginForm() {
-    const [isLoading, setIsLoading] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-    const router = useRouter();
-    const { login } = useAuthStore();
-    const t = useTranslations("LoginPage");
-
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-    } = useForm<LoginFormValues>({
-        resolver: zodResolver(loginSchema),
-    });
-
-    async function onSubmit(data: LoginFormValues) {
-        setIsLoading(true);
-        try {
-            const response = await api.post("/auth/login", data);
-            const { access_token } = response.data;
-
-            const user = { email: data.email };
-
-            login(access_token, user, data.rememberMe);
-            toast.custom((toastProps) => (
-                <SuccessToast
-                    t={toastProps}
-                    title={t("successMessage")}
-                    description={t("successDescription")}
-                />
-            ))
-            router.push("/dashboard");
-        } catch (error) {
-            console.error(error);
-            const err = error as { response?: { data?: { message?: string } } };
-            toast.custom((toastProps) => (
-                <ErrorToast
-                    t={toastProps}
-                    title={err.response?.data?.message || t("failMessage")}
-                    description=""
-                />
-            ));
-        } finally {
-            setIsLoading(false);
-        }
-    }
+    const { form, onSubmit, isLoading, showPassword, setShowPassword, t } = useLoginForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = form;
 
     return (
         <div className="h-full w-full grid gap-6 space-y-4">

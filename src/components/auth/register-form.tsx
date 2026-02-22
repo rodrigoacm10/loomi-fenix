@@ -1,68 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { toast } from "sonner";
 import { Loader2, Eye, EyeOff } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-import api from "@/lib/api";
-import { SuccessToast } from "../global/success-toast";
-import { ErrorToast } from "../global/error-toast";
-import { RegisterFormValues, registerSchema } from "@/schemas/register-schema";
+import { useRegisterForm } from "@/hooks/use-register-form";
 
 export default function RegisterForm() {
-    const [isLoading, setIsLoading] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-    const router = useRouter();
-    const t = useTranslations("RegisterPage");
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<RegisterFormValues>({
-        resolver: zodResolver(registerSchema),
-    });
-
-    async function onSubmit(data: RegisterFormValues) {
-        setIsLoading(true);
-        try {
-            await api.post("/users", {
-                name: data.name,
-                email: data.email,
-                password: data.password,
-                challengeLevel: 1,
-            });
-
-            toast.custom((toastProps) => (
-                <SuccessToast
-                    t={toastProps}
-                    title={t("successMessage")}
-                    description={t("successDescription")}
-                />
-            ))
-            router.push("/login");
-        } catch (error) {
-            console.error(error);
-            const err = error as { response?: { data?: { message?: string } } };
-            toast.custom((toastProps) => (
-                <ErrorToast
-                    t={toastProps}
-                    title={err.response?.data?.message || t("failMessage")}
-                    description=""
-                />
-            ));
-        } finally {
-            setIsLoading(false);
-        }
-    }
+    const { form, onSubmit, isLoading, showPassword, setShowPassword, t } = useRegisterForm();
+    const { register, handleSubmit, formState: { errors } } = form;
 
     return (
         <div className="h-full w-full grid gap-6 space-y-4">

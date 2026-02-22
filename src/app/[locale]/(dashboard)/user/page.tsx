@@ -1,15 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import { Loader2, LogOut, Save, Camera } from "lucide-react";
-import { useAuthStore } from "@/store/auth-store";
-import api from "@/lib/api";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
     Form,
     FormControl,
@@ -20,89 +12,23 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SuccessToast } from "@/components/global/success-toast";
-import { ErrorToast } from "@/components/global/error-toast";
 import Container from "@/components/global/container";
 import { DeleteUserDialog } from "@/components/user/delete-user-dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import LanguageSelector from "@/components/global/language-selector";
-import { userSchema, UserValues } from "@/schemas/user-schema";
+import { useUserForm } from "@/hooks/use-user-form";
 
 export default function UserPage() {
-    const t = useTranslations("UserPage");
-    const { user, logout } = useAuthStore();
-    const router = useRouter();
-
-    const [isLoading, setIsLoading] = useState(true);
-    const [isSaving, setIsSaving] = useState(false);
-
-    const [userId, setUserId] = useState<string>("");
-    const [nameInitials, setNameInitials] = useState("");
-
-    const form = useForm<UserValues>({
-        resolver: zodResolver(userSchema),
-        defaultValues: { name: "", email: "" },
-    });
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (!user?.email) return;
-
-            try {
-                const response = await api.get(`/users/by-email/${user.email}`);
-                const data = response.data;
-                if (data && data.id) {
-                    setUserId(data.id);
-                    form.reset({ name: data.name || "", email: data.email || "" });
-                    setNameInitials(data.name || "");
-                }
-            } catch (error) {
-                console.error("Failed to fetch user by email:", error);
-                toast.custom((toastProps) => (
-                    <ErrorToast t={toastProps} title={t("fetchError")} description="" />
-                ));
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchUserData();
-    }, [user?.email, t]);
-
-    const onSubmit = async (data: UserValues) => {
-        if (!userId) return;
-
-        setIsSaving(true);
-        try {
-            await api.patch(`/users/${userId}`, {
-                name: data.name,
-                email: data.email,
-                state: "CONFIRMED"
-            });
-            setNameInitials(data.name);
-            toast.custom((toastProps) => (
-                <SuccessToast
-                    t={toastProps}
-                    title={t("successUpdateMessage")}
-                    description={t("successUpdateDesc")}
-                />
-            ));
-        } catch (error) {
-            console.error("Failed to update user:", error);
-            toast.custom((toastProps) => (
-                <ErrorToast t={toastProps} title={t("updateError")} description="" />
-            ));
-        } finally {
-            setIsSaving(false);
-        }
-    };
-
-
-
-    const handleLogout = () => {
-        logout();
-        router.push("/login");
-    };
+    const {
+        form,
+        onSubmit,
+        handleLogout,
+        initials,
+        userId,
+        isLoading,
+        isSaving,
+        t
+    } = useUserForm();
 
     if (isLoading) {
         return (
@@ -137,8 +63,6 @@ export default function UserPage() {
             </div>
         );
     }
-
-    const initials = nameInitials ? nameInitials.split(" ").map(n => n.charAt(0)).join("").substring(0, 2).toUpperCase() : "AA";
 
     return (
         <div className="flex w-full justify-center">

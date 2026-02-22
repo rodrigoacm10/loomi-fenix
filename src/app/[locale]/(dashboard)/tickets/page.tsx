@@ -6,7 +6,6 @@ import { useTicketStore } from "@/store/ticket-store";
 import { TicketDataTable } from "@/components/tickets/ticket-data-table";
 import { columns } from "@/components/tickets/ticket-columns";
 import { TicketDialog } from "@/components/tickets/ticket-dialog";
-import { DeleteTicketDialog } from "@/components/tickets/delete-ticket-dialog";
 import { TicketCardInfo } from "@/components/tickets/ticket-card-info";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
@@ -62,7 +61,6 @@ export default function TicketsPage() {
             )}
 
             <TicketDialog />
-            <DeleteTicketDialog />
         </div>
     );
 }
