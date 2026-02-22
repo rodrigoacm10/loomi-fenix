@@ -36,14 +36,11 @@ export const useDashboardStore = create<DashboardStore>((set, get) => ({
 
     fetchDashboardData: async () => {
         set({ loading: true, error: null });
-        console.log("[store] fetchDashboardData");
         try {
             const [data, mapData] = await Promise.all([
                 dashboardService.getDashboardData(),
                 dashboardService.getMapLocations()
             ]);
-            console.log("[store] data", data);
-            console.log("[store] mapData", mapData);
             set({
                 data,
                 mapLocations: mapData.data.locations,

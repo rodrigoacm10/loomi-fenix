@@ -182,7 +182,7 @@ export function TicketForm() {
                     </Button>
 
                     {!isViewMode && (
-                        <Button className="bg-loomi-primary hover:bg-loomi-primary-hover w-[100px] p-6 rounded-[14px]" type="submit" onClick={() => console.log('ENVIAR ')}>
+                        <Button className="bg-loomi-primary hover:bg-loomi-primary-hover w-[100px] p-6 rounded-[14px]" type="submit">
                             {t("save")}
                         </Button>
                     )}

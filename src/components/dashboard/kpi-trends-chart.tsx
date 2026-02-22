@@ -117,7 +117,7 @@ export function KpiTrendsChart() {
                     ))}
                 </div>
             </div>
-            <div className="flex-1 h-[380px] -ml-4">
+            <div className="flex-1 -ml-4">
                 {(typeof window !== 'undefined') && (
                     <Chart
                         options={chartOptions}

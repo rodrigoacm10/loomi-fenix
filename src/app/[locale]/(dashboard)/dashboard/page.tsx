@@ -39,16 +39,14 @@ export default function DashboardPage() {
         return <div className="p-8 text-red-500">{error}</div>;
     }
 
-    console.log("[page] data", data);
-
     return (
         <div className="space-y-[40px]">
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-[40px]">
-                <Container className="xl:col-span-2 bg-[linear-gradient(to_top_right,#2f384f_0%,#171d30_30%,#171d30_70%,#2f384f_100%)]">
+                <Container className="h-[380px] xl:col-span-2 bg-[linear-gradient(to_top_right,#2f384f_0%,#171d30_30%,#171d30_70%,#2f384f_100%)]">
                     <KpiTrendsChart />
                 </Container>
 
-                <Container>
+                <Container className="h-[380px]">
                     <ConversionBarChart />
                 </Container>
 

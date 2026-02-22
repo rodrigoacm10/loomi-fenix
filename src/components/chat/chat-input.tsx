@@ -19,7 +19,6 @@ export function ChatInput({ onSend }: ChatInputProps) {
         if (!message.trim()) return;
         onSend({ author: author || "", content: message });
         setMessage("");
-        console.log('[ChatInput] message sent:', message);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
