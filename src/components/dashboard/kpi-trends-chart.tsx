@@ -98,9 +98,9 @@ export function KpiTrendsChart() {
 
     return (
         <div className="flex flex-col h-full space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col xl:flex-row items-start xl:items-center xl:justify-between gap-4">
                 <h3 className="text-xl font-semibold">{t("title")}</h3>
-                <div className="flex bg-[#23283b] rounded-full py-2 px-3 gap-3">
+                <div className="flex bg-[#23283b] rounded-full py-2 px-3 gap-2 sm:gap-3">
                     {['retention', 'conversion', 'churn', 'arpu'].map((metric) => (
                         <Button
                             key={metric}
@@ -117,7 +117,7 @@ export function KpiTrendsChart() {
                     ))}
                 </div>
             </div>
-            <div className="flex-1 min-h-[0px] -ml-4">
+            <div className="flex-1 h-[380px] -ml-4">
                 {(typeof window !== 'undefined') && (
                     <Chart
                         options={chartOptions}

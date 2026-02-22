@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 import { ChatMessage } from "@/types/chat";
-import { CheckCheck } from "lucide-react";
+import { Bot, CheckCheck } from "lucide-react";
 import { Button } from "../ui/button";
+import { useTranslations } from "next-intl";
 
 interface ChatBubbleProps {
     message: ChatMessage;
@@ -10,6 +11,7 @@ interface ChatBubbleProps {
 export function ChatBubble({ message }: ChatBubbleProps) {
     const isAssistant = message.type === 'assistant_message';
     const isSuggestion = message.type === 'ai_suggestion';
+    const t = useTranslations("AiSuggestion");
 
 
     return (
@@ -23,8 +25,10 @@ export function ChatBubble({ message }: ChatBubbleProps) {
                     ? "bg-[#3f4859] text-white rounded-br-none border-2 border-muted-foreground"
                     : "bg-loomi-secondary text-white rounded-bl-none"
             )}>
-                <div className="mb-1 text-xisSuggestions opacity-70 font-semibold">
-                    {message.author}
+                <div className="flex items-center gap-2 mb-1 text-xisSuggestions opacity-70 font-semibold">
+                    {isSuggestion && <Bot className="w-5 h-5" />}
+
+                    <p>{message.author}</p>
                 </div>
 
                 <p className="leading-relaxed whitespace-pre-wrap">
@@ -40,17 +44,15 @@ export function ChatBubble({ message }: ChatBubbleProps) {
             {isSuggestion && <div className="mt-3 w-full max-w-[50%] justify-end pl-12">
                 <div className="w-full flex gap-2 justify-end">
                     <Button className="flex-1 text-sm bg-loomi-secondary hover:bg-loomi-secondary-hover rounded-full bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
-                        Enviar proposta
+                        {t("sendProposal")}
                     </Button>
                     <Button className="flex-1 text-sm rounded-full bg-loomi-secondary hover:bg-loomi-secondary-hover bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
-                        Fazer ligação
+                        {t("makeCall")}
                     </Button>
                     <Button className="flex-1 text-sm rounded-full bg-loomi-secondary hover:bg-loomi-secondary-hover bg-loomi-primary shadow-[0px_0px_20px_0px_rgba(24,118,210,0.5)]">
-                        Ver histórico
+                        {t("viewHistory")}
                     </Button>
                 </div>
-
-
             </div>}
         </div>
     );

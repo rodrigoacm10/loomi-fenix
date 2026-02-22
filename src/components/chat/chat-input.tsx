@@ -29,7 +29,7 @@ export function ChatInput({ onSend }: ChatInputProps) {
     };
 
     return (
-        <div className="relative flex items-center max-w-4xl mx-auto">
+        <div className="relative flex items-center max-w-2xl mx-auto">
             <Input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}

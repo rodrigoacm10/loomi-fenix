@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -16,14 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/auth-store";
 import { SuccessToast } from "../global/success-toast";
-
-const loginSchema = z.object({
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-    rememberMe: z.boolean().optional(),
-});
-
-type LoginFormValues = z.infer<typeof loginSchema>;
+import { LoginFormValues, loginSchema } from "@/schemas/login-schema";
 
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState(false);
@@ -144,7 +136,7 @@ export default function LoginForm() {
 
                     </div>
 
-                    <Button disabled={isLoading} className="mt-4 bg-loomi-primary py-6 rounded-[15px]">
+                    <Button disabled={isLoading} className="mt-4 bg-loomi-secondary hover:bg-loomi-secondary-hover py-6 rounded-[15px]">
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         {t("submit")}
                     </Button>

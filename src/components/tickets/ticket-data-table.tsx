@@ -91,8 +91,8 @@ export function TicketDataTable<TData, TValue>({
     const currentPage = table.getState().pagination.pageIndex + 1;
 
     return (
-        <div>
-            <div className="flex items-center pt-2 pb-4 gap-2">
+        <div className="w-full max-w-full">
+            <div className="flex flex-col md:flex-row items-center pt-2 pb-4 gap-2 lg:flex-nowrap flex-wrap w-full">
                 <div className="relative w-full">
                     <Input
                         placeholder={t("searchPlaceholder")}
@@ -107,129 +107,131 @@ export function TicketDataTable<TData, TValue>({
                     </div>
                 </div>
 
+                <div className="flex gap-2 w-full">
+                    <Select
+                        value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
+                        onValueChange={(value) =>
+                            table.getColumn("status")?.setFilterValue(value === "all" ? undefined : value)
+                        }
+                    >
+                        <SelectTrigger className="flex-1 lg:w-[180px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9">
+                            <SelectValue placeholder={t("statusPlaceholder")} />
+                        </SelectTrigger>
+                        <SelectContent className="bg-loomi-bg-dark text-white border-0">
+                            <SelectItem value="all" className="focus:bg-loomi-primary focus:text-white">{t("allStatus")}</SelectItem>
+                            <SelectItem value="Aberto" className="focus:bg-loomi-primary focus:text-white">{t("open")}</SelectItem>
+                            <SelectItem value="Em andamento" className="focus:bg-loomi-primary focus:text-white">{t("inProgress")}</SelectItem>
+                            <SelectItem value="Fechado" className="focus:bg-loomi-primary focus:text-white">{t("closed")}</SelectItem>
+                        </SelectContent>
+                    </Select>
 
-                <Select
-                    value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
-                    onValueChange={(value) =>
-                        table.getColumn("status")?.setFilterValue(value === "all" ? undefined : value)
-                    }
-                >
-                    <SelectTrigger className="w-[250px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9">
-                        <SelectValue placeholder={t("statusPlaceholder")} />
-                    </SelectTrigger>
-                    <SelectContent className="bg-loomi-bg-dark text-white border-0">
-                        <SelectItem value="all" className="focus:bg-loomi-primary focus:text-white">{t("allStatus")}</SelectItem>
-                        <SelectItem value="Aberto" className="focus:bg-loomi-primary focus:text-white">{t("open")}</SelectItem>
-                        <SelectItem value="Em andamento" className="focus:bg-loomi-primary focus:text-white">{t("inProgress")}</SelectItem>
-                        <SelectItem value="Fechado" className="focus:bg-loomi-primary focus:text-white">{t("closed")}</SelectItem>
-                    </SelectContent>
-                </Select>
+                    <Select
+                        value={(table.getColumn("priority")?.getFilterValue() as string) ?? "all"}
+                        onValueChange={(value) =>
+                            table.getColumn("priority")?.setFilterValue(value === "all" ? undefined : value)
+                        }
+                    >
+                        <SelectTrigger className="flex-1 lg:w-[180px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9">
+                            <SelectValue placeholder={t("priorityPlaceholder")} />
+                        </SelectTrigger>
+                        <SelectContent className="bg-loomi-bg-dark text-white border-0">
+                            <SelectItem value="all" className="focus:bg-loomi-primary focus:text-white">{t("allPriorities")}</SelectItem>
+                            <SelectItem value="Urgente" className="focus:bg-loomi-primary focus:text-white">{t("urgent")}</SelectItem>
+                            <SelectItem value="Média" className="focus:bg-loomi-primary focus:text-white">{t("medium")}</SelectItem>
+                            <SelectItem value="Baixa" className="focus:bg-loomi-primary focus:text-white">{t("low")}</SelectItem>
+                        </SelectContent>
+                    </Select>
 
-                <Select
-                    value={(table.getColumn("priority")?.getFilterValue() as string) ?? "all"}
-                    onValueChange={(value) =>
-                        table.getColumn("priority")?.setFilterValue(value === "all" ? undefined : value)
-                    }
-                >
-                    <SelectTrigger className="w-[320px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9">
-                        <SelectValue placeholder={t("priorityPlaceholder")} />
-                    </SelectTrigger>
-                    <SelectContent className="bg-loomi-bg-dark text-white border-0">
-                        <SelectItem value="all" className="focus:bg-loomi-primary focus:text-white">{t("allPriorities")}</SelectItem>
-                        <SelectItem value="Urgente" className="focus:bg-loomi-primary focus:text-white">{t("urgent")}</SelectItem>
-                        <SelectItem value="Média" className="focus:bg-loomi-primary focus:text-white">{t("medium")}</SelectItem>
-                        <SelectItem value="Baixa" className="focus:bg-loomi-primary focus:text-white">{t("low")}</SelectItem>
-                    </SelectContent>
-                </Select>
-
-                <Popover open={isResponsibleOpen} onOpenChange={setIsResponsibleOpen}>
-                    <PopoverTrigger asChild>
-                        <Button
-                            variant="outline"
-                            role="combobox"
-                            aria-expanded={isResponsibleOpen}
-                            className="w-[320px] px-5 bg-loomi-bg-dark hover:bg-loomi-bg-dark hover:text-white border-0 rounded-full justify-between h-9"
-                        >
-                            {currentResponsibleFilter
-                                ? uniqueResponsibles.find((responsible) => responsible === currentResponsibleFilter)
-                                : t("allResponsibles")}
-                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-[200px] p-0 border-0 bg-loomi-bg-dark">
-                        <Command shouldFilter={false} className="bg-loomi-bg-dark border-0 text-white">
-                            <CommandInput
-                                placeholder={t("searchResponsible")}
-                                className="text-white placeholder:text-gray-400"
-                                value={responsibleSearch}
-                                onValueChange={setResponsibleSearch}
-                            />
-                            <CommandList className="border-0">
-                                <div
-                                    onClick={() => {
-                                        table.getColumn("responsible")?.setFilterValue(undefined)
-                                        setIsResponsibleOpen(false)
-                                        setResponsibleSearch("")
-                                    }}
-                                    className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-loomi-primary hover:text-white"
-                                >
-                                    <Check
-                                        className={cn(
-                                            "mr-2 h-4 w-4",
-                                            !currentResponsibleFilter ? "opacity-100" : "opacity-0"
-                                        )}
-                                    />
-                                    {t("allResponsibles")}
-                                </div>
-                                {responsibleSearch.length > 0 && (
-                                    <>
-                                        <CommandGroup>
-
-                                            {uniqueResponsibles
-                                                .filter(responsible => responsible.toLowerCase().includes(responsibleSearch.toLowerCase()))
-                                                .map((responsible) => (
-                                                    <div
-                                                        key={responsible}
-                                                        onClick={() => {
-                                                            table.getColumn("responsible")?.setFilterValue(
-                                                                responsible === currentResponsibleFilter ? undefined : responsible
-                                                            )
-                                                            setIsResponsibleOpen(false)
-                                                            setResponsibleSearch("")
-                                                        }}
-                                                        className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-loomi-primary hover:text-white"
-                                                    >
-                                                        <Check
-                                                            className={cn(
-                                                                "mr-2 h-4 w-4",
-                                                                currentResponsibleFilter === responsible ? "opacity-100" : "opacity-0"
-                                                            )}
-                                                        />
-                                                        {responsible}
-                                                    </div>
-                                                ))}
-                                        </CommandGroup>
-                                    </>
-                                )}
-                                {responsibleSearch.length === 0 && (
-                                    <div className="py-6 text-center text-sm text-muted-foreground">
-                                        {t("typeToSearch")}
+                    <Popover open={isResponsibleOpen} onOpenChange={setIsResponsibleOpen}>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                role="combobox"
+                                aria-expanded={isResponsibleOpen}
+                                className="overflow-hidden flex-1 lg:w-[200px] xl:w-[320px] px-5 bg-loomi-bg-dark hover:bg-loomi-bg-dark hover:text-white border-0 rounded-full justify-between h-9"
+                            >
+                                {currentResponsibleFilter
+                                    ? uniqueResponsibles.find((responsible) => responsible === currentResponsibleFilter)
+                                    : t("allResponsibles")}
+                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[200px] p-0 border-0 bg-loomi-bg-dark">
+                            <Command shouldFilter={false} className="bg-loomi-bg-dark border-0 text-white">
+                                <CommandInput
+                                    placeholder={t("searchResponsible")}
+                                    className="text-white placeholder:text-gray-400"
+                                    value={responsibleSearch}
+                                    onValueChange={setResponsibleSearch}
+                                />
+                                <CommandList className="border-0">
+                                    <div
+                                        onClick={() => {
+                                            table.getColumn("responsible")?.setFilterValue(undefined)
+                                            setIsResponsibleOpen(false)
+                                            setResponsibleSearch("")
+                                        }}
+                                        className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-loomi-primary hover:text-white"
+                                    >
+                                        <Check
+                                            className={cn(
+                                                "mr-2 h-4 w-4",
+                                                !currentResponsibleFilter ? "opacity-100" : "opacity-0"
+                                            )}
+                                        />
+                                        {t("allResponsibles")}
                                     </div>
-                                )}
-                            </CommandList>
-                        </Command>
-                    </PopoverContent>
-                </Popover>
+                                    {responsibleSearch.length > 0 && (
+                                        <>
+                                            <CommandGroup>
+
+                                                {uniqueResponsibles
+                                                    .filter(responsible => responsible.toLowerCase().includes(responsibleSearch.toLowerCase()))
+                                                    .map((responsible) => (
+                                                        <div
+                                                            key={responsible}
+                                                            onClick={() => {
+                                                                table.getColumn("responsible")?.setFilterValue(
+                                                                    responsible === currentResponsibleFilter ? undefined : responsible
+                                                                )
+                                                                setIsResponsibleOpen(false)
+                                                                setResponsibleSearch("")
+                                                            }}
+                                                            className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 text-white hover:!bg-loomi-primary hover:text-white"
+                                                        >
+                                                            <Check
+                                                                className={cn(
+                                                                    "mr-2 h-4 w-4",
+                                                                    currentResponsibleFilter === responsible ? "opacity-100" : "opacity-0"
+                                                                )}
+                                                            />
+                                                            {responsible}
+                                                        </div>
+                                                    ))}
+                                            </CommandGroup>
+                                        </>
+                                    )}
+                                    {responsibleSearch.length === 0 && (
+                                        <div className="py-6 text-center text-sm text-muted-foreground">
+                                            {t("typeToSearch")}
+                                        </div>
+                                    )}
+                                </CommandList>
+                            </Command>
+                        </PopoverContent>
+                    </Popover>
+                </div>
+
             </div>
 
-            <div className="rounded-[20px] bg-loomi-table px-6 pb-6">
+            <div className="rounded-[20px] bg-loomi-table px-6 pb-6 lg:w-full max-w-full overflow-x-auto">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow className="border-white/10 hover:bg-transparent text-sm !py-2" key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead className="px-0 py-4 text-loomi-muted" key={header.id}>
+                                        <TableHead className="px-0 !pr-8 py-4 text-loomi-muted" key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -251,7 +253,7 @@ export function TicketDataTable<TData, TValue>({
                                     className="border-white/10 hover:bg-loomi-bg-card-hover text-sm"
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell className="!px-0 py-4" key={cell.id}>
+                                        <TableCell className="px-0 !pr-8 py-4" key={cell.id}>
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext()

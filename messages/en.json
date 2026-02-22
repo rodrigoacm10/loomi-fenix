@@ -162,5 +162,15 @@
         "fetchError": "Failed to load user data.",
         "updateError": "Failed to update profile.",
         "deleteError": "Failed to delete account."
+    },
+    "ChatAnalysis": {
+        "aiAnalysis": "AI Analysis",
+        "priority": "Priority"
+    },
+    "AiSuggestion": {
+        "sendProposal": "Send proposal",
+        "makeCall": "Make a call",
+        "viewHistory": "View history",
+        "hint": "AI Suggestion (Click to send)"
     }
 }

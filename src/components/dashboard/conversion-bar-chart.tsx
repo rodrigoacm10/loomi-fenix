@@ -89,7 +89,7 @@ export function ConversionBarChart() {
                 <h3 className="text-xl font-semibold">{t("conversionRate")}</h3>
                 <ArrowRightIcon className="h-6 w-6" />
             </div>
-            <div className="flex-1 min-h-[0px] -ml-4">
+            <div className="flex-1 h-[380px] -ml-4">
                 {(typeof window !== 'undefined') && (
                     <Chart
                         options={chartOptions}

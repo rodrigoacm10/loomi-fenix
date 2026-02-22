@@ -26,7 +26,7 @@ export function Header() {
 
     return (
         <header className="bg-[#20273e] sticky top-0 z-30 flex h-18 w-full items-center px-6 text-white">
-            <div className="ml-[130px] flex items-center justify-between w-full">
+            <div className="flex items-center justify-between w-full">
                 <h1 className="text-xl font-semibold">{currentTitle}</h1>
 
                 {activePath === "/tickets" && (

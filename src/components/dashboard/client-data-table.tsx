@@ -62,8 +62,8 @@ export function ClientDataTable<TData, TValue>({
     })
 
     return (
-        <div>
-            <div className="flex items-center pt-2 pb-4 gap-2">
+        <div className="w-full max-w-full">
+            <div className="flex flex-col md:flex-row items-center pt-2 pb-4 gap-2 lg:flex-nowrap flex-wrap w-full">
                 <div className="relative w-full">
                     <Input
                         placeholder={t("searchPlaceholder")}
@@ -78,66 +78,68 @@ export function ClientDataTable<TData, TValue>({
                     </div>
                 </div>
 
-                <Select
-                    value={(table.getColumn("status")?.getFilterValue() as string) ?? "Todos"}
-                    onValueChange={(value) =>
-                        table.getColumn("status")?.setFilterValue(value === "Todos" ? undefined : value)
-                    }
-                >
-                    <SelectTrigger className="w-[250px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white">
-                        <SelectValue placeholder={t("statusPlaceholder")} />
-                    </SelectTrigger>
-                    <SelectContent className="bg-loomi-bg-dark text-white border-0">
-                        <SelectItem value="Todos" className="focus:bg-loomi-primary focus:text-white">{t("all")}</SelectItem>
-                        {filters.status.filter(s => s !== "Todos" && s !== "all").map(s => (
-                            <SelectItem key={s} value={s} className="focus:bg-loomi-primary focus:text-white">{s}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                <div className="flex gap-2 w-full">
+                    <Select
+                        value={(table.getColumn("status")?.getFilterValue() as string) ?? "Todos"}
+                        onValueChange={(value) =>
+                            table.getColumn("status")?.setFilterValue(value === "Todos" ? undefined : value)
+                        }
+                    >
+                        <SelectTrigger className="flex-1 lg:w-[180px] xl:w-[250px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white">
+                            <SelectValue placeholder={t("statusPlaceholder")} />
+                        </SelectTrigger>
+                        <SelectContent className="bg-loomi-bg-dark text-white border-0">
+                            <SelectItem value="Todos" className="focus:bg-loomi-primary focus:text-white">{t("all")}</SelectItem>
+                            {filters.status.filter(s => s !== "Todos" && s !== "all").map(s => (
+                                <SelectItem key={s} value={s} className="focus:bg-loomi-primary focus:text-white">{s}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
 
-                <Select
-                    value={(table.getColumn("secureType")?.getFilterValue() as string) ?? "Todos"}
-                    onValueChange={(value) =>
-                        table.getColumn("secureType")?.setFilterValue(value === "Todos" ? undefined : value)
-                    }
-                >
-                    <SelectTrigger className="w-[320px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white truncate">
-                        <SelectValue placeholder={t("secureTypePlaceholder")} />
-                    </SelectTrigger>
-                    <SelectContent className="bg-loomi-bg-dark text-white border-0">
-                        <SelectItem value="Todos" className="focus:bg-loomi-primary focus:text-white">{t("all")}</SelectItem>
-                        {filters.secureType.filter(t => t !== "Todos" && t !== "all").map(t => (
-                            <SelectItem key={t} value={t} className="focus:bg-loomi-primary focus:text-white">{t}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                    <Select
+                        value={(table.getColumn("secureType")?.getFilterValue() as string) ?? "Todos"}
+                        onValueChange={(value) =>
+                            table.getColumn("secureType")?.setFilterValue(value === "Todos" ? undefined : value)
+                        }
+                    >
+                        <SelectTrigger className="flex-1 lg:w-[180px] xl:w-[320px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white truncate">
+                            <SelectValue placeholder={t("secureTypePlaceholder")} />
+                        </SelectTrigger>
+                        <SelectContent className="bg-loomi-bg-dark text-white border-0">
+                            <SelectItem value="Todos" className="focus:bg-loomi-primary focus:text-white">{t("all")}</SelectItem>
+                            {filters.secureType.filter(t => t !== "Todos" && t !== "all").map(t => (
+                                <SelectItem key={t} value={t} className="focus:bg-loomi-primary focus:text-white">{t}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
 
-                <Select
-                    value={(table.getColumn("location")?.getFilterValue() as string) ?? "Todos"}
-                    onValueChange={(value) =>
-                        table.getColumn("location")?.setFilterValue(value === "Todos" ? undefined : value)
-                    }
-                >
-                    <SelectTrigger className="w-[250px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white">
-                        <SelectValue placeholder={t("locationPlaceholder")} />
-                    </SelectTrigger>
-                    <SelectContent className="bg-loomi-bg-dark text-white border-0">
-                        <SelectItem value="Todos" className="focus:bg-loomi-primary focus:text-white">{t("all")}</SelectItem>
-                        {filters.locations.filter(l => l !== "Todos" && l !== "all").map(l => (
-                            <SelectItem key={l} value={l} className="focus:bg-loomi-primary focus:text-white">{l}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                    <Select
+                        value={(table.getColumn("location")?.getFilterValue() as string) ?? "Todos"}
+                        onValueChange={(value) =>
+                            table.getColumn("location")?.setFilterValue(value === "Todos" ? undefined : value)
+                        }
+                    >
+                        <SelectTrigger className="flex-1 lg:w-[180px] xl:w-[250px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white">
+                            <SelectValue placeholder={t("locationPlaceholder")} />
+                        </SelectTrigger>
+                        <SelectContent className="bg-loomi-bg-dark text-white border-0">
+                            <SelectItem value="Todos" className="focus:bg-loomi-primary focus:text-white">{t("all")}</SelectItem>
+                            {filters.locations.filter(l => l !== "Todos" && l !== "axl:w-[250px]ll").map(l => (
+                                <SelectItem key={l} value={l} className="focus:bg-loomi-primary focus:text-white">{l}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
 
-            <div className="rounded-[20px] bg-loomi-table px-6 pb-2">
+            <div className="rounded-[20px] bg-loomi-table px-6 pb-2 lg:w-full max-w-full overflow-x-auto">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow className="border-white/10 hover:bg-transparent text-sm" key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead className="px-0 py-4 text-loomi-muted" key={header.id}>
+                                        <TableHead className="px-0 !pr-8 py-4 text-loomi-muted" key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -159,7 +161,7 @@ export function ClientDataTable<TData, TValue>({
                                     className="border-white/10 hover:bg-loomi-bg-card-hover text-sm"
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell className="px-0 py-4" key={cell.id}>
+                                        <TableCell className="px-0 !pr-8 py-4" key={cell.id}>
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </TableCell>
                                     ))}
