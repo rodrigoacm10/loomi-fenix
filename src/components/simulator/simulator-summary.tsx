@@ -1,0 +1,59 @@
+import { useSimulatorStore } from '@/store/simulator-store'
+import Container from '../global/container'
+import { BenefitBadge } from './benefit-badge'
+import { useTranslations } from 'next-intl'
+
+export function SimulatorSummary() {
+  const t = useTranslations('Simulator')
+  const { plans, includedBenefits } = useSimulatorStore()
+
+  return (
+    <div className="space-y-10 h-full flex flex-col">
+      <Container className="bg-loomi-bg-card space-y-8">
+        <h2 className="text-xl font-semibold">{t('includedBenefits')}</h2>
+        <div className="flex flex-wrap gap-2">
+          {includedBenefits.map((benefit, index) => (
+            <BenefitBadge key={index} benefit={benefit} />
+          ))}
+        </div>
+      </Container>
+
+      <Container className="flex-1 flex flex-col">
+        <h2 className="text-xl font-semibold mb-8">{t('indicators')}</h2>
+        <div className="space-y-8  flex-1 flex flex-col">
+          {plans.map((plan) => {
+            return (
+              <Container
+                key={plan.name}
+                className="bg-[#23293b] flex-1 flex items-center justify-between"
+              >
+                <div className="space-y-1">
+                  <p className="text-xl font-semibold">{plan.name}</p>
+                  <div className="flex gap-3 text-sm">
+                    <span className="text-white/60">
+                      {t('conversion')}{' '}
+                      <span className="text-green-400 drop-shadow-[0_0_8px_rgba(3,200,9,0.8)]">
+                        {plan.conversion}%
+                      </span>
+                    </span>
+                    <span className="text-white/60">
+                      {t('roi')}{' '}
+                      <span className="text-green-400 drop-shadow-[0_0_8px_rgba(3,200,9,0.8)]">
+                        {plan.roi}%
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-lg font-bold text-white">
+                    R$ {plan.value.toFixed(2).replace('.', ',')}
+                  </p>
+                </div>
+              </Container>
+            )
+          })}
+        </div>
+      </Container>
+    </div>
+  )
+}
