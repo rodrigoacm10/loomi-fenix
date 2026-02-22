@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import LoginForm from '@/components/auth/login-form'
 
 export const metadata: Metadata = {
-  title: 'Login | Project Fênix',
-  description: 'Login to your account',
+  title: 'Register | Nortus',
+  description: 'Create your account',
 }
 
 export default function LoginPage() {

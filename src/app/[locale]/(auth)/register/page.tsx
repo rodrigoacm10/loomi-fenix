@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import RegisterForm from '@/components/auth/register-form'
 
 export const metadata: Metadata = {
-  title: 'Register | Project Fênix',
+  title: 'Register | Nortus',
   description: 'Create your account',
 }
 
