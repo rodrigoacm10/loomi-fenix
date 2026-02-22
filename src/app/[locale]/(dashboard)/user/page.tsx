@@ -10,7 +10,6 @@ import api from "@/lib/api";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import {
     Form,
     FormControl,
@@ -27,12 +26,7 @@ import Container from "@/components/global/container";
 import { DeleteUserDialog } from "@/components/user/delete-user-dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import LanguageSelector from "@/components/global/language-selector";
-
-const userSchema = z.object({
-    name: z.string().min(1, "Nome é obrigatório"),
-    email: z.string().email("E-mail inválido"),
-});
-type UserValues = z.infer<typeof userSchema>;
+import { userSchema, UserValues } from "@/schemas/user-schema";
 
 export default function UserPage() {
     const t = useTranslations("UserPage");

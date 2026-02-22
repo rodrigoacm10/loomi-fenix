@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -26,17 +25,7 @@ import { toast } from "sonner"
 import { getNextTicketId } from "@/utils/get-next-ticket-id"
 import { SuccessToast } from "@/components/global/success-toast"
 import { useTranslations } from "next-intl"
-
-const ticketSchema = z.object({
-    subject: z.string().min(1, "Assunto é obrigatório"),
-    client: z.string().min(1, "Cliente é obrigatório"),
-    email: z.string().email("Email inválido"),
-    responsible: z.string().min(1, "Responsável é obrigatório"),
-    priority: z.enum(["Urgente", "Média", "Baixa"]),
-    status: z.enum(["Aberto", "Em andamento", "Fechado"]),
-})
-
-type TicketValues = z.infer<typeof ticketSchema>
+import { ticketSchema, TicketValues } from "@/schemas/ticket-schema"
 
 export function TicketForm() {
     const { selectedTicket, createTicket, updateTicket, closeTicketModal, tickets, isViewMode } = useTicketStore()
