@@ -3,11 +3,11 @@
 import { useEffect } from 'react'
 import Container from '@/components/global/container'
 import { useTicketStore } from '@/store/ticket-store'
-import { TicketDataTable } from '@/components/tickets/ticket-data-table'
-import { columns } from '@/components/tickets/ticket-columns'
+import { TicketDataTable } from '@/components/tickets/tables/ticket-data-table'
+import { columns } from '@/components/tickets/tables/ticket-columns'
 import { TicketDialog } from '@/components/tickets/ticket-dialog'
 import { TicketCardInfo } from '@/components/tickets/ticket-card-info'
-import { SkeletonTickets } from '@/components/tickets/skeleton-tickets'
+import { SkeletonTickets } from '@/components/tickets/page/skeleton-tickets'
 import { useTranslations } from 'next-intl'
 
 export function TicketsPageContent() {

@@ -4,6 +4,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { ActiveClient } from '@/types/dashboard'
 import { formatCurrency } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
+import { ClientBadge } from './client-badge'
 
 const TranslatedHeader = ({ textKey }: { textKey: string }) => {
   const t = useTranslations('DataTable')
@@ -48,34 +49,12 @@ export const columns: ColumnDef<ActiveClient>[] = [
     accessorKey: 'status',
     header: () => <TranslatedHeader textKey="colStatus" />,
     cell: ({ row }) => {
-      const status = row.getValue('status') as string
+      const priority = row.getValue('status') as
+        | 'Ativo'
+        | 'Pendente'
+        | 'Inativo'
 
-      let bgColor = 'bg-gray-500/10'
-      let textColor = 'text-gray-500'
-      let dotColor = 'bg-gray-500'
-
-      if (status === 'Ativo') {
-        bgColor = 'bg-green-500/10'
-        textColor = 'text-green-500'
-        dotColor = 'bg-green-500'
-      } else if (status === 'Pendente') {
-        bgColor = 'bg-yellow-500/10'
-        textColor = 'text-yellow-500'
-        dotColor = 'bg-yellow-500'
-      } else if (status === 'Inativo') {
-        bgColor = 'bg-red-500/10'
-        textColor = 'text-red-500'
-        dotColor = 'bg-red-500'
-      }
-
-      return (
-        <div
-          className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${bgColor} ${textColor}`}
-        >
-          <div className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
-          {status}
-        </div>
-      )
+      return <ClientBadge variant={priority} />
     },
   },
   {

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { SimulatorPageContent } from '@/components/simulator/simulator-page-content'
+import { SimulatorPageContent } from '@/components/simulator/page/simulator-page-content'
 
 export const metadata: Metadata = {
   title: 'Simulator | Nortus',

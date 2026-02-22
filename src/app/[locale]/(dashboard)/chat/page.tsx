@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { ChatPageContent } from '@/components/chat/chat-page-content'
+import { ChatPageContent } from '@/components/chat/page/chat-page-content'
 
 export const metadata: Metadata = {
   title: 'Chat | Nortus',

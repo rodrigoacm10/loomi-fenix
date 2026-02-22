@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useSimulatorStore } from '@/store/simulator-store'
 import { SimulatorControls } from '@/components/simulator/simulator-controls'
 import { SimulatorSummary } from '@/components/simulator/simulator-summary'
-import { SkeletonSimulator } from '@/components/simulator/skeleton-simulator'
+import { SkeletonSimulator } from '@/components/simulator/page/skeleton-simulator'
 
 export function SimulatorPageContent() {
   const { fetchSimulatorData, loading } = useSimulatorStore()

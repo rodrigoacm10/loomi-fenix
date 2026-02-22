@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Container from '@/components/global/container'
 import { DeleteUserDialog } from '@/components/user/delete-user-dialog'
-import { SkeletonUser } from '@/components/user/skeleton-user'
+import { SkeletonUser } from '@/components/user/page/skeleton-user'
 import LanguageSelector from '@/components/global/language-selector'
 import { useUserForm } from '@/hooks/use-user-form'
 

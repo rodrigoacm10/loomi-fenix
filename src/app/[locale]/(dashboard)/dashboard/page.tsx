@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { DashboardPageContent } from '@/components/dashboard/dashboard-page-content'
+import { DashboardPageContent } from '@/components/dashboard/page/dashboard-page-content'
 
 export const metadata: Metadata = {
   title: 'Dashboard | Nortus',

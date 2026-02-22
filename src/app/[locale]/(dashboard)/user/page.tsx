@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { UserPageContent } from '@/components/user/user-page-content'
+import { UserPageContent } from '@/components/user/page/user-page-content'
 
 export const metadata: Metadata = {
   title: 'Profile | Nortus',

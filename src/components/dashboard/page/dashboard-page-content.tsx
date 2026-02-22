@@ -2,13 +2,13 @@
 
 import { useDashboardStore } from '@/store/dashboard-store'
 import { useEffect } from 'react'
-import { SkeletonDashboard } from '@/components/dashboard/skeleton-dashboard'
+import { SkeletonDashboard } from '@/components/dashboard/page/skeleton-dashboard'
 import Container from '@/components/global/container'
-import { ClientDataTable } from '@/components/dashboard/client-data-table'
-import { columns as clientColumns } from '@/components/dashboard/client-columns'
-import { DashboardMap } from '@/components/dashboard/dashboard-map'
-import { KpiTrendsChart } from '@/components/dashboard/kpi-trends-chart'
-import { ConversionBarChart } from '@/components/dashboard/conversion-bar-chart'
+import { ClientDataTable } from '@/components/dashboard/tables/client-data-table'
+import { columns as clientColumns } from '@/components/dashboard/tables/client-columns'
+import { DashboardMap } from '@/components/dashboard/graphs/dashboard-map'
+import { KpiTrendsChart } from '@/components/dashboard/graphs/kpi-trends-chart'
+import { ConversionBarChart } from '@/components/dashboard/graphs/conversion-bar-chart'
 import { useTranslations } from 'next-intl'
 
 export function DashboardPageContent() {

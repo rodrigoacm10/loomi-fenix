@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { TicketsPageContent } from '@/components/tickets/tickets-page-content'
+import { TicketsPageContent } from '@/components/tickets/page/tickets-page-content'
 
 export const metadata: Metadata = {
   title: 'Tickets | Nortus',
