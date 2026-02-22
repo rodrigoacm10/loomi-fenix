@@ -2,6 +2,8 @@
 
 Este repositório contém o **Projeto Fênix**, uma interface de operador moderna desenvolvida para o sistema Nortus. O projeto foi construído como parte do desafio técnico para a Loomi, utilizando tecnologias de ponta para superar as limitações de uma API legada e proporcionar uma experiência de usuário fluida e responsiva.
 
+**🔗 Link do Deploy:** [https://loomi-fenix-sable.vercel.app](https://loomi-fenix-sable.vercel.app)
+
 ---
 
 ## 🚀 Contexto do Projeto
