@@ -126,7 +126,21 @@
         "dialogDescription": "Preencha os dados abaixo para registrar um novo ticket na plataforma.",
         "viewTicket": "Visualizar Ticket",
         "editTicket": "Editar Ticket",
-        "newTicket": "Novo Ticket"
+        "newTicket": "Novo Ticket",
+        "successUpdateMessage": "Ticket atualizado com sucesso!",
+        "successUpdateDescription": "O ticket foi atualizado e já está na sua lista.",
+        "successCreateMessage": "Ticket criado com sucesso!",
+        "successCreateDescription": "O ticket foi criado e já está na sua lista.",
+        "errorSaveMessage": "Erro ao salvar ticket"
+    },
+    "DeleteTicketDialog": {
+        "title": "Excluir Ticket",
+        "description": "Tem certeza que deseja excluir o ticket",
+        "warning": "Esta ação não pode ser desfeita.",
+        "cancel": "Cancelar",
+        "delete": "Excluir",
+        "successDeleteMessage": "Ticket excluído com sucesso!",
+        "errorDeleteMessage": "Erro ao excluir ticket"
     },
     "RegisterPage": {
         "title": "Criar uma conta",

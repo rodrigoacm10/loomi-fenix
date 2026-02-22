@@ -24,6 +24,7 @@ import { useTicketStore } from '@/store/ticket-store'
 import { toast } from "sonner"
 import { getNextTicketId } from "@/utils/get-next-ticket-id"
 import { SuccessToast } from "@/components/global/success-toast"
+import { ErrorToast } from "@/components/global/error-toast"
 import { useTranslations } from "next-intl"
 import { ticketSchema, TicketValues } from "@/schemas/ticket-schema"
 
@@ -57,11 +58,11 @@ export function TicketForm() {
         try {
             if (selectedTicket) {
                 await updateTicket(selectedTicket.id, data)
-                toast.custom((t) => (
+                toast.custom((toastProps) => (
                     <SuccessToast
-                        t={t}
-                        title="Ticket atualizado com sucesso!"
-                        description="O ticket foi atualizado e já está na sua lista."
+                        t={toastProps}
+                        title={t("successUpdateMessage")}
+                        description={t("successUpdateDescription")}
                     />
                 ))
             } else {
@@ -71,18 +72,20 @@ export function TicketForm() {
                 }
 
                 await createTicket(newTicketData)
-                toast.custom((t) => (
+                toast.custom((toastProps) => (
                     <SuccessToast
-                        t={t}
-                        title="Ticket criado com sucesso!"
-                        description="O ticket foi criado e já está na sua lista."
+                        t={toastProps}
+                        title={t("successCreateMessage")}
+                        description={t("successCreateDescription")}
                     />
                 ))
             }
             closeTicketModal()
         } catch (error) {
             console.error(error)
-            toast.error("Erro ao salvar ticket")
+            toast.custom((toastProps) => (
+                <ErrorToast t={toastProps} title={t("errorSaveMessage")} description="" />
+            ))
         }
     }
 

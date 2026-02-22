@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 
 import api from "@/lib/api";
 import { SuccessToast } from "../global/success-toast";
+import { ErrorToast } from "../global/error-toast";
 import { RegisterFormValues, registerSchema } from "@/schemas/register-schema";
 
 export default function RegisterForm() {
@@ -51,7 +52,13 @@ export default function RegisterForm() {
         } catch (error) {
             console.error(error);
             const err = error as { response?: { data?: { message?: string } } };
-            toast.error(err.response?.data?.message || t("failMessage"));
+            toast.custom((toastProps) => (
+                <ErrorToast
+                    t={toastProps}
+                    title={err.response?.data?.message || t("failMessage")}
+                    description=""
+                />
+            ));
         } finally {
             setIsLoading(false);
         }

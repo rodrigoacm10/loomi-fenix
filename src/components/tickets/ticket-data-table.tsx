@@ -9,6 +9,7 @@ import {
     useReactTable,
     getFilteredRowModel,
     ColumnFiltersState,
+    Table as TanstackTable,
 } from "@tanstack/react-table"
 
 import {
@@ -45,15 +46,8 @@ export function TicketDataTable<TData, TValue>({
     data,
 }: DataTableProps<TData, TValue>) {
     const t = useTranslations("TicketsPage");
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-        []
-    )
-
-    const [pagination, setPagination] = useState({
-        pageIndex: 0,
-        pageSize: 5,
-    })
-
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+    const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 })
     const [globalFilter, setGlobalFilter] = useState("")
 
     const [isResponsibleOpen, setIsResponsibleOpen] = useState(false)
@@ -87,7 +81,6 @@ export function TicketDataTable<TData, TValue>({
     }, [data])
 
     const currentResponsibleFilter = (table.getColumn("responsible")?.getFilterValue() as string) ?? ""
-
     const totalPages = table.getPageCount();
     const currentPage = table.getState().pagination.pageIndex + 1;
 
@@ -222,7 +215,6 @@ export function TicketDataTable<TData, TValue>({
                         </PopoverContent>
                     </Popover>
                 </div>
-
             </div>
 
             <div className="rounded-[20px] bg-loomi-table px-6 pb-6 lg:w-full max-w-full overflow-x-auto">
@@ -314,6 +306,6 @@ export function TicketDataTable<TData, TValue>({
                     <Image src="/icons/lastpage.svg" alt="Last Page" width={24} height={24} />
                 </Button>
             </div>
-        </div >
+        </div>
     )
 }

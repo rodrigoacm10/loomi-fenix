@@ -15,6 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/auth-store";
 import { SuccessToast } from "../global/success-toast";
+import { ErrorToast } from "../global/error-toast";
 import { LoginFormValues, loginSchema } from "@/schemas/login-schema";
 
 export default function LoginForm() {
@@ -53,7 +54,13 @@ export default function LoginForm() {
         } catch (error) {
             console.error(error);
             const err = error as { response?: { data?: { message?: string } } };
-            toast.error(err.response?.data?.message || t("failMessage"));
+            toast.custom((toastProps) => (
+                <ErrorToast
+                    t={toastProps}
+                    title={err.response?.data?.message || t("failMessage")}
+                    description=""
+                />
+            ));
         } finally {
             setIsLoading(false);
         }
@@ -152,7 +159,7 @@ export default function LoginForm() {
                     </span>
                 </div>
             </div>
-            <div className="text-center text-sm"> {/* Added Register Link */}
+            <div className="text-center text-sm">
                 {t("dontHaveAccount")}{" "}
                 <Link href="/register" className="font-semibold text-loomi-primary hover:underline">
                     {t("signUp")}
