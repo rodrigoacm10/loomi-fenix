@@ -129,15 +129,20 @@ O desenvolvimento deste projeto foi realizado com o suporte estratégico de ferr
    ```bash
    git clone https://github.com/rodrigoacm10/loomi-fenix.git
    ```
-2. **Instale as dependências**:
+2. **Configure as variáveis de ambiente**:
+   Copie o arquivo `.env.example` para `.env` e preencha a URL da API:
+   ```bash
+   cp .env.example .env
+   ```
+3. **Instale as dependências**:
    ```bash
    npm install
    ```
-3. **Inicie o servidor de desenvolvimento**:
+4. **Inicie o servidor de desenvolvimento**:
    ```bash
    npm run dev
    ```
-4. **Acesse**: `http://localhost:3000`
+5. **Acesse**: `http://localhost:3000`
 
 ---
 
