@@ -19,12 +19,16 @@ export function DashboardPageContent() {
     fetchDashboardData()
   }, [fetchDashboardData])
 
-  if (loading || !data) {
+  if (loading) {
     return <SkeletonDashboard />
   }
 
   if (error) {
     return <div className="p-8 text-red-500">{error}</div>
+  }
+
+  if (!data) {
+    return <SkeletonDashboard />
   }
 
   return (

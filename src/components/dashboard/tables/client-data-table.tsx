@@ -94,7 +94,10 @@ export function ClientDataTable<TData, TValue>({
                 ?.setFilterValue(value === 'Todos' ? undefined : value)
             }
           >
-            <SelectTrigger className="flex-1 lg:w-45 xl:w-62.5 px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white">
+            <SelectTrigger
+              aria-label={t('statusPlaceholder')}
+              className="flex-1 lg:w-45 xl:w-62.5 px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white"
+            >
               <SelectValue placeholder={t('statusPlaceholder')} />
             </SelectTrigger>
             <SelectContent className="bg-loomi-bg-dark text-white border-0">
@@ -129,7 +132,10 @@ export function ClientDataTable<TData, TValue>({
                 ?.setFilterValue(value === 'Todos' ? undefined : value)
             }
           >
-            <SelectTrigger className="flex-1 lg:w-45 xl:w-[320px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white truncate">
+            <SelectTrigger
+              aria-label={t('secureTypePlaceholder')}
+              className="flex-1 lg:w-45 xl:w-[320px] px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white truncate"
+            >
               <SelectValue placeholder={t('secureTypePlaceholder')} />
             </SelectTrigger>
             <SelectContent className="bg-loomi-bg-dark text-white border-0">
@@ -164,7 +170,10 @@ export function ClientDataTable<TData, TValue>({
                 ?.setFilterValue(value === 'Todos' ? undefined : value)
             }
           >
-            <SelectTrigger className="flex-1 lg:w-45 xl:w-62.5 px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white">
+            <SelectTrigger
+              aria-label={t('locationPlaceholder')}
+              className="flex-1 lg:w-45 xl:w-62.5 px-5 bg-loomi-bg-dark border-0 rounded-full h-9 text-white"
+            >
               <SelectValue placeholder={t('locationPlaceholder')} />
             </SelectTrigger>
             <SelectContent className="bg-loomi-bg-dark text-white border-0">
